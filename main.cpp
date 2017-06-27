@@ -9,24 +9,25 @@
 
 struct menuitem dos_applications_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>("EDIT"), 0, 0, SCAN_NONE, 0, 0, 0},
-   {reinterpret_cast<unsigned char const*>("EDLIN"), 0, 0, SCAN_NONE, 0, 0, 0},
-   {reinterpret_cast<unsigned char const*>("FDSHIELD"), 0, 0, SCAN_NONE, 0, 0, 0},
-   {reinterpret_cast<unsigned char const*>("DEFRAG"), 0, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>("EDIT"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>("EDLIN"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>("FDSHIELD"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>("DEFRAG"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
    {0}
 };
 
 struct menuitem exit_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>("Reboot"), 0, 0, SCAN_NONE, 0, 0, 0},
-   {reinterpret_cast<unsigned char const*>("Power Off"), 0, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>("Reboot"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>("Power Off"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
    {0}
 };
 
 struct menuitembar menus_of_bar[] =
 {
    {reinterpret_cast<unsigned char const*>("File Manager"), 0, SCAN_NONE, 0},
-   {reinterpret_cast<unsigned char const*>("DOS Applications"), 0, SCAN_NONE, dos_applications_menu},
+   {reinterpret_cast<unsigned char const*>("Command Shell"), 0, SCAN_NONE, 0},
+   {reinterpret_cast<unsigned char const*>("DOS Apps"), 0, SCAN_NONE, dos_applications_menu},
    {reinterpret_cast<unsigned char const*>("About"), 0, SCAN_NONE, 0},
    {reinterpret_cast<unsigned char const*>("Exit"), 0, SCAN_NONE, exit_menu},
    {0}
@@ -36,21 +37,38 @@ struct menuitembar menus_of_bar[] =
 
 struct menuitem file_menu[] =
 {
+   {reinterpret_cast<unsigned char const*>("Open"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
+   {reinterpret_cast<unsigned char const*>("New Folder"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
    {0}
 };
 
 struct menuitem edit_menu[] =
 {
+   {reinterpret_cast<unsigned char const*>("Cut"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>("Copy"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>("Paste"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
+   {reinterpret_cast<unsigned char const*>("Delete"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
    {0}
 };
 
 struct menuitem view_menu[] =
 {
+   {reinterpret_cast<unsigned char const*>("Refresh"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
+   {reinterpret_cast<unsigned char const*>("Show Hidden Files"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX | MENUITEM_SEPERATOR, 0, 0},
+   {reinterpret_cast<unsigned char const*>("Sort"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE,  MENUITEM_SUBMENU, 0, 0},
+   {reinterpret_cast<unsigned char const*>("By Name"), MENUITEM_MNEMONIC_NONE, 0,  SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>("By Size"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>("By Type"), MENUITEM_MNEMONIC_NONE, 0,  SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>("By Date"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {0},
    {0}
 };
 
 struct menuitem go_menu[] =
 {
+   {reinterpret_cast<unsigned char const*>("Back"), MENUITEM_MNEMONIC_NONE, 0,  SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>("Foward"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>("Up"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
    {0}
 };
 struct menuitembar menus_of_file_manager[] =
