@@ -3,6 +3,7 @@
  *********************************/
 
 #include <fdostui.hpp>
+#include <mouse.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -16,6 +17,17 @@ menubar *bar_menus= new menubar(0, 0, _video_cols, 1);
 window *file_manager = new window(5, 6, 68, 15);
 menubar *file_manager_menus= new menubar(0, 0, _video_cols, 1);
 
+// Run Function
+
+void command_run(char const* command)
+{
+   mouse_deinit();
+   system(command);
+   mouse_init();
+   mouse_show();
+   wm_draw(0);
+}
+
 // Menu Functions
 
 void application_file_manager(menuitem *, void *)
@@ -26,27 +38,33 @@ void application_file_manager(menuitem *, void *)
 
 void application_edit(menuitem *, void *)
 {
-   system("EDIT");
+   command_run("EDIT");
    return;
 }
 
 void application_edlin(menuitem *, void *)
 {
-   system("EDLIN");
+   command_run("EDLIN");
    return;
+}
+
+void dosshell_exit(menuitem *, void *)
+{
+    wm_deinit();
+    exit(0);
 }
 
 void reboot(menuitem *, void *)
 {
    wm_deinit();
-   system("FDAPM WARMBOOT");
+   command_run("FDAPM WARMBOOT");
    return;
 }
 
 void poweroff(menuitem *, void *)
 {
    wm_deinit();
-   system("FDAPM POWEROFF");
+   command_run("FDAPM POWEROFF");
    return;
 }
 
@@ -67,6 +85,7 @@ struct menuitem dos_applications_menu[] =
 
 struct menuitem exit_menu[] =
 {
+   {reinterpret_cast<unsigned char const*>("Exit"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, dosshell_exit, 0},
    {reinterpret_cast<unsigned char const*>("Reboot"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, reboot, 0},
    {reinterpret_cast<unsigned char const*>("Power Off"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, poweroff, 0},
    {0}
