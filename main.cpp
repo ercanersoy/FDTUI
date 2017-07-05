@@ -2,20 +2,28 @@
  * FreeDOS TUI Shell Source File *
  *********************************/
 
-#include <fdostui.hpp>
+#include <direct.h>
 #include <mouse.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <fdostui.hpp>
+
+// Current Directory
+
+char current_directory[PATH_MAX + 1];
 
 // Bar
 
 window *bar = new window(0, 0, _video_cols, 3);
-menubar *bar_menus= new menubar(0, 0, _video_cols, 1);
+menubar *bar_menus = new menubar(0, 0, _video_cols, 1);
 
 // File Manager
 
-window *file_manager = new window(5, 6, 68, 15);
-menubar *file_manager_menus= new menubar(0, 0, _video_cols, 1);
+window *file_manager = new window(5, 6, 68, 17);
+menubar *file_manager_menus = new menubar(0, 0, _video_cols, 1);
+label *current_directory_label = new label(1, 2, 65, 3);
+listbox *drivers = new listbox(1, 3, 65, 3);
+listbox *directories_and_files = new listbox(1, 6, 65, 9);
 
 // Run Function
 
@@ -48,7 +56,7 @@ void application_edlin(menuitem *, void *)
    return;
 }
 
-void dosshell_exit(menuitem *, void *)
+void dosshell_quit(menuitem *, void *)
 {
     wm_deinit();
     exit(0);
@@ -85,7 +93,7 @@ struct menuitem dos_applications_menu[] =
 
 struct menuitem exit_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>("Exit"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, dosshell_exit, 0},
+   {reinterpret_cast<unsigned char const*>("Quit"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, dosshell_quit, 0},
    {reinterpret_cast<unsigned char const*>("Reboot"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, reboot, 0},
    {reinterpret_cast<unsigned char const*>("Power Off"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, poweroff, 0},
    {0}
@@ -158,23 +166,32 @@ int main(void)
       return error;
    }
 
+   // Current Directory
+   
+   getcwd(current_directory, PATH_MAX + 1);
+
    // Bar
 
    wm_register_window(bar);
-   bar->set_attributes(window::EMPTY);
 
    bar_menus->set_menu(menus_of_bar);
 
+   bar->set_attributes(window::EMPTY);
    bar->add(bar_menus);
 
    // File Manager
 
    wm_register_window(file_manager);
-   file_manager->set_title((unsigned char *)"File Manager");
 
    file_manager_menus->set_menu(menus_of_file_manager);
 
+   current_directory_label->set_text((unsigned char *) current_directory);
+
+   file_manager->set_title((unsigned char *)"File Manager");
    file_manager->add(file_manager_menus);
+   file_manager->add(current_directory_label);
+   file_manager->add(drivers);
+   file_manager->add(directories_and_files);
 
    // Draw bar
    
