@@ -36,11 +36,11 @@ void command_run(char const* command)
    wm_draw(0);
 }
 
-// Menu Functions
+// Bar Menu Functions
 
 void application_file_manager(menuitem *, void *)
 {
-   file_manager->draw();
+   file_manager->set_visible();
    return;
 }
 
@@ -107,12 +107,20 @@ struct menuitembar menus_of_bar[] =
    {0}
 };
 
+// Menu Function Menus
+
+void file_manager_exit(menuitem *, void *)
+{
+    file_manager->set_hidden();
+}
+
 // File Manager Menus
 
 struct menuitem file_menu[] =
 {
    {reinterpret_cast<unsigned char const*>("Open"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
-   {reinterpret_cast<unsigned char const*>("New Folder"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>("New Folder"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
+   {reinterpret_cast<unsigned char const*>("Exit"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, file_manager_exit, 0},
    {0}
 };
 
@@ -187,15 +195,20 @@ int main(void)
 
    current_directory_label->set_text((unsigned char *) current_directory);
 
+   file_manager->set_attributes(window::TITLE | window::BORDER);
    file_manager->set_title((unsigned char *)"File Manager");
    file_manager->add(file_manager_menus);
    file_manager->add(current_directory_label);
    file_manager->add(drivers);
    file_manager->add(directories_and_files);
 
-   // Draw bar
-   
+   // Drawing
+
    wm_draw_widget(bar);
+
+   // Hidden File Manager
+
+   file_manager->set_hidden();
    
    // Run Window Manager
 
