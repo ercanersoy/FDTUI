@@ -10,7 +10,7 @@
 
 // Current Directory
 
-char current_directory[PATH_MAX + 1];
+char *current_directory = 0;
 
 // Bar
 
@@ -21,7 +21,7 @@ menubar *bar_menus = new menubar(0, 0, _video_cols, 1);
 
 window *file_manager = new window(5, 6, 68, 17);
 menubar *file_manager_menus = new menubar(0, 0, _video_cols, 1);
-label *current_directory_label = new label(1, 2, 65, 3);
+label *current_directory_label = new label(1, 2, 65, 1);
 listbox *drivers = new listbox(1, 3, 65, 3);
 listbox *directories_and_files = new listbox(1, 6, 65, 9);
 
@@ -40,7 +40,11 @@ void command_run(char const* command)
 
 void application_file_manager(menuitem *, void *)
 {
-   file_manager->set_visible();
+   if (false == file_manager->get_visible())
+   {
+      file_manager->set_visible();
+      wm_draw(file_manager);
+   }
    return;
 }
 
@@ -176,7 +180,8 @@ int main(void)
 
    // Current Directory
    
-   getcwd(current_directory, PATH_MAX + 1);
+   current_directory = (char *) malloc(PATH_MAX + 1);
+   current_directory = getcwd(current_directory, PATH_MAX + 1);
 
    // Bar
 
@@ -192,23 +197,20 @@ int main(void)
    wm_register_window(file_manager);
 
    file_manager_menus->set_menu(menus_of_file_manager);
-
-   current_directory_label->set_text((unsigned char *) current_directory);
-
+   
+   current_directory_label->set_text((unsigned char *)current_directory);
+   
    file_manager->set_attributes(window::TITLE | window::BORDER);
    file_manager->set_title((unsigned char *)"File Manager");
    file_manager->add(file_manager_menus);
    file_manager->add(current_directory_label);
    file_manager->add(drivers);
    file_manager->add(directories_and_files);
+   file_manager->set_hidden();
 
    // Drawing
 
    wm_draw_widget(bar);
-
-   // Hidden File Manager
-
-   file_manager->set_hidden();
    
    // Run Window Manager
 
@@ -217,6 +219,8 @@ int main(void)
    // Exit Window Manager
 
    wm_deinit();
+
+   free(current_directory);
 
    return 0;
 }
