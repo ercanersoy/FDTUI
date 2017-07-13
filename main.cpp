@@ -181,7 +181,7 @@ int main(void)
    // Current Directory
    
    current_directory = (char *) malloc(PATH_MAX + 1);
-   current_directory = getcwd(current_directory, PATH_MAX + 1);
+   getcwd(current_directory, PATH_MAX + 1);
 
    // Bar
 
@@ -197,9 +197,9 @@ int main(void)
    wm_register_window(file_manager);
 
    file_manager_menus->set_menu(menus_of_file_manager);
-   
+
    current_directory_label->set_text((unsigned char *)current_directory);
-   
+
    file_manager->set_attributes(window::TITLE | window::BORDER);
    file_manager->set_title((unsigned char *)"File Manager");
    file_manager->add(file_manager_menus);
@@ -211,7 +211,7 @@ int main(void)
    // Drawing
 
    wm_draw_widget(bar);
-   
+
    // Run Window Manager
 
    wm_run();
