@@ -7,6 +7,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fdostui.hpp>
+#include "config.h"
+#include "lang\en.h"
+#include "lang\tr.h"
 
 // Current Directory
 
@@ -84,7 +87,7 @@ void poweroff(menuitem *, void *)
 
 struct menuitem internal_applications_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>("File Manager"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, application_file_manager, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_FILE_MANAGER), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, application_file_manager, 0},
    {0}
 };
 
@@ -97,17 +100,17 @@ struct menuitem dos_applications_menu[] =
 
 struct menuitem exit_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>("Quit"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, dosshell_quit, 0},
-   {reinterpret_cast<unsigned char const*>("Reboot"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, reboot, 0},
-   {reinterpret_cast<unsigned char const*>("Power Off"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, poweroff, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_QUIT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, dosshell_quit, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_REBOOT_COMPUTER), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, reboot, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_POWEROFF_COMPUTER), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, poweroff, 0},
    {0}
 };
 
 struct menuitembar menus_of_bar[] =
 {
-   {reinterpret_cast<unsigned char const*>("Internal Apps"), 0, SCAN_NONE, internal_applications_menu},
-   {reinterpret_cast<unsigned char const*>("DOS Apps"), 0, SCAN_NONE, dos_applications_menu},
-   {reinterpret_cast<unsigned char const*>("Exit"), 0, SCAN_NONE, exit_menu},
+   {reinterpret_cast<unsigned char const*>(STRING_INTERNAL_APPLICATIONS), 0, SCAN_NONE, internal_applications_menu},
+   {reinterpret_cast<unsigned char const*>(STRING_DOS_APPLICATIONS), 0, SCAN_NONE, dos_applications_menu},
+   {reinterpret_cast<unsigned char const*>(STRING_EXIT), 0, SCAN_NONE, exit_menu},
    {0}
 };
 
@@ -122,47 +125,47 @@ void file_manager_exit(menuitem *, void *)
 
 struct menuitem file_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>("Open"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
-   {reinterpret_cast<unsigned char const*>("New Folder"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
-   {reinterpret_cast<unsigned char const*>("Exit"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, file_manager_exit, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_OPEN), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_NEW_DIRECTORY), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_EXIT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, file_manager_exit, 0},
    {0}
 };
 
 struct menuitem edit_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>("Cut"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
-   {reinterpret_cast<unsigned char const*>("Copy"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
-   {reinterpret_cast<unsigned char const*>("Paste"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
-   {reinterpret_cast<unsigned char const*>("Delete"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_CUT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_COPY), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_PASTE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_DELETE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
    {0}
 };
 
 struct menuitem view_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>("Refresh"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
-   {reinterpret_cast<unsigned char const*>("Show Hidden Files"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX | MENUITEM_SEPERATOR, 0, 0},
-   {reinterpret_cast<unsigned char const*>("Sort"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE,  MENUITEM_SUBMENU, 0, 0},
-   {reinterpret_cast<unsigned char const*>("By Name"), MENUITEM_MNEMONIC_NONE, 0,  SCAN_NONE, 0, 0, 0},
-   {reinterpret_cast<unsigned char const*>("By Size"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
-   {reinterpret_cast<unsigned char const*>("By Type"), MENUITEM_MNEMONIC_NONE, 0,  SCAN_NONE, 0, 0, 0},
-   {reinterpret_cast<unsigned char const*>("By Date"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_REFRESH), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_SHOW_HIDDEN_FILES), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX | MENUITEM_SEPERATOR, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_SORT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE,  MENUITEM_SUBMENU, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_BY_NAME), MENUITEM_MNEMONIC_NONE, 0,  SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_BY_SIZE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_BY_TYPE), MENUITEM_MNEMONIC_NONE, 0,  SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_BY_DATE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
    {0},
    {0}
 };
 
 struct menuitem go_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>("Back"), MENUITEM_MNEMONIC_NONE, 0,  SCAN_NONE, 0, 0, 0},
-   {reinterpret_cast<unsigned char const*>("Foward"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
-   {reinterpret_cast<unsigned char const*>("Up"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_BACK), MENUITEM_MNEMONIC_NONE, 0,  SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_FOWARD), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_UP), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
    {0}
 };
 struct menuitembar menus_of_file_manager[] =
 {
-   {reinterpret_cast<unsigned char const*>("File"), 0, SCAN_NONE, file_menu},
-   {reinterpret_cast<unsigned char const*>("Edit"), 0, SCAN_NONE, edit_menu},
-   {reinterpret_cast<unsigned char const*>("View"), 0, SCAN_NONE, view_menu},
-   {reinterpret_cast<unsigned char const*>("Go"), 0, SCAN_NONE, go_menu},
+   {reinterpret_cast<unsigned char const*>(STRING_FILE), 0, SCAN_NONE, file_menu},
+   {reinterpret_cast<unsigned char const*>(STRING_EDIT), 0, SCAN_NONE, edit_menu},
+   {reinterpret_cast<unsigned char const*>(STRING_VIEW), 0, SCAN_NONE, view_menu},
+   {reinterpret_cast<unsigned char const*>(STRING_GO), 0, SCAN_NONE, go_menu},
    {0}
 };
 
@@ -174,7 +177,7 @@ int main(void)
 
    if (error)
    {
-      puts("Unable to initialze FDOSTUI subsystem.");
+      puts(STRING_UNABLE_TO_INITIALZE_FDOSTUI_SYSTEM);
       return error;
    }
 
@@ -201,7 +204,7 @@ int main(void)
    current_directory_label->set_text((unsigned char *)current_directory);
 
    file_manager->set_attributes(window::TITLE | window::BORDER);
-   file_manager->set_title((unsigned char *)"File Manager");
+   file_manager->set_title((unsigned char *)STRING_FILE_MANAGER);
    file_manager->add(file_manager_menus);
    file_manager->add(current_directory_label);
    file_manager->add(drivers);

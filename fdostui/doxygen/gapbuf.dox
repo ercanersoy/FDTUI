@@ -1,0 +1,176 @@
+/*
+ GAPBUF.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*! \file gapbuf.h
+\brief A dynamic text buffer implementing the gap buffer algorithm
+
+A cursor (point) is not provided, it must be maintained externally. Routines
+taking a cursor expect it to be within normal boundaries of the buffer.
+
+\see edit
+
+*/
+
+/*!
+\struct gapbuf
+
+\var gapbuf::m_block
+	data block
+
+\var gapbuf::m_block_size
+	size of data block
+
+\var gapbuf::m_start
+	start of gap
+
+\var gapbuf::m_end
+	end of gap
+
+*/
+
+/*!
+\fn void gapbuf_assign(
+    struct gapbuf*const                 o_gap)
+\brief initialize gapbuf object
+\param[out] o_gap gapbuf object
+\returns none
+
+Memory is not allocated to the gap buffer until a character is inserted.
+*/
+
+/*!
+\fn void gapbuf_discharge(
+    struct gapbuf*const                 io_gap)
+\brief release resources held by object
+\param[in,out] io_gap object to release
+\returns none
+*/
+
+/*!
+\fn int gapbuf_backspace(
+    struct gapbuf*const                 io_gap,
+    size_t const                        i_offset)
+\brief perform a backspace operation
+\param[in,out] io_gap gap buffer object
+\param[in] i_offset cursor location to perform backspace 
+\returns 0 operation could not be performed
+\returns !0 operation performed
+*/
+
+/*!
+\fn int gapbuf_insert(
+    struct gapbuf*const                 io_gap,
+    size_t const                        i_offset,
+    unsigned char const                 i_char)
+\brief insert a character
+\param[in,out] io_gap gap buffer oject
+\param[in] i_offset cursor location to perform insert
+\param[in] i_char character to insert
+\returns 0 operation could not be performed
+\returns !0 operation performed
+*/
+
+/*!
+\fn int gapbuf_delete(
+    struct gapbuf*const                 io_gap,
+    size_t const                        i_offset)
+\brief delete a character
+\param[in,out] io_gap gap buffer oject
+\param[in] i_offset cursor location to perform delete 
+\returns 0 operation could not be performed
+\returns !0 operation performed
+*/
+
+/*!
+\fn unsigned char __FAR* gapbuf_char_next(
+    size_t*                             io_offset,
+    struct gapbuf const*const           i_gap)
+\brief move to next character
+\param[in,out] io_offset cursor to advance
+\param[in] i_gap gap buffer object
+\returns 0 end of file
+\returns !0 pointer to next character in the buffer
+*/
+
+/*!
+\fn unsigned char __FAR* gapbuf_char_prev(
+    size_t*                             io_offset,
+    struct gapbuf const*const           i_gap)
+\brief move to previous character
+\param[in,out] io_offset cursor to decrement
+\param[in] i_gap gap buffer object
+\returns 0 beginning of file
+\returns !0 previous character
+*/
+
+/*!
+\fn unsigned char __FAR* gapbuf_line_next(
+    size_t*                             io_offset,
+    struct gapbuf const*const           i_gap)
+\brief move to next line
+\param[in,out] io_offset cursor to advance
+\param[in] i_gap gap buffer object
+\returns 0 end of file
+\returns !0 beginning of next line
+*/
+
+/*!
+\fn unsigned char __FAR* gapbuf_line_prev(
+    size_t*                             io_offset,
+    struct gapbuf const*const           i_gap)
+\brief move to previous line
+\param[in,out] io_offset cursor to decrement
+\param[in] i_gap gap buffer object
+\returns 0 beginning of file
+\returns !0 beginning of previous line
+*/
+
+/*!
+\fn int gapbuf_overwrite(
+    struct gapbuf*const                 io_gap,
+    size_t const                        i_offset,
+    unsigned char const                 i_char)
+\brief overwrite character
+\param[in,out] io_gap gap buffer object
+\param[in] i_offset cursor location to preform overwrite
+\param[in] i_char character to overwrite
+\returns 0 operation could not be performed
+\returns !0 character overwritten
+*/
+
+/*!
+\fn unsigned char const __FAR* gapbuf_text(
+    struct gapbuf *const                io_gap)
+\brief get the text buffer
+\param[in,out] io_gap gap buffer object
+\returns 0 buffer empty
+\returns !0 pointer to buffer
+
+The routine will move the gap so the buffer can be accessed sequentially.
+
+Buffer contents should not be modified.
+
+The returned address is only valid until the next operation that 
+affects the gap.
+*/
+
+/*!
+\fn unsigned char __FAR* gapbuf_ptr(
+    struct gapbuf const*const           i_gap,
+    size_t const                        i_offset)
+\brief get the text buffer
+\param[in] i_gap gap buffer object
+\param[in] i_offset cursor location
+\returns 0 buffer empty or invalid cursor location
+\returns !0 pointer to buffer
+
+The routine does not move the gap. The returned address points to either
+before the start of the gap or after the end of the gap.
+*/

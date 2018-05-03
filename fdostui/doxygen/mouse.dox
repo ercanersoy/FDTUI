@@ -1,0 +1,74 @@
+/*
+ MOUSE.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*! \file mouse.h
+\brief mouse routines
+*/
+
+/*!
+\struct mouse_event 
+\brief contianer for mouse event
+
+\var mouse_event::m_btn_state
+	indicator if button is pressed (1) or not (0)
+
+\var mouse_event::m_curs_col
+	position of cursor column
+
+\var mouse_event::m_curs_row
+	position of cursor row
+*/
+
+/*!
+\var mouse_initialized
+	indicator if mouse has been initialized
+*/
+
+/*!
+\fn int mouse_get_event(struct mouse_event __FAR* o_event)
+\brief retrieves a mouse event from the queue
+\param[out] o_event event structure to fill
+\returns 0 mouse event not available
+\returns !0 mouse event has been filled
+*/
+
+/*!
+\fn int mouse_init()
+\brief initializes the mouse
+\returns -1 mouse is not supported (driver not installed)
+\returns 0 success mouse has been initialized
+
+This routine initializes the mouse handler and queue.  It must only
+be called once. Equally important is to invoke mouse_deinit when
+finished. This removes the interrupt handler.  Otherwise, after the
+application exists, and  a mouse event occurs it will crash the system.
+
+*/
+
+/*!
+\fn void mouse_deinit()
+\brief clean up the mouse handler
+\returns none
+
+This routine can safely be called after a failed call to ::mouse_init.
+It checks the mouse_initialized flag, and if set will uninstall the
+handler and clean up the queue.
+*/
+
+/*!
+\fn void mouse_hide()
+\brief hides the mouse cursor
+\returns none
+*/
+
+/*!
+\fn void mouse_show()
+\brief shows the mouse cursor
+*/

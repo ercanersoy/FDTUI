@@ -1,0 +1,189 @@
+/*
+ BUTTON.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*! \file button.hpp
+\brief contains button class
+*/
+
+/*! \class button button.hpp
+\brief Allows a user to click on a button. 
+*/
+
+/*!
+\typedef  void (*button::signal_clicked_t)(
+        button const*                   i_button,
+        void*                           io_user_data)
+\brief function prototype to receive signal
+\param[in] i_button button widget
+\param[in,out] io_user_data user defined 
+\returns none
+*/
+
+/*!
+\enum button::style
+\brief indicator of the type of box that should be drawn around the button
+
+\var button::style button::STYLE_FLAT
+	Flat (no box)
+
+\var button::style button::STYLE_SHADOW
+	Draw a shadow around box or label
+
+\var button::style button::STYLE_BOX
+	Draw a box around label
+*/
+
+/*!
+\fn button::button(
+        int const                       i_pos_x,
+        int const                       i_pos_y,
+        unsigned int const              i_len_x,
+        unsigned int const              i_len_y)
+\brief constructor 
+\param[in] i_pos_x x position to place widget
+\param[in] i_pos_y y position to place widget
+\param[in] i_len_x x length of widget
+\param[in] i_len_y y length of widget
+\returns none
+*/
+    
+/*!
+ \fn virtual button::~button()
+\brief destructor
+\returns none
+*/
+
+/*!
+\fn virtual void button::draw() const
+\brief draws the widget
+
+This method should not be called directly. 
+\see widget::draw for details.
+*/
+
+/*!
+\fn virtual enum event_response button::event_key(
+        struct event_key const&         i_event)
+\brief handle key event
+\param[in] i_event key event to handle
+\returns response how event was handled
+*/
+    
+/*!
+\fn virtual enum event_response button::event_mouse(
+        struct event_mouse const&       i_event)
+\brief handle mouse event
+\param[in] i_event mouse event to handle
+\returns response how event was handled
+*/
+
+/*!
+\fn virtual void button::focus_enter()
+\brief handle entering focus
+\returns none
+*/
+
+/*!
+\fn virtual void button::focus_leave()
+\brief handle leaving focus
+\returns none
+*/
+
+/*!
+\fn void button::set_response(
+        int const                       i_response)
+\brief sets response generated when button is clicked
+\param[in] i_response custom response or one of ::event_response
+\returns none
+*/
+
+/*!
+\fn void button::set_style(
+        unsigned int const              i_style)
+\brief set button style (no box, flat or box or box and shadow
+\param[in] i_style combination of button::style
+\returns none
+
+The routine does not redraw the widget
+
+*/
+
+/*!
+\fn void button::set_text(
+        unsigned char const*            i_str)
+\param[in] i_str text to set the button label (null terminated)
+\returns none
+
+The routine does not redraw the widget
+*/
+
+/*!
+\fn void button::set_signal_clicked(
+        signal_clicked_t                i_signal)
+\brief set callback
+\param[in] i_signal callback signal
+\returns none
+*/
+
+\var button::style button::STYLE_FLAT
+
+/*!
+\enum type
+\brief type of button (used internally)
+
+\var button::type button::TYPE_BUTTON
+	behaves as a normal button
+
+\var button::type button::TYPE_CHECK
+	behaves as a check button
+
+\var button::type button::TYPE_RADIO
+	behaves as a radio button
+*/
+
+/*!
+\var button::m_state
+\brief on/off state (for normal button ignored)
+*/
+
+/*!
+\var button::m_type
+\brief button type
+*/ 
+
+/*!
+\var button::m_style
+\brief button style  (button::style bit flags)
+*/
+
+/*!
+\var button::m_label
+\brief dynamically allocated buffer to hold label
+*/
+
+/*!
+\var button::m_response
+\brief response generated when user clicks on the button
+*/
+
+/*!
+\var button::m_signal_clicked;
+\brief pointer to signal emit function
+*/
+
+/*!
+\fn virtual void button::toggled()
+\brief method called when button state changes
+*/
+
+/*
+ \fn  void button::emit_clicked()
+\brief emit the click signal
+*/

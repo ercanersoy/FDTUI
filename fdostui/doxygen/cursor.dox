@@ -1,0 +1,100 @@
+/*
+ CURSOR.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*! \file cursor.h
+\brief manipulation of the screens cursor
+*/
+
+/*!
+\def CURSOR_MASK_HIDE
+\brief bit mask to hide cursor
+*/
+
+/*!
+\enum cursor_features
+\brief cursor features
+
+\var cursor_features::CURSOR_CAN_HIDE
+	cursor can be hidden
+*/
+
+/*!
+\enum cursor_mode
+\brief mode of cursor such as overwrite or insert
+
+\var cursor_mode::CURSOR_OVERWRITE
+	cursor is in overwrite mode
+
+\var cursor_mode::CURSOR_INSERT
+	cursor is in insert mode
+
+*/
+
+/*!
+\var _cursor_mode
+\brief global to hold the mode of the cursor
+*/
+
+/*!
+\var _cursor_features
+\brief global to hold the cursor features
+*/
+
+/*!
+\fn void cursor_set_type(
+    char const                          i_scan_start,
+    char const                          i_scan_end)
+\brief set the cursor type/shape
+\param[in] i_scan_start starting line of cursor (0-7)
+\param[in] i_scan_end ending line of cursor (0-7)
+\returns none
+*/
+
+/*!
+\fn void cursor_get_position(
+    char*const                          o_scan_start,
+    char*const                          o_scan_end,
+    char*const                          o_row,
+    char*const                          o_column)
+\brief get cursor position and type/shape
+\param[out] o_scan_start starting line of cursor 
+\param[out] o_scan_end ending line of cursor 
+\param[out] o_row row of current cursor position
+\param[out] o_column column of current cursor position
+\returns none
+*/
+
+/*!
+\fn void cursor_set_position(
+    unsigned char const                 i_row,
+    unsigned char const                 i_column)
+\brief set cursor position
+\param[in] i_row row position
+\param[in] i_column column position
+\returns none
+*/
+
+/*!
+\fn void cursor_hide()
+\brief hide the cursor
+\returns none
+*/
+
+/*!
+\fn void cursor_underline()
+\brief sets the cursor shape to underline
+\returns none
+*/
+
+/*!
+\fn void cursor_block()
+\brief sets the cursor shape to a solid block
+\returns none
+*/

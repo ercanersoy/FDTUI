@@ -1,0 +1,52 @@
+CIRCBUF.TXT
+
+License CC0 PUBLIC DOMAIN
+
+To the extent possible under law, Mark J. Olesen has waived all copyright 
+and related or neighboring rights to TUI Library. This work is published 
+from: United States.
+
+source: http://www.tophatstuff.co.uk/index.html@p=116.html
+retrieved: 08/10/2106
+no author was mentioned to credit
+
+A circular buffer or ring buffer is a fixed-size data structure that wraps from end to end. New data overwrites older data, but it can be written to infinitely. This makes it ideal for buffering keyboard input or streaming data, like real-time sound or video, where old data less important.
+
+It looks simple, but it can be unintuitive to implement when you are used to linear memory.
+
+Here is a simple C implementation which I release into the public domain (you are free to use it without credit):
+
+#define BUFFER_SIZE 256
+
+item *buffer[BUFFER_SIZE];
+int start = 0;
+int end = 0
+int active = 0;
+
+void PushToQueue(item *p)
+{
+    buffer[end] = p;
+    end = (end + 1) % BUFFER_SIZE;
+
+    if (active < BUFFER_SIZE)
+    {
+        active++;
+    } else {
+        /* Overwriting the oldest. Move start to next-oldest */
+        start = (start + 1) % BUFFER_SIZE;
+    }
+}
+
+item *RetrieveFromQueue(void)
+{
+    item *p;
+
+    if (!active) { return NULL; }
+
+    p = buffer[start];
+    start = (start + 1) % BUFFER_SIZE;
+
+    active--;
+    return p;
+}
+

@@ -1,0 +1,233 @@
+/*
+vim:expandtab:softtabstop=4:tabstop=4:shiftwidth=4:nowrap:ruler
+*/
+/*
+ INI.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*! \file ini.h
+\brief A configuration file (INI) reader
+
+Keys not contained in a section are placed in a section named 'defaults.'
+
+Comment lines start with a semi-colon (;) or hash ('#') symbol.
+These lines are ignored.
+
+Sections and keys are converted to lower case. 
+
+Duplicate sections are combined into one.
+
+Duplicate keys will have their value replaced.
+
+Example:
+
+\code
+; no section defined, the key will go into implicit [defaults] section
+name=value
+
+[defaults]
+foo=value
+
+[other]
+foo=value
+
+\endcode
+
+The 'defaults' section will contain two keys: (1) name and (2) foo.
+
+The 'other' section will contain one key: (1) foo.
+
+\code
+
+\endcode
+
+Following is an example on how to read key/value pairs from an INI file.
+
+\code
+
+#include "ini.h"
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <errno.h>
+
+int
+main()
+{
+    int exit; /* application exit code */
+    struct ini ini; /* ini object */
+    int rc; /* return code*/
+    char const *value; /* pointer to hold value */
+    int found; /* indicator if key was found */
+
+    exit = 0;
+
+    do {
+        /* initialize ini object */
+        rc = ini_assign(&ini);
+
+        if (rc) {
+            /* error */
+            exit = rc;
+            break;
+        }
+
+        /* load the configuration file */
+        rc = ini_parse(&ini, "book.ini", INI_OPTION_NONE);
+
+        /* check for error */
+        if (rc) {
+            /* error */
+            exit = rc;
+            break;
+        }
+
+        value = ini_lookup(&found, &ini, "book", "chapter1");
+
+        if (0 == found) {
+            fprintf(
+                stderr,
+                "Unable to find key\n");
+            exit = ENOENT;
+            break;
+        }
+
+        /* output the value */
+        fprintf(
+            stdout,
+            "Book -> Chapter1: %s\n",
+            value);
+
+    } while (0);
+
+    ini_discharge(&ini);
+
+    return exit;
+}
+
+\endcode
+
+*/
+
+/*!
+\def INI_KEY_MAX_LEN
+	Maximum length of a key
+*/
+
+/*!
+\def INI_VALUE_MAX_LEN
+	Maximum length of a line (key+value).
+*/
+
+/*!
+\def INI_SECTION_BUCKETS             100
+	Number of buckets for section hash
+*/
+
+/*!
+\def INI_TUPLE_BUCKETS               50
+	Number of buckets for tuple hash
+*/
+
+/*!
+\enum ini_options
+\brief place holder for future parsing options
+
+\var ini_options::INI_OPTION_NONE
+	absence of options
+*/
+
+/*!
+\struct ini_tuple
+\brief holds key/value pair data
+
+\var ini_tuple::m_name
+	key
+
+\var ini_tuple::m_value
+	value of key
+
+*/
+
+/*!
+\struct ini_section
+\brief container to hold data for a section 
+
+\var ini_section::m_name
+	section name
+
+\var ini_section::m_hash
+	hash container to store tuples
+
+*/
+
+/*!
+\struct ini
+\brief container to hold sections
+
+\var ini::m_hash
+	hash contianer to store sections
+
+*/
+
+/*!
+\fn int ini_assign(
+    struct ini*const                    o_ini)
+\brief initialize ini object
+\param[out] o_ini object to initialize
+\returns 0 success
+\returns ENOMEM memory allocation failed
+
+Upon failure, it is not advisable to use other routines.
+
+*/
+
+/*!
+\fn void ini_discharge(
+    struct ini*const                    io_ini)
+\brief release resources held by the object
+\param[in,out] io_ini object to release
+\returns none
+*/
+
+/*!
+\fn char const * ini_lookup(
+    int*const                           o_found,
+    struct ini *const                   i_ini,
+    char const *                        i_section,
+    char const *                        i_key)
+\brief lookup a value
+\param[out] o_found indicator if key exists
+\param[in] i_ini valid ini object
+\param[in] i_section name of section
+\param[in] i_key name of key
+\returns value of key
+
+Zero is a valid return value. Check \a o_found to see if the key exists.
+
+*/
+
+/*!
+\fn int ini_parse(
+    struct ini*const                    io_ini,
+    char const*                         i_path,
+    enum ini_options const              i_options)
+\brief read an INI file
+\param[in,out] io_ini valid ini object
+\param[in] i_path file to load
+\param[in] i_options (place holder for future options)
+\returns 0 success
+\returns ENOMEM memory allocation failed
+\returns E2BIG capacity of a line exceeded
+\returns !0 see errno (read file error)
+
+When an error is encountered, this routine will print a diagnostic
+message to stderr.
+
+*/
