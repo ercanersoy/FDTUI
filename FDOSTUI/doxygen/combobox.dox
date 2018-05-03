@@ -1,0 +1,99 @@
+/*
+ COMBOBOX.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*! \file combobox.hpp
+\brief contains combobox class
+*/
+
+/*! \class combobox combobox.hpp
+\brief  Allows the user to choose a value from a drop down list.
+Optionally, the user can also enter a value that is not in the list.
+*/
+
+/*!
+\fn combobox::combobox(
+        int const                       i_pos_x,
+        int const                       i_pos_y,
+        unsigned int const              i_len_x,
+        unsigned int const              i_len_y)
+\brief constructor
+\param[in] i_pos_x x position to place widget
+\param[in] i_pos_y y position to place widget
+\param[in] i_len_x x length of widget
+\param[in] i_len_y y length of widget
+\returns none
+*/
+
+    
+/*!
+\fn virtual combobox::~combobox()
+\brief destructor
+\returns none
+*/
+
+/*!
+\fn int combobox::add(
+        unsigned char const*            i_label)
+\brief adds a value to the end of a list
+\param[in] i_label value to add
+\returns 0 success
+\returns !0 failure unable to add (out of memory)
+*/
+
+/*!
+\fn virtual void combobox::draw() const
+\brief draws the widget
+
+This method should not be called directly. 
+\see widget::draw for details.
+*/
+
+/*!
+\fn virtual enum event_response combobox::event_mouse(
+        struct event_mouse const&       i_event)
+\brief handle mouse event
+\param[in] i_event mouse event to handle
+\returns response how event was handled
+*/
+
+/*!
+\fn void combobox::remove_all()
+\brief removes all elements from the list
+\returns none
+*/
+
+/*!
+\var combobox::m_listbox
+\brief listbox used for drop down
+*/
+
+/*!
+\fn virtual void combobox::get_bbox(
+        struct box&                     o_bbox) const
+\brief get the inner bounding box
+param[out] o_bbox bounding box to fill
+\returns none
+
+A combobox is an entry widget that has a down button the user
+can click on to active the listbox. This method returns the 
+boudning box of the entry widget (does not include the down button).
+*/
+
+/*!
+\fn  void combobox::popup()
+\brief pops up the listbox widget
+\returns none
+*/
+
+/*!
+\fn void combobox::listbox_configure()
+\brief configures (moves and resizes) the listbox widget for display
+\returns none
+*/

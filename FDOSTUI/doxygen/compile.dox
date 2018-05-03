@@ -1,0 +1,287 @@
+/*
+ COMPILE.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*! 
+
+\page page_compiling Compiling and Linking
+
+\section sect_macros Macros
+
+Following are the preprocessor macros that are used when compiling 
+applications.
+
+Macro        | Description
+------------ | ------------------------------------------------------
+__NT__       | Windows target 
+__FLAT__     | 32-bit addressing mode
+__CURSES__   | GNU/Linux or BSD target
+
+\section sect_caveats Caveats
+
+FDOSTUI uses "unsigned char" for character types. By default, Open Watcom
+compiler reports to use this, which can be toggled off by the 'j' switch.
+It appears, however, that the C++ compiler defaults to signed char and
+will generates errors.  Therefore, when passing paramaters to routines
+accepting an unsigned char it is neccessary to use a cast to elminate
+the error.
+
+\section sect_freedos FreeDOS
+
+FDOSTUI uses the Open Watcom C/C++ compiler and tools.
+
+Other compiler tools will not work because assembler routines expect
+the __watcall register passing conventions. In addition, library calls
+specific to Open Watcom are used throughout the code.
+
+\subsection sect_16bit 16-bit Real Mode
+
+The library needs to be compiled in the medium memory model (big code,
+small data).  This is where the code model is large and data model
+is small.  Currently, a large data model will not work because some
+assembler routines such as ::screen_puts require near pointers.
+
+To compile, change into the make directory of FDOSTUI, and type 
+"wmake -f owd16.mak."
+
+\code
+	cd \source\fdostui\make
+	wmake -f owd16.mak
+\endcode
+
+The above command will build the object files and library. The object
+files are placed in the "..\obj\owd16" directory and library "fdtuid16.lib"
+in the "..\lib" directory.
+
+\subsubsection sect_app Applications
+
+\paragraph para_flags Flags
+
+\code
+	-mm -0 -bt=DOS
+\endcode
+
+\paragraph para_compile Compiling
+
+\code
+	wpp -mm -0 -bt=DOS -i=\source\fdostui\include hello.cpp
+\endcode
+
+\paragraph para_linking Linking
+
+\code
+	wlink system dos op stack=4096 file hello.obj,\source\fdostui\lib\fdtuid16.lib
+\endcode
+
+\subsection sect_32bit 32-bit Protected Mode
+
+The library can be compiled for 32-bit Protected Mode. 
+
+To compile, change into the make directory of FDOSTUI, and type 
+"wmake -f owd32.mak."
+
+\code
+	cd \source\fdostui\make
+	wmake -f owd32.mak
+\endcode
+
+The above command will build the object files and library. The object
+files are placed in the "..\obj\owd32" directory and library "fdtuid32.lib"
+in the "..\lib" directory.
+
+\subsubsection sect_app Applications
+
+\paragraph para_flags Flags
+
+\code
+	-3r -mf -bt=DOS 
+\endcode
+
+\paragraph para_compile Compiling
+
+\code
+	wpp386 -mf -3r -bt=DOS -i=\source\fdostui\include hello.cpp
+\endcode
+
+\paragraph para_linking Linking
+
+Open Watcom provides both the CauseWay and Tenberry DOS/4GW extenders. The
+FDOSTUI library should work with either of them transparently.  However,
+the CauseWay extender is preferred because it is free software.
+
+\code
+	wlink system causeway op stack=4096 file hello.obj,c:\source\fdostui\lib\fdtuid32.lib
+\endcode
+
+\section sect_windows Windows
+
+The library can be compiled for 32-bit Windows.
+
+\subsection sect_watcom Open Watcom
+
+To compile, change into the make directory of FDOSTUI, and type 
+"wmake -f oww32.mak."
+
+\code
+	cd \source\fdostui\make
+	wmake -f oww32.mak
+\endcode
+
+The above command will build the object files and library. The object
+files are placed in the "..\obj\oww32" directory and library "fdtuiw32.lib"
+in the "..\lib" directory.
+
+\subsubsection sect_app Applications
+
+\paragraph para_flags Flags
+
+\code
+	-3r -mf -bt=NT 
+\endcode
+
+\paragraph para_compile Compiling
+
+\code
+	wpp386 -mf -3r -bt=NT -i=\source\fdostui\include hello.cpp
+\endcode
+
+\paragraph para_linking Linking
+
+\code
+	wlink system nt op stack=4096 file hello.obj,c:\source\fdostui\lib\fdtuiw32.lib
+\endcode
+
+\subsection sect_mingw MinGW
+
+The library can be compiled using the GNU compiler collection provided
+by MinGW. For Windows see <a href="http://www.msys2.org/">msys2</a>.
+Under GNU/Linux, see your distributions MinGW cross compilation package.
+
+To compile, change into the make directory of FDOSTUI, and type 
+"make -f mingw.mak."
+To work correctly, this requires GNUMake as the make tool.
+
+\code
+	cd ~/source/fdostui/make
+	make -f mingw.mak
+\endcode
+
+The above command will build the object files and library. The object
+files are placed in the "..\obj\mingw" directory and library "libfdtuimgw.a"
+in the "..\lib" directory.
+
+\subsubsection sect_app Applications
+
+\paragraph para_flags FLags
+
+\code
+	-D__FLAT__ -D__NT__
+\endcode
+
+\paragraph para_compile Compiling
+
+\code
+	c++ -c -D__FLAT__ -D__NT__ -I ~/source/fdostui/include hello.cpp
+\endcode
+
+\paragraph para_linking Linking
+
+\code
+	c++ -o hello hello.o -static -static-libgcc -static-libstdc++ -L ~/source/fdostui/lib/ -l fdtuimgw
+\endcode
+
+Under GNU/Linux, substitute c++ with i686-w64-mingw32-g++.
+
+Wine emulator can be used to run the application.
+
+\code
+	wine wineconsole ./hello
+\endcode
+
+\subsection sect_vs Visual Studio
+
+Visual Studio command line tools can be used to build FDOSTUI library.
+Set the command line environment using the "vcvarsall.bat" batch file.
+The batch file is located in the Visual Studio VC directory. For example,
+in Visual Studio 12, you would enter the following commands:
+
+\code
+	cd C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC
+	vcvarsall.bat
+\endcode
+
+To compile, change into the makevs directory of FDOSTUI, and type "nmake."
+
+\code
+	cd \source\fdostui\make
+	nmake /F vs.mak
+\endcode
+
+The above command will build the object files and library. The object
+files are placed in the "..\obj\vs32" directory and library "fdtuivs.lib"
+in the "..\lib" directory.
+
+\subsubsection sect_app Applications
+
+\paragraph para_flags FLags
+
+\code
+	/D__FLAT__ /D__NT__ 
+\endcode
+
+\paragraph para_compile Compiling
+
+\code
+	cl /c /D__FLAT__ /D__NT__ /I \source\fdostui\include hello.cpp
+\endcode
+
+\paragraph para_linking Linking
+
+\code
+	link hello.obj \source\fdostui\lib\fdtuivs.lib
+\endcode
+
+\section sect_ncurses ncurses
+
+The library can be compiled for GNU/Linux and BSD operating systems using
+the curses library.
+
+To compile, change into the makedirectory of FDOSTUI, and type 
+"make -f ncur.mak."
+The makeile is compatible with both GNU and BSD make.
+
+\code
+	cd ~/source/fdostui/make
+	make -f ncur.mak
+\endcode
+
+The above command will build the object files and library. The object
+files are placed in the "../obj/ncur" directory and library "libfdtuicur.a"
+in the "../lib" directory.
+
+\subsection sect_app Applications
+
+\subsubsection para_flags FLags
+\code
+	-D__FLAT__ -D__CURSES__ 
+\endcode
+
+\subsubsection para_compile Compiling
+
+\code
+	c++ -c -D__FLAT__ -D__CURSES__ -I ~/source/fdostui/include hello.cpp
+\endcode
+
+\subsubsection sect_linking Linking
+
+\code
+	c++ -o hello hello.o -L ~/source/fdostui/lib/ -l fdtuicur -l curses 
+\endcode
+
+*/

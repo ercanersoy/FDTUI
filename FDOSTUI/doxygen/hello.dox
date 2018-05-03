@@ -1,0 +1,206 @@
+/*
+ HELLO.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*!
+
+\page page_hello Hello World
+
+This section shows how to code a simple "Hello World" application. It
+will display a window with a clickable button. Clicking on the button
+will exit the application. In addition, the user can click on the system
+menu and click on close or press the ESCAPE key to exit.
+
+\section sect_code Code
+
+\image html hello.png "Hello World"
+
+\code
+
+#include "fdostui.hpp"
+#include <stdio.h>
+
+// button callback. signal the window manager to exit.
+void
+button_clicked_cb(button const*, void*)
+{
+    wm_quit(ERROR_USER_ESC);
+    return;
+}
+
+int
+main(void)
+{
+
+    // initialize the FDOSTUI subsytem (mouse and display)
+    wm_error error= wm_init();
+
+    // if an error occurred exit
+    if (error)
+    {
+        printf("Unable to initialze FDOSTUI subsystem\n");
+        return error;
+    }
+
+    // create our main window
+    window* win= new window(30, 9, 20, 8);
+
+    // register it with the window manager
+    wm_register_window(win);
+
+    // create a button widget and add it to the window
+    button* btn= new button(1, 1, 16, 4);
+    btn->set_text((unsigned char*)"Hello World!");
+    btn->set_style(button::STYLE_BOX|button::STYLE_SHADOW);
+    btn->set_signal_clicked(button_clicked_cb);
+    win->add(btn);
+
+    // draw the window
+    wm_draw(win);
+
+    // enter the window manager loop
+    wm_run();
+
+    // restore the system to it's default settings
+    wm_deinit();
+
+    return 0;
+}
+
+\endcode
+
+\section sect_compile Compiling
+
+\code
+
+wcl -i=\source\fdostui\include -0 -mm -bcl=DOS -k4096 hello.cpp \source\fdostui\lib\fdtuid16.lib
+
+\endcode
+
+For debugging data, add '-d3' on the command line.
+
+\section sect_explanation Explanation
+
+The steps are as follows:
+
+\li Initialize the subsystem
+\li Create application window
+\li Create controls
+\li Call the run loop
+\li Restore the subsystem
+
+
+\subsection subsect_init Initialize the subsystem
+
+\code
+
+    // initialize the FDOSTUI subsytem (mouse and display)
+    wm_error error= wm_init();
+
+    // if an error occurred exit
+    if (error)
+    {
+        printf("Unable to initialze FDOSTUI subsystem\n");
+        return error;
+    }
+
+
+\endcode
+
+The first step is to initialize the FDOSTUI subsystem. This will
+change the display and register a mouse handler. When the application
+is finished running, it is important that the system is restored back
+to default settings.
+
+Following the call to ::wm_init the code checks for an error. If an error
+has occurred, the library can not be used. In the example above an error
+message is displayed and control returned to the operating system.
+
+\subsection subsect_window  Create application window
+
+\code
+
+    // create our main window
+    window* win= new window(30, 9, 20, 8);
+
+    // register it with the window manager
+    wm_register_window(win);
+
+\endcode
+
+The second step is to create the application window. A window is a
+container, which can hold other widgets. Following, it is registered to
+the window manager. The window manager will then take both ownership and
+control of the widget.  
+
+The window must not be deleted after it has been registered. To do that,
+unregister the window ::wm_unregister_window. Following, it is safe
+to be disposed of.
+
+
+\subsection sect_controls Create controls
+
+
+\code
+    // create a button widget and add it to the window
+    button* btn= new button(1, 1, 16, 4);
+    btn->set_text((unsigned char*)"Hello World!");
+    btn->set_style(button::STYLE_BOX|button::STYLE_SHADOW);
+    btn->set_signal_clicked(button_clicked_cb);
+    win->add(btn);
+\endcode
+
+The third step is to create controls that are added to the widget.
+In this example, a button widget is created and added to the window.
+The button widget adds a signal that will be called when the user
+clicks on the button.
+
+\code
+void
+button_clicked_cb(button const*, void*)
+{
+    wm_quit(ERROR_USER_ESC);
+    return;
+}
+\endcode
+
+The signal sends a signal indicating that the window manager should exit.
+Internally, a flag is set and during the next ieteration of the run loop,
+the flag will be checked. If it is not zero, the window manager will
+cleanup and then exit.
+
+\subsection subsect_loop Call the run loop
+
+\code
+    // draw the window
+    wm_draw(win);
+
+    // enter the window manager loop
+    wm_run();
+\endcode
+
+The forth step is to draw (show) the widget to the screen. The run loop
+will not do this. Following, the run loop is called. At this point the
+application will spin in a loop collecting and dispatching events.
+However, it will capture the EScAPE key and exit the loop if it was
+pressed.
+
+\subsection subsect_restore Restore the subsystem
+
+\code
+    // restore the system to it's default settings
+    wm_deinit();
+\endcode
+
+The fith and final step is critical. The initialization step had registered
+a mouse handler, which if not turned off will crash the system after the
+application exits.  In addition, it may have altered the display. ::wm_deinit will restore the system back to default settings. After this point, the library is no longer in a usable state.
+
+
+*/

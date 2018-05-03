@@ -1,0 +1,12 @@
+FreeDOS TUI Shell
+
+FreeDOS için TUI kabuğu.
+
+Telif Hakkı (C) 2018 Ercan Ersoy
+Bu program bir özgür yazılımdır. (GNU Genel Kamu Lisansı)
+
+Bazı kod değişiklikleri için Mark Olesen'e teşekkürler.
+
+Derleme:
+
+  Bu yazılım Open Watcom ile derlenmelidir.

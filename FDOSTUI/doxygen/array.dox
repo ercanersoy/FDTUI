@@ -1,0 +1,124 @@
+/*
+ ARRAY.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*! \file array.h
+\brief A dynamic array that holds pointers to objects
+
+\code
+	#include  "array.h"
+
+	struct array myarray;
+	char *  textptr;
+	#define GROWBY 30
+	assign_array(&myarray, GROWBY);
+	#undef GROWBY
+
+	for (some loop construct)
+	{	
+		textptr= input_get_text();
+		array_push(&m_array, textptr);
+	}
+
+	for (; textptr= array_pop(&m_array) ;)
+	{
+		free(text_ptr);
+	}
+
+	array_discharge(&my_array;
+
+\endcode
+
+*/
+
+/*!
+\struct array
+\brief container to hold objects
+
+\var array::m_slots;
+	(actual) number of slots allocated
+
+\var array::m_taken;
+	number of slots occupied
+
+\var array::m_growby;
+	number of slots to growby. When the array is full, the array will
+	be expanded by \a m_growby elements
+
+\var array::m_base;
+	base array that holds objects
+*/
+
+/*!
+\fn void array_assign(
+    struct array *const                 o_arr,
+    size_t const                        i_growby)
+\brief initialize arrary object
+\param[out] o_arr object ot initialize
+\param[in] i_growby number of elements to growby (expand) when array is full
+\returns none
+
+Memory allocated to store objects is peformed in ::array_push.
+
+*/
+
+/*!
+\fn void array_discharge(
+    struct array *const                 io_arr)
+\brief release resources held by object. The routine will not
+release resources held by the  object itself. 
+\param[in,ou] io_arr object to release
+\returns none
+
+\code
+	array myarray;
+	array_assign(&myarray, 1);
+	struct mydata* ptr= (struct mydata*)malloc(sizeof(*ptr));
+	array_push(&array, ptr);
+	for(; ptr= array_pop(&myarray); ) free(ptr);
+	array_discharge(&myarray);
+\endcode
+
+*/
+
+/*!
+\fn void * array_pop(
+    struct array *const                 io_arr)
+\brief remove an element from the end of the array.
+Ownership of the object is transferred to the caller.
+\param[in,out] io_arr object to remove an element
+\returns 0 array is empty
+\returns !0 pointer to element
+*/
+
+/*!
+\fn int array_push(
+    struct array *const                 io_arr,
+    void *                              io_object)
+\brief adds an element to the end of the array
+\param[in,out] io_arr object to store element
+\param[in,out] io_object object to store
+\returns 0 success object added
+\returns -1 error unable to add object
+
+*/ 
+
+/*!
+\fn void * array_remove(
+    struct array *const                 io_arr,
+    size_t const                        i_index)
+\brief removes an element from the array
+Ownership of the object is transferred to the caller.
+\param[in,out] io_arr object to remove element from
+\param[in] i_index zero based slot containing element to remove
+\returns 0 array is empty or out of bounds
+\returns !0 pointer to removed object
+*/
+
+

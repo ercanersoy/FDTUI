@@ -1,0 +1,261 @@
+/*
+ VALUATOR.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*! \file valuator.hpp
+\brief contains valuator class
+*/
+
+/*! \class valuator valuator.hpp
+\brief interface to control a floating point value
+*/
+
+/*!
+\typedef void (*valuator::signal_value_t)(
+        widget const*                   i_widget,
+        void*                           io_user_data)
+\brief function prototype to recieve signal
+\param[in] i_widget widget class
+\param[in,out] io_user_data user defined
+\returns none
+This class is derived from other widgets. When a signal is emitted,
+the calling class is used. For example, the spinner class will
+emit the signal with the spinner object as \a i_widget.
+*/
+
+/*!
+\fn valuator::valuator()
+\brief constructor
+\returns none
+*/
+    
+/*!
+\fn virtual valuator::~valuator()
+\brief destructor
+*/
+
+/*!
+\fn virtual double valuator::get_value() const
+\brief gets the current value
+\returns current value
+*/
+
+/*!
+\fn double valuator::get_minimum() const
+\brief gets the minimum value 
+\returns minimum value
+*/
+
+/*!
+\fn double valuator::get_maximum() const
+\brief gets the maximum value
+\returns maximum value
+*/
+
+/*!
+\fn double valuator::get_step() const
+\brief the amount that the value is incremented or decremented in 
+response to mouse or keyboard movement
+\returns step value
+*/
+
+/*!
+\fn void valuator::set_range(
+        double const                    i_minimum,
+        double const                    i_maximum)
+\brief sets the minimum and maximum bounds the value can have
+\param[in] i_minimum minimum bound
+\param[in] i_maximum maximum bound
+\returns none
+*/
+
+/*!
+\fn void valuator::set_step(
+        double const                    i_step)
+\brief set the amount that the value is incremented or decremented in
+response to mouse or keyboard movement
+\param[in] i_step step value
+\returns none
+
+The step value must be zero or a positive value. The behavior of a
+negative step value is undefined.
+*/
+
+/*!
+\fn void valuator::set_step(
+        double const                    i_step,
+        int const                       i_precision)
+\brief set the step and precision
+\param[in] i_step step value
+\param[in] i_precision
+\returns none
+*/
+
+/*!
+\fn virtual bool valuator::set_value(
+        double const                    i_value)
+\brief sets the value
+\param[in] i_value value to set
+\returns true value changed
+\returns false value did not change
+
+The value is not validated against the minimum and maximum bounds.
+Use ::clamp to make sure the value is within the constraints.
+*/
+
+/*!
+\fn void valuator::set_precision(
+        int const                       i_digits)
+\brief sets the precision
+\param[in] i_digits number of digits of precision
+\returns none
+
+The minimum number of digits is zero, and the maximum number of digits is 9.
+\a i_digits will be adjusted to these bounds.
+*/
+
+/*!
+\fn virtual int valuator::format(
+        char*                           o_buffer,
+        unsigned int const              i_size)
+\brief format a value into string
+\param[in] o_buffer buffer to hold formatted string
+\param[in] i_size size of buffer
+\returns length of formatted string (not including null terminator)
+
+It is recommended that the buffer be at least 128 bytes.
+*/
+
+/*!
+\fn void valuator::set_signal_value(
+        signal_value_t                  i_signal)
+\brief set callback
+\param[in] i_signal callback signal
+\returns none
+*/
+
+/*!
+\fn double valuator::round(
+        double const                    i_value) const
+\brief rounds the value to the nearest step increment
+\param[in] i_value to round
+\returns rounded value
+
+Rounding does not occur if value is zero.
+*/
+
+/*!
+\fn double valuator::clamp(
+        double const                    i_value) const
+\brief checks the bounds of i_value
+\param[in] i_value value to check
+\returns adjusted value in the range of the bounds
+*/
+
+/*!
+\fn double valuator::clamp_soft(
+        double const                    i_value) const
+\brief checks the bounds of i_value
+\param[in] i_value value to check
+\returns adjusted value in the range of the bounds
+
+This routine will accept the value if the previous value is within
+the bounds.
+*/
+
+/*!
+\fn double valuator::increment(
+        double const                    i_value,
+        int const                       i_amount) const
+\brief increment the value
+\param[in] i_value value to increment
+\param[in] i_amount amount to increment/decrement
+\returns \a i_amount times the step value
+
+The value is not validated against the minimum and maximum bounds.
+Use ::clamp to make sure the value is within the constraints.
+*/
+
+/*!
+\fn void valuator::set_debounce(
+        bool const                      i_debounce)
+\brief turns drawing of the widget on or off
+\param[in] i_debounce indicator to turn drawing of the widget on or off
+\returns none
+
+When the value is changed, the default behavior is to draw the widget.
+Changing \a i_debounce to true, will prevent the widget from being drawn.
+This is useful in derived classes that already draw the widget when
+the value has changed.
+*/
+
+/*!
+\var valuator::m_debounce
+	indicator if widget should be drawn when the value has changed
+*/
+
+/*!
+\var valuator::m_value
+	current value
+*/
+
+/*!
+\var valuator::m_previous_value
+	previous value
+*/
+
+/*!
+\var valuator::m_minimum
+	minimum value 
+*/
+
+/*!
+\var valuator::m_maximum
+	maximum value
+*/
+
+/*!
+\var valuator::m_step
+	step value
+*/
+
+/*!
+\var valuator::m_precision
+	precision (0..9)
+*/
+
+/*!
+\var valuator::m_signal_value
+	callback routine when value changes
+*/
+
+/*!
+\fn void valuator::handle_push()
+\brief sets previous value to current value
+\returns none
+*/
+
+/*!
+\fn void valuator::handle_drag(
+        widget *const                   io_widget,
+        double const                    i_value)
+\brief sets the value and if changed redraws the widget
+\param[in] derived widget
+\param[in] i_value value to set
+\returns none
+*/
+
+/*!
+\fn void valuator::handle_release(
+        widget *const                   io_widget)
+\brief emit a signal if the previous value is not equal to the current value
+\param[in,out] derived widget
+\returns none
+*/
+

@@ -1,0 +1,38 @@
+/*
+ HW.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*! \file hw.h
+\brief Hardware routines 
+*/
+
+/*!
+\def HW_DRIVE_MAX
+\brief maximum number of drives ('A'-'Z')
+*/
+
+/*!
+\var _hw_drives
+\brief list of available hard drives
+
+There are 26 possible hard drives.  \a _hw_drives contains an
+array of drive availability.  A value of 1 indicates the drive is
+available. Otherwise, a 0 indicates it is absent.
+
+Drive letters are number alphabetically 'A' through 'Z.'  Index 0
+represents drive 'A,' index 1 represents drive 'B,' and so on.
+
+In the future, the value may indicate a bit mask of the type of drive,
+such as removable.
+*/
+
+/*!
+\fn void hw_detect_drives()
+Initializes the \a _hw_drives array
+*/

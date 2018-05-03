@@ -5,3 +5,6 @@ dosshell.exe: main.obj fdostui\lib\fdtuid16.lib
 
 main.obj: main.cpp
 	wpp -mm -0 -bt=DOS -d3 -i=fdostui\include main.cpp
+
+clean-obj: .SYMBOLIC
+	@if exist main.obj del main.obj

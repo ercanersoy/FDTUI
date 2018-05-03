@@ -1,0 +1,376 @@
+/*
+ WIDGET.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*! \file widget.hpp
+\brief contains widget class
+*/
+
+/*! \class widget widget.hpp
+\brief base class for all derived widgets
+*/
+
+/*!
+\enum widget::damage
+\brief bit mask indicating what needs to be redrawn
+
+\var widget::damage widget::DAMAGE_NONE
+	no damage
+
+\var widget::damage widget::DAMAGE_ALL
+	entire widget should be redrawn
+
+\var widget::damage widget::DAMAGE_LABEL
+	label portion of widget should be redrawn
+
+\var widget::damage widget::DAMAGE_VALUE
+	value portion of widget should be redrawn
+
+\var widget::damage widget::DAMAGE_SCROLL
+	contents of widget should be redrawn	
+
+\var widget::damage widget::DAMAGE_MOVED
+	entire widget should be redrawn
+
+\var widget::damage widget::DAMAGE_RESERVED1
+	reserved
+
+\var widget::damage widget::DAMAGE_RESERVED2
+	reserved
+
+\var widget::damage widget::DAMAGE_RESERVED3
+	reserved
+*/
+
+/*!
+\fn widget::widget(
+        int const                       i_pos_x,
+        int const                       i_pos_y,
+        unsigned int const              i_len_x,
+        unsigned int const              i_len_y)
+\brief constructor 
+\param[in] i_pos_x x position to place widget
+\param[in] i_pos_y y position to place widget
+\param[in] i_len_x x length of widget
+\param[in] i_len_y y length of widget
+\returns none
+*/
+    
+/*!
+\fn virtual widget::~widget()
+\brief destructor
+\returns none
+*/
+
+/*!
+\fn virtual void widget::set_damage(
+        unsigned int const              i_damage=DAMAGE_NONE)
+\brief set the damage bits
+\param[in] i_damage damage bits
+\returns none
+*/
+
+/*!
+\fn virtual bool widget::close(
+        bool const                      i_shutting_down) const
+\brief called when widget is about to be destroyed
+\param[in] i_shutting_down indicator if application is exiting
+\returns true indicator it is okay to close
+\returns false indicator it is not okay to close (ignored if shutting down)
+
+\see widget::set_can_close
+
+
+*/
+
+/*!
+\fn bool widget::contains(
+        int const                       i_pos_x,
+        int const                       i_pos_y) const
+\brief test if point is contained within the widget
+\param[in] i_pos_x x coordinate of point
+\param[in] i_pos_y y coordinate of point
+\returns 0 point is not contained within the widget
+\returns !0 point is contained within the widget
+*/
+
+/*!
+\fn bool widget::contains(
+        struct box const&               i_box) const
+\brief test if rectangular region is contained within the widget
+\param[in] i_box rectangle to test
+\returns 0 box is not contained within the widget
+\returns !0 box is contained within the widget
+*/
+    
+/*!
+\fn  virtual void widget::draw() const = 0
+\brief draws the widget
+
+This method should not be called directly.  The position of the widget
+is relative to it's parent. Using this method directly will cause the
+widget to be drawn relative to the display screen. It will also ignore
+state flags such as visibility.
+
+\See ::wm_draw_widget to draw a widget
+\See ::wm_draw to draw a window
+
+*/
+
+/*!
+\fn virtual enum event_response widget::event_key_default(
+        enum scancodes const            i_scan)
+\brief default key event handler
+\param[in] i_event key event to handle
+\returns response how event was handled
+
+This routine is called by the window manager when there was no
+response (::RESPONSE_NONE) to ::event_key. 
+
+The ::menubar widget overrides this routine to intercept accelerators
+that could active the menu.
+*/
+    
+/*!
+\fn virtual enum event_response widget::event_key(
+        struct event_key const&         i_event)
+\brief handle key event
+\param[in] i_event key event to handle    
+\returns event_response::RESPONSE_NONE
+*/
+
+/*!
+\fn virtual enum event_response widget::event_mouse(
+        struct event_mouse const&       i_event)
+\brief handle mouse event
+\param[in] i_event mouse event to handle
+\returns event_response::RESPONSE_NONE
+*/
+
+/*!
+\fn virtual void widget::focus_enter()
+\brief called when the widget receives focus
+
+Sets the flags bit mask to widget::HAS_FOCUS
+*/
+
+/*!
+\fn virtual void widget::focus_leave()
+\brief called when the widget looses focus
+
+Unsets the widget::HAS_FOCUS flags bit mask
+*/
+    
+/*!
+\fn void widget::get_box(
+        struct box&                     o_box) const
+\brief gets the rectangular region this widget occupies
+\param[out] o_box rectangle to fill
+\returns none
+*/
+
+/*!
+\fn bool widget::get_can_focus() const
+\brief gets whether or not the widget can receive focus
+\returns 0 widget cannot receive focus
+\returns !0 widget can receive focus
+*/
+
+/*!    
+\fn bool widget::get_enabled() const
+\brief gets whether or not the widget is enabled
+\returns 0 widget is disabled
+returns !0 widget is enabled
+*/
+
+/*!    
+\fn bool widget::get_has_focus() const
+\brief gets whether or not the widget has focus
+\returns 0 widget does not have focus
+returns !0 widget has focus
+*/
+
+/*!
+\fn group*const widget::get_parent() const
+\brief gets the parent widget
+\returns 0 no parent
+\returns !0 pointer to the parent widget
+*/
+
+/*!
+\fn void* widget::get_user_data() const
+\brief gets user defined data pointer
+\returns 0 no user defined data
+\returns !0 pointer to user defined data
+*/
+    
+/*!
+\fn bool widget::get_visible() const
+\brief gets whether or not the widget is visible
+\returns 0 widget is invisible
+\returns !0 widget is visible
+*/
+
+/*!
+\fn int widget::get_pos_x() const
+\brief gets the relative x position of the widget
+\returns relative x position of the widget
+*/
+
+/*!
+\fn int widget::get_pos_y() const
+\brief gets the relative y position of the widget
+\returns relative y position of the widget
+*/
+
+/*!
+\fn unsigned int widget::get_len_x() const
+\brief gets the horizontal length of the widget
+\returns horizontal length of the widget
+*/
+
+/*!
+\fn unsigned int widget::get_len_y() const
+\brief gets the vertical length of the widget
+\returns vertical length of the widget
+*/
+    
+/*!
+\fn virtual void widget::move(
+        int const                       i_pos_x,
+        int const                       i_pos_y)
+\brief move the widget to a new position
+\param[in] i_pos_x relative x position to move the widget
+\param[in] i_pos_y relative y position to move the widget
+\returns none
+
+This method does not redraw the widget
+*/
+
+/*!
+\fn  virtual void widget::resize(
+        unsigned int const              i_len_x,
+        unsigned int const              i_len_y)
+\brief resize the widget
+\param[in] i_len_x new length of widget
+\param[in] i_len_y new height of widget
+\returns none
+
+This method does not redraw the widget
+*/
+
+/*!
+\fn void widget::set_can_close(
+        bool const                      i_can_close)
+\brief set internal indicator if widget can be closed 
+\param[in] i_can_close indicator if widget can be closed
+\returns none
+\see widget::close
+
+This is usefull to hide instead of close window widgets.
+
+*/
+    
+/*!
+\fn void widget::set_disabled()
+\brief disable the widget
+\returns none
+*/
+    
+/*!
+\fn void widget::set_enabled()
+\brief enable the widget
+*/
+    
+/*!
+\fn void widget::set_hidden()
+\brief hide the widget
+\returns none
+*/
+
+/*!
+\fn virtual void widget::set_parent(
+        group*const                     i_parent)
+\brief sets the parent group of the widget
+\returns none
+
+Setting the parent group is handled automatically when adding the
+widget to a container such as a ::window.
+
+A widget can only belong to one group. This method will not remove
+the widget from an existing group.
+*/
+
+/*!
+\fn void widget::set_user_data(
+        void*                           io_user_data)
+\brief sets the user defined data pointer
+\param[in] io_user_data pointer to user data or NULL to unset
+\returns none
+*/
+    
+/*!
+\fn void widget::set_visible()
+\brief sets the widget as visible
+\returns none
+*/
+
+/*!
+\fn void widget::translate_screen(
+    int*const                           o_pos_x,
+    int*const                           o_pos_y)
+\brief translate a widgets relative coordinates to screen coordinates
+\param[out] o_pos_x translated x position
+\param[out] o_pos_y translated y position
+\returns none
+*/
+
+/*!
+\var widget::m_damage
+	bit mask of widget::damage flags
+*/
+
+/*!
+\enum widget::flags
+
+\var widget::flags widget::VISIBLE
+	indicator if widget is visible
+
+\var widget::flags widget::ENABLED
+	indicator if widget is enabled
+
+\var widget::flags widget::CAN_FOCUS
+	indicator if widget can receive focus
+
+\var widget::flags widget::HAS_FOCUS
+	indicator if widget has focus
+
+\var widget::flags widget::CAN_CLOSE
+	indicator if widget can close
+*/
+
+/*!
+\var widget::m_flags
+	bit mask of widget::damage flags
+*/
+
+/*!
+\var widget::m_box
+	rectangular region the widget occupies
+*/
+
+/*!
+\var widget::m_parent
+	parent group this widget belongs too
+*/
+
+/*!
+\var widget::m_user_data
+	user defined data pointer
+*/

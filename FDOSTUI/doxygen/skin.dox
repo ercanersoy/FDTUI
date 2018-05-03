@@ -1,0 +1,310 @@
+/*
+ SKIN.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*! \file skin.h
+\brief simple theme
+*/
+
+/*!
+\struct skin_frame
+\brief frame theme
+
+\var skin_frame::m_hline
+	horizontal line symbol
+
+\var skin_frame::m_vline
+	vertical line symbol
+
+\var skin_frame::m_top_left
+	top left corner symbol
+
+\var skin_frame::m_top_right
+	top right corner symbol
+
+\var skin_frame::m_bottom_left
+	bottom left corner symbol
+
+\var skin_frame::m_bottom_right
+	bottom right symbol
+
+\var skin_frame::m_middle_left
+	left middle symbol (connector)
+
+\var skin_frame::m_middle_right
+	right middle symbol (connector)
+
+*/
+
+/*!
+\struct skin_buttons
+\brief theme for all types of single buttons
+
+\var skin_buttons::m_system
+	system symbol
+
+\var skin_buttons::m_close
+	close symbol
+
+\var skin_buttons::m_maximize
+	maximize symbol
+
+\var skin_buttons::m_minimize
+	minimize symbol
+
+\var skin_buttons::m_resize
+	resize symbol
+
+\var skin_buttons::m_up
+	up symbol
+
+\var skin_buttons::m_down
+	down symbol
+
+\var skin_buttons::m_left
+	left symbol
+
+\var skin_buttons::m_right
+	right symbol
+
+\var skin_buttons::m_checked
+	checked symbol
+
+\var skin_buttons::m_submenu
+	submenu symbol
+
+\var skin_buttons::m_thumb
+	thumb symbol
+
+\var skin_buttons::m_expand
+	expand symbol
+
+\var skin_buttons::m_collapse
+	collapse symbol
+
+\var skin_buttons::m_selected
+	selected symbol
+*/
+
+/*!
+\struct skin_desktop
+\brief desktop theme
+
+\var skin_desktop::m_fillc
+	fill symbol
+
+\var skin_desktop::m_fcolor
+	foreground color
+
+\var skin_desktop::m_bcolor
+	background color
+*/
+
+/*!
+\struct skin_window
+\brief window theme 
+
+\var skin_window::m_fillc
+	fill symbol
+
+\var skin_window::m_fcolor
+	foreground color
+
+\var skin_window::m_bcolor
+	background color
+
+\var skin_window::m_text_fcolor
+	text foreground color
+
+\var skin_window::m_text_bcolor
+	text background color
+
+*/
+
+/*!
+\struct skin_menu
+\brief menu theme
+
+\var skin_menu::m_window
+	window attributes
+
+\var skin_menu::m_selected_fcolor
+	selected foreground color
+
+\var skin_menu::m_selected_bcolor
+	selected background color
+
+\var skin_menu::m_disabled_fcolor
+	disabled foreground color
+
+\var skin_menu::m_disabled_bcolor
+	disabled background color
+
+\var skin_menu::m_hotkey_fcolor
+	hot key foreground color
+
+\var skin_menu::m_hotkey_bcolor
+	hot key background color
+*/
+
+/*!
+\struct skin_button
+\brief button theme
+
+\var skin_button::m_fcolor
+	foreground color
+
+\var skin_button::m_bcolor
+	background color
+
+\var skin_button::m_focused
+	focused color
+
+\var skin_button::m_shadow
+	shadow color
+*/
+
+/*!
+\struct skin_label
+\brief label theme
+
+\var skin_label::m_fcolor
+	foreground color
+
+\var skin_label::m_bcolor
+	background color
+
+*/
+
+/*!
+\struct skin_slider
+\brief slider theme
+
+\var skin_slider::m_fillc
+	fill symbol
+
+\var skin_slider::m_fcolor
+	foreground color
+
+\var skin_slider::m_bcolor
+	background color
+
+*/
+
+/*!
+\struct skin_listbox
+\brief listbox theme
+
+\var skin_listbox::m_fcolor
+	foreground color
+
+\var skin_listbox::m_bcolor
+	background color
+
+\var skin_listbox::m_highlight_fcolor
+	highlight foreground color
+
+\var skin_listbox::m_highlight_bcolor
+	highlight background color
+
+\var skin_listbox::m_selected_fcolor
+	selected foreground color
+
+\var skin_listbox::m_selected_bcolor
+	selected background color
+*/
+
+/*!
+\struct skin_edit
+\brief edit theme
+
+\var skin_edit::m_fcolor
+	foreground color
+
+\var skin_edit::m_bcolor
+	background color
+*/
+
+/*!
+\struct skin_tree
+\brief tree theme
+
+\var skin_edit::m_fcolor
+	foreground color
+
+\var skin_edit::m_bcolor
+	background color
+
+\var skin_edit::m_selected_fcolor
+	selected foreground color
+
+\var skin_edit::m_selected_bcolor
+	selected background color
+
+*/
+
+/*!
+\var struct skin_buttons _skin_buttons
+\brief	buttons theme
+*/
+
+/*!
+\var struct skin_frame _skin_frame_single
+\brief	single frame theme
+*/
+
+/*!
+\var struct skin_desktop _skin_desktop
+\brief	desktop theme
+*/
+
+/*!
+\var struct skin_window _skin_window
+\brief	window theme
+*/
+
+/*!
+\var struct skin_menu _skin_menu
+\brief	menu theme
+*/
+
+/*!
+\var struct skin_label _skin_label
+\brief	label theme
+*/
+
+/*!
+\var struct skin_button _skin_button
+\brief	button theme
+*/
+
+/*!
+\var struct skin_slider _skin_slider
+\brief	slider theme
+*/
+
+/*!
+\var struct skin_listbox _skin_listbox
+\brief	listbox theme
+*/
+
+/*!
+\var struct skin_edit _skin_edit
+\brief	edit theme
+*/
+
+/*!
+\var struct skin_tree _skin_tree
+\brief	tree theme
+*/
+
+/*!
+\fn void skin_set_defaults
+\brief load default skin attributes 
+*/

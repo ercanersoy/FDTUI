@@ -1,0 +1,64 @@
+/*
+ FDTUICFG.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*! \file fdtuicfg.h
+\brief FDOSTUI configuration loader. Allows a user to set options to control
+an FDOSTUI application without requiring a recompilation.
+
+FDOSTUI configuration files are named "fdostui.ini." The placement of the
+file depends upon the operating system. ::fdtuicfg_load will perform the
+following search:
+
+	* Check current directory (ALL)
+	* Check directory program was executed (DOS, WINDOWS)
+	* Check $XDG_CONFIG_HOME directory (GNU/Linux, BSD)
+	* Check "$HOME/.config" directory (GNU/Liniux, BSD)
+
+\section section_skin Theme
+
+A theme in an FDOSTUI appliction is limited and is in alpha stage (not
+stable).  That is, actual data structures that hold attribute data such
+as foreground and background colors may change.
+
+It will most likely go through a number of revisions before it is complete
+and reliable. Using the feature, however, would help by reporting bugs
+and making suggestions.
+
+There is more work to be done with implementing colors on all platforms.
+Currently, color is limited to the least common denominator (with the
+exception of the absence of color). This will most likely change in
+future releases.
+
+\see \subpage page_themeing
+
+*/
+
+/*!
+\fn void fdtuicfg_load()
+\brief Load FDTUIDOS configuration data
+\returns none
+
+Attempts to resolve the configuration file path and then calls
+::fdtuicfg_load_file to load data.
+
+This routine is called within ::wm_init.
+
+*/
+
+/*!
+\fn void fdtuicfg_load_file(
+    char const*                         i_path)
+\brief Load FDOSTUI configuration data
+\param[in] i_path INI file
+\returns none
+
+When errors are encountered diagnostic messages are printed to stderr.
+
+*/

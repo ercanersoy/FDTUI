@@ -1,0 +1,224 @@
+/*
+ MENU.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*! \file menu.hpp
+\brief conatins menu class
+*/
+
+/*! \class menu menu.hpp
+\brief Allows a user to choose a value from a list
+*/
+
+/*!
+\enum menu::event_response_extended
+\brief extended response for keystrokes
+    
+\var menu::event_response_extended menu::RESPONSE_LEFT
+	response when user presses the left key
+
+\var menu::event_response_extended menu::RESPONSE_RIGHT
+	response when user presses the right key
+*/
+
+/*!
+\fn menu::menu(
+        int const                       i_pos_x,
+        int const                       i_pos_y,
+        unsigned int const              i_len_x,
+        unsigned int const              i_len_y)
+\brief constructor 
+\param[in] i_pos_x x position to place widget
+\param[in] i_pos_y y position to place widget
+\param[in] i_len_x x length of widget
+\param[in] i_len_y y length of widget
+\returns none
+*/
+
+/*!
+\fn virtual menu::~menu()
+\brief destructor
+\returns none
+*/
+
+/*!
+\fn virtual void menu::draw() const
+\brief draws the widget
+
+This method should not be called directly. 
+\see widget::draw for details.
+*/
+
+/*!
+\fn virtual enum event_response menu::event_key(
+        struct event_key const&         i_event)
+\brief handle key event
+\param[in] i_event key event to handle    
+\returns response how event was handled
+*/
+
+/*!
+\fn virtual enum event_response menu::event_mouse(
+        struct event_mouse const&       i_event)
+\brief handle mouse event
+\param[in] i_event mouse event to handle
+\returns response how event was handled
+*/
+
+/*!
+\fn void menu::set_menu(
+        struct menuitem*                i_menu)
+\brief sets the menu
+\param[in,out] i_menu reference to menu items
+\returns none
+
+\a i_menu must be a valid reference to a menu data structure. 
+This widget does not make a local copy. So, the life time
+of the object should survive the menu widget.
+*/
+
+/*!
+\fn void menu::set_response_extended(
+        bool const                      i_turnon)
+\brief sets the behavior of the response used when the user 
+presses specific keystrokes.
+\param[in] i_turnon indicator if the extended response is activated
+
+When activated, and the user presses the left or right arrow keys an
+extended response of menu::RESPONSE_LEFT or menu::RESPONSE_RIGHT
+is returned to the caller. 
+
+An example use case is in the ::menubar class, which moves from
+menu to menu.
+*/
+
+/*!
+\var menu::m_response_extended
+	indicator if extended response is activated
+*/
+
+/*!
+\var menu::m_selected
+	index of selected item
+*/
+
+/*!
+\var menu::m_offset
+	scroll offset
+*/
+
+/*!
+\var menu::m_orig_pos_y
+	original y position. used when a sub-menu is activated.
+*/
+
+/*!
+\var menu::m_array
+	flattened menu. contains pointer to the primary menu items
+	(omitting sub-menus).
+*/
+
+/*!
+\var menu::m_menu
+	reference to the menu items
+*/
+
+/*!
+\fn void menu::draw_line(
+        int const                       i_pos_y,
+        int const                       i_erase) const
+\brief draw a separator line
+\param[in] i_pos_y y position to draw line
+\param[in] i_erase indicator if line is being drawn or erased
+\returns none
+*/
+
+/*!
+\fn void menu::draw_item(
+        int const                       i_pos_y,
+        int const                       i_selected,
+        struct menuitem const*const     i_menu) const
+\brief draw a menu item
+\param[in] i_pos_y y position to draw item
+\param[in] i_selected indicator if menu itme is selected
+\param[in] i_menu menu item to draw
+\returns none
+*/
+
+/*!
+\fn void menu::draw_items() const
+\brief draw all of the menu items
+*/
+
+/*!
+\fn void menu::preflight()
+\brief configure the menu object (flattens the menu)
+*/
+
+/*!
+\fn enum event_response menu::event_key_ascii(
+        unsigned char const             i_ascii)
+\brief handle ASCII key events
+\returns response
+
+If the extended response is activated, the left and right arrow keys
+will produce the menu::RESPONSE_LEFT or menu::RESPONSE_RIGHT response.
+*/
+
+/*!
+\fn enum event_response menu::event_key_scan(
+        enum scancodes const            i_scan)
+\brief handle scancode events
+\returns response
+*/
+
+/*!
+\fn void menu::select(
+        unsigned int const              i_slot)
+\brief selects a menu item
+\param[in] i_slot index of item to select
+\returns none
+*/
+
+/*!
+\fn void menu::select_next()
+\brief selects the next item
+\returns none
+*/
+
+/*!
+\fn void menu::select_previous()
+\brief selects the previous item
+\returns none
+*/
+
+/*!
+\fn enum event_response menu::submenu(
+        struct menuitem *               io_menu,
+        unsigned int const              i_pos_x,
+        unsigned int const              i_pos_y)
+\brief popups sub menu
+\param[in,out] io_menu menu item containing submenu to popup
+\param[in] i_pos_x x position to display popup
+\param[in] i_pos_y y position to display popup
+\returns response of the submenu
+*/
+
+/*!
+\fn int menu::event_in_parent(
+        int const                       i_pos_x,
+        int const                       i_pos_y)
+\brief test if event is inside parent
+\param[in] i_pos_x x position to test
+\param[in] i_pos_y y position to test
+\returns 0  event is not in parent
+\returns !0 event is in parent
+*/
+
+

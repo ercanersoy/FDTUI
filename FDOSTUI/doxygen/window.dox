@@ -1,0 +1,105 @@
+/*
+ WINDOW.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*! \file window.hpp
+\brief contains window class
+*/
+
+/*! \class window window.hpp
+\brief top level container widget that can be moved and resized by the user
+*/
+
+/*!
+\enum window::attributes
+
+\var window::attributes window::EMPTY
+	no bit mask flags are set
+
+\var window::attributes window::BORDER
+	window has a border
+
+\var window::attributes window::TITLE
+	window has a title
+
+\var window::attributes window::MINMAX
+	window has a minimize and maximize button
+
+\var window::attributes window::RESIZE
+	window can be resized
+
+\var window::attributes window::SYSTEM
+	window has a system menu
+*/
+
+/*!
+\fn window::window(
+        int const                       i_pos_x,
+        int const                       i_pos_y,
+        unsigned int const              i_len_x,
+        unsigned int const              i_len_y)
+\brief constructor 
+\param[in] i_pos_x x position to place widget
+\param[in] i_pos_y y position to place widget
+\param[in] i_len_x x length of widget
+\param[in] i_len_y y length of widget
+\returns none
+*/
+    
+/*!
+\fn virtual window::~window()
+\brief destructor
+\returns none
+*/
+    
+/*!
+\fn virtual void window::draw() const
+\brief draws the widget
+
+This method should not be called directly. 
+\see widget::draw for details.
+*/
+
+/*!
+\fn enum attributes window::get_attributes() const
+\brief gets the window attributes
+\return window attributes
+*/
+    
+/*!
+\fn unsigned char const* window::get_title() const
+\brief gets the windows title
+\returns 0 window does not have a title
+\returns !0 pointer to window title
+*/
+
+/*!
+\fn void window::set_attributes(
+        unsigned const                  i_attributes)
+\brief set the window attributes
+\param[in] i_attributes bit mask of window::attributes
+\returns none
+*/
+
+/*!
+\fn void window::set_title(
+        unsigned char const*            i_title)
+\brief sets the windows title
+\returns none
+*/
+
+/*!
+\var window::m_title
+	window title
+*/
+
+/*!
+\var window::m_attributes
+	bit mask of window attributes
+*/

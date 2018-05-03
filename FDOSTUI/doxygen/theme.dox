@@ -1,0 +1,179 @@
+/*
+ THEMEING.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+/*! 
+
+\page page_theme Theme
+
+\section sect_introduction Introduction
+
+FDOSTUI can be customized externally through the use of a configuration
+file named "fdostui.ini." On GNU/Linux and BSD platforms, the name is
+case sensitive (lowercase). The placement of the file depends
+upon the operating system. The following search will be performed to
+locate the file.
+
+	* Check current directory (ALL)
+	* Check directory program was executed (DOS, WINDOWS)
+	* Check $XDG_CONFIG_HOME directory (GNU/Linux, BSD)
+	* Check "$HOME/.config" directory (GNU/Liniux, BSD)
+
+\subsection subsection_colors Colors
+
+\subsubsection subsubsection_foreground Foreground
+
+Following are the foreground colors available.
+
+	* black
+	* blue
+	* green
+	* cyan
+	* red
+	* magenta
+	* yellow
+	* white
+
+\subsubsection subsubsection_background Background
+
+Following are the background colors available
+
+	* black
+	* blue
+	* green
+	* cyan
+	* red
+	* magenta
+	* gray
+
+\subsection subsection_section Sections
+
+\verbatim
+
+[desktop]
+fill=<fill-character>
+background=<background-color>
+foreground=<foreground-color>
+
+[window]
+fill=<fill-character>
+background=<background-color>
+foreground=<foreground-color>
+text.background=<background-color>
+text.foreground=<foreground-color>
+
+[menu]
+fill=<fill-character>
+background=<background-color>
+foreground=<foreground-color>
+text.background=<background-color>
+text.foreground=<foreground-color>
+selected.background=<background-color>
+selected.foreground=<foreground-color>
+disabled.background=<background-color>
+disabled.foreground=<foreground-color>
+hotkey.background=<background-color>
+hotkey.foreground=<foreground-color>
+
+[button]
+background=<background-color>
+foreground=<foreground-color>
+focused.foreground=<foreground-color>
+shadow.background=<background-color>
+
+[label]
+background=<background-color>
+foreground=<foreground-color>
+
+[slider]
+fill=<fill-character>
+background=<background-color>
+foreground=<foreground-color>
+
+[listbox]
+background=<background-color>
+foreground=<foreground-color>
+highlight.background=<background-color>
+highlight.foreground=<foreground-color>
+selected.background=<background-color>
+
+[edit]
+background=<background-color>
+foreground=<foreground-color>
+
+[tree]
+background=<background-color>
+foreground=<foreground-color>
+selected.background=<background-color>
+selected.foreground=<foreground-color>
+
+\endverbatim
+
+\subsection subsection_example Example
+
+Following is an example theme.
+
+\verbatim
+[desktop]
+background=grey
+foreground=black
+
+[window]
+background=grey
+foreground=black
+text.background=grey
+text.foreground=black
+
+[menu]
+background=grey
+foreground=black
+text.background=grey
+text.foreground=black
+selected.foreground=black
+selected.background=green
+disabled.foreground=green
+disabled.background=black
+hotkey.foreground=blue
+hotkey.background=grey
+
+[button]
+background=grey
+foreground=black
+focused.foreground=green
+shadow.background=yellow
+
+[label]
+background=grey
+foreground=black
+
+[slider]
+background=grey
+foreground=black
+
+[listbox]
+background=grey
+foreground=black
+highlight.foreground=black
+highlight.background=green
+selected.background=black
+selected.foreground=green
+
+[edit]
+background=grey
+foreground=black
+
+[tree]
+background=grey
+foreground=black
+selected.background=black
+selected.foreground=green
+
+\endverbatim
+
+*/
