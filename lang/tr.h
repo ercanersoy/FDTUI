@@ -12,7 +12,7 @@
    #define STRING_BY_TYPE "TÅre Gîre"
    #define STRING_COPY "Kopyala"
    #define STRING_CUT "Kes"
-   #define STRING_DELETE "Delete"
+   #define STRING_DELETE "Sil"
    #define STRING_DOS_APPLICATIONS "DOS Uygulamalarç"
    #define STRING_EDIT "DÅzenle"
    #define STRING_EXIT "Äçkçü"
