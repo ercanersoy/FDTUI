@@ -6,6 +6,8 @@
 #include <mouse.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
 #include <fdostui.hpp>
 #include "config.h"
 #include "lang\en.h"
@@ -13,7 +15,7 @@
 
 // Current Directory
 
-char *current_directory = 0;
+char *current_directory = (char *)malloc(MAX_PATH_LENGTH);
 
 // Bar
 
@@ -28,7 +30,7 @@ label *current_directory_label = new label(1, 2, 65, 1);
 listbox *drivers = new listbox(1, 3, 65, 3);
 listbox *directories_and_files = new listbox(1, 6, 65, 9);
 
-// Run Function
+// Common Functions
 
 void command_run(char const* command)
 {
@@ -39,13 +41,35 @@ void command_run(char const* command)
    wm_draw(0);
 }
 
+void refresh(menuitem *, void *)
+{
+   struct dirent *element;
+
+   directories_and_files->remove_all();
+
+   DIR *directory = opendir(current_directory);
+
+   while(element = readdir(directory))
+   {
+      if(!strcmp(element->d_name, ".") || !strcmp(element->d_name, ".."))
+      {
+         continue;
+      }
+
+      directories_and_files->add(reinterpret_cast<unsigned char const*>(element->d_name));
+   }
+}
+
 // Bar Menu Functions
 
 void application_file_manager(menuitem *, void *)
 {
-   if (false == file_manager->get_visible())
+   if(false == file_manager->get_visible())
    {
       file_manager->set_visible();
+
+      refresh(0, 0);
+
       wm_draw(file_manager);
    }
    return;
@@ -118,7 +142,7 @@ struct menuitembar menus_of_bar[] =
 
 void file_manager_exit(menuitem *, void *)
 {
-    file_manager->set_hidden();
+   file_manager->set_hidden();
 }
 
 // File Manager Menus
@@ -142,7 +166,7 @@ struct menuitem edit_menu[] =
 
 struct menuitem view_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(STRING_REFRESH), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_REFRESH), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, refresh, 0},
    {reinterpret_cast<unsigned char const*>(STRING_SHOW_HIDDEN_FILES), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX | MENUITEM_SEPERATOR, 0, 0},
    {reinterpret_cast<unsigned char const*>(STRING_SORT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE,  MENUITEM_SUBMENU, 0, 0},
    {reinterpret_cast<unsigned char const*>(STRING_BY_NAME), MENUITEM_MNEMONIC_NONE, 0,  SCAN_NONE, 0, 0, 0},
