@@ -1,12 +1,19 @@
 FreeDOS TUI Shell
 
-TUI shell for FreeDOS.
+Text User Interface Shell for FreeDOS
 
 Copyright (C) 2018 Ercan Ersoy
 This program is free software. (GNU General Public License)
 
-Thanks to Mark Olesen for some code changes.
+Teşekkür:
+
+  Thanks to Mark Olesen for some code changes.
 
 Compile:
 
   This software should be compiled with Open Watcom.
+
+Contirbute:
+
+  If you want contribute of this project, you should make a pull
+  request of FreeDOS TUI Shell's repository.

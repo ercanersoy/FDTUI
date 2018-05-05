@@ -1,12 +1,19 @@
 FreeDOS TUI Shell
 
-FreeDOS iÃ§in TUI kabuÄŸu.
+FreeDOS i‡in metin kullanc arayz kabu§u
 
-Telif HakkÄ± (C) 2018 Ercan Ersoy
-Bu program bir Ã¶zgÃ¼r yazÄ±lÄ±mdÄ±r. (GNU Genel Kamu LisansÄ±)
+Telif Hakk (C) 2018 Ercan Ersoy
+Bu program bir ”zgr yazlmdr. (GNU Genel Kamu Lisans)
 
-BazÄ± kod deÄŸiÅŸiklikleri iÃ§in Mark Olesen'e teÅŸekkÃ¼rler.
+TeŸekkr:
+
+  Baz kod de§iŸiklikleri i‡in Mark Olesen'e teŸekkrler.
 
 Derleme:
 
-  Bu yazÄ±lÄ±m Open Watcom ile derlenmelidir.
+  Bu yazlm Open Watcom ile derlenmelidir.
+
+Katkda Bulunma:
+
+  E§er bu tasarya katkda bulunmak isterseniz, FreeDOS TUI Shell'in
+  deposuna katkda bulunmalsnz.
