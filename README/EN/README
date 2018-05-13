@@ -5,9 +5,11 @@ Text User Interface Shell for FreeDOS
 Copyright (C) 2018 Ercan Ersoy
 This program is free software. (GNU General Public License)
 
+This project includes FDOSTUI library. FDOSTUI has own licenses.
+
 Teşekkür:
 
-  Thanks to Mark Olesen for some code changes.
+  Thanks to Mark Olesen for some code changes and FDOSTUI.
 
 Compile:
 
