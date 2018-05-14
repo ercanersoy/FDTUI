@@ -41,7 +41,7 @@ void command_run(char const* command)
    wm_draw(0);
 }
 
-void refresh(menuitem *, void *)
+void directory_view(menuitem *, void *)
 {
    struct dirent *element;
 
@@ -68,7 +68,7 @@ void application_file_manager(menuitem *, void *)
    {
       file_manager->set_visible();
 
-      refresh(0, 0);
+      directory_view(0, 0);
 
       wm_draw(file_manager);
    }
@@ -166,7 +166,7 @@ struct menuitem edit_menu[] =
 
 struct menuitem view_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(STRING_REFRESH), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, refresh, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_REFRESH), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, directory_view, 0},
    {reinterpret_cast<unsigned char const*>(STRING_SHOW_HIDDEN_FILES), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX | MENUITEM_SEPERATOR, 0, 0},
    {reinterpret_cast<unsigned char const*>(STRING_SORT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE,  MENUITEM_SUBMENU, 0, 0},
    {reinterpret_cast<unsigned char const*>(STRING_BY_NAME), MENUITEM_MNEMONIC_NONE, 0,  SCAN_NONE, 0, 0, 0},
