@@ -245,7 +245,7 @@ extern void
 screen_puts(
     int const                           i_col,
     int const                           i_row,
-    unsigned char const*                i_string,
+    unsigned char const __FAR*          i_string,
     unsigned int const                  i_length,
     enum foreground const               i_fcolor,
     enum background const               i_bcolor);

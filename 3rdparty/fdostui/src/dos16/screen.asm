@@ -8,32 +8,33 @@
 
 include VIDEO.INC
 
+VIDEO_MAX_ROWS EQU 50 ; maximum number of video rows
+VIDEO_BUFFER EQU 0b800h ; video buffer seqment
+
 .MODEL medium
 
-.DATA
+.FARDATA?
 
-VIDEO_MAX_ROWS EQU 50 ; maximum number of __video_rows
-VIDEO_BUFFER EQU 0b800h ; video buffer seqment
+video_offscreen db (2 * 80 * VIDEO_MAX_ROWS) dup(?); offscreen video buffer
+
+.DATA
 
 PUBLIC __video_cols
 PUBLIC __video_rows
 
 video_card dw 0 ; type of video card detected
 video_restore_mode db 3 ; mode to restore graphics state
-video_off dw 0 ; offscreen video buffer segment
 video_seg dw VIDEO_BUFFER ; video buffer segment
+video_off dw 0 ; video buffer offset
 __video_cols dw 80 ; number of columns
 __video_rows dw 25 ; number of video rows
 video_line_size dw (2 * 80)  ; size of a line (__video_cols * 2) attr+char
 video_bytes dw (2 * 80 * 25) ; buffer size (video_line_size * __video_rows)
-video_line_offsets dw VIDEO_MAX_ROWS dup(0) ; start of line video_line_offsets
+video_line_offsets dw VIDEO_MAX_ROWS dup(?) ; start of line video_line_offsets
 
 .CODE
 
 EXTERN video_detect_:far
-; unsigned _dos_allocmem( unsigned size, unsigned *segment);
-; unsigned _dos_freemem( unsigned segment );
-EXTERN _dos_allocmem_:far, _dos_freemem_:far
 
 ; initialize video to mode 3 text 80x25
 ; inputs:
@@ -99,13 +100,10 @@ vidset:
     
 line:
     stosw
-    add ax, [video_line_size]
+    add ax, [word ptr video_line_size]
     loop line
     
-    ; allocate an off screen buffer
-    lea dx, video_off
-    mov ax, ((2 * 80 * VIDEO_MAX_ROWS) + 15) / 16
-    call far ptr _dos_allocmem_
+    xor ax, ax
     
 init_exit:
 
@@ -120,12 +118,8 @@ screen_init_ ENDP
 ; restore video mode back to default
 PUBLIC screen_deinit_
 screen_deinit_ PROC FAR
+
     push ax
-    
-    mov ax, word ptr [video_off]
-    or ax, ax
-    jz restorevid
-    call far ptr _dos_freemem_
     
 restorevid:
     ; restore video mode
@@ -184,7 +178,7 @@ screen_set50lines_ PROC FAR
     push cx
     push dx
 
-    cmp [video_card], VIDEO_CARD_EGA     
+    cmp [word ptr video_card], VIDEO_CARD_EGA     
     jl  set50_unsupported
     
     ; set vertical resolution
@@ -256,7 +250,7 @@ screen_fill_ PROC FAR
     
     mov cx, [word ptr video_seg]
     mov es, cx
-    xor di, di
+    mov di, [word ptr video_off]
     mov cx, [word ptr video_bytes]
     shr cx, 1 ; convert size to words
     ; cld
@@ -300,9 +294,9 @@ screen_fill_area_ PROC FAR
     jz  area_exit
     or cx, cx
     jz  area_exit
-    cmp ax, [__video_cols]
+    cmp ax, [word ptr __video_cols]
     jge area_exit
-    cmp dx, [__video_rows]
+    cmp dx, [word ptr __video_rows]
     jge area_exit
     cmp ax, 0
     jge area_check_row
@@ -335,6 +329,7 @@ area_start:
     shl bx, 1 ; index into video_line_offsets (row * 2)
     mov di, [word ptr video_line_offsets][bx]
     add di, ax ; add column
+    add di, [word ptr video_off]
     mov ax, [word ptr video_seg]
     mov es, ax
     
@@ -364,7 +359,7 @@ area_store:
     dec bx
     jz area_next_row
     inc si
-    cmp si, [__video_cols]
+    cmp si, [word ptr __video_cols]
     jl area_store
 area_next_row:
     pop di
@@ -372,9 +367,9 @@ area_next_row:
     pop bx
     dec cx
     jz  area_exit
-    add di, [video_line_size]
+    add di, [word ptr video_line_size]
     inc dx
-    cmp dx, [__video_rows]
+    cmp dx, [word ptr __video_rows]
     jl area_loop
 
 area_exit:
@@ -445,6 +440,7 @@ putc_start:
     shl bx, 1 ; index into video_line_offsets (row * 2)
     mov di, [word ptr video_line_offsets][bx]
     add di, ax
+    add di, [word ptr video_off]
     
     push cx ; save repeat count
     mov ax, [word ptr bp+6] ; foreground color
@@ -538,6 +534,7 @@ putvc_start:
     shl bx, 1 ; index into video_line_offsets (row * 2)
     mov di, [word ptr video_line_offsets][bx]
     add di, ax
+    add di, [word ptr video_off]
     
     push cx ; save repeat count
     mov ax, [word ptr bp+6] ; foreground color
@@ -581,10 +578,11 @@ screen_putvc_ ENDP
 ; writes a string to the screen
 ;  ax col coordinate
 ;  dx row coordinate
-;  bx address of string
-;  cx bytes to write
-;  [bp+6] foreground color 
-;  [bp+8] background color 
+;  cx string segment
+;  bx string offset
+;  [bp+6] bytes to write
+;  [bp+8] foreground color 
+;  [bp+10] background color 
 ; outputs:
 ;  none
 ; destroys:
@@ -594,6 +592,7 @@ screen_puts_ PROC FAR
 
     push bp 
     mov bp,sp 
+    sub sp, 02h 
     
     push ax
     push bx
@@ -603,13 +602,17 @@ screen_puts_ PROC FAR
     push di
     push ds
     push es
+
+    mov [word ptr bp-2], cx ; save string segment
+    mov si, bx ; si string offset
+    mov cx, [word ptr bp+6] ; bytes to write
     
     ; sanity checks
     or cx, cx
     jz  puts_exit
-    cmp ax, [__video_cols]
+    cmp ax, [word ptr __video_cols]
     jge puts_exit
-    cmp dx, [__video_rows]
+    cmp dx, [word ptr __video_rows]
     jge puts_exit
     cmp ax, 0
     jge puts_start
@@ -623,7 +626,6 @@ puts_adjust:
     jl puts_adjust
     
 puts_start:
-    mov si, bx ; ds:si string 
     
     push ax ; save column
     
@@ -634,6 +636,7 @@ puts_start:
     shl bx, 1 ; index into video_line_offsets (row * 2)
     mov di, [word ptr video_line_offsets][bx]
     add di, ax ; add column
+    add di, [word ptr video_off]
     mov ax, [word ptr video_seg]
     mov es, ax
     
@@ -641,17 +644,21 @@ puts_start:
     
     push cx ; save bytes to write
     
-    mov ax, [word ptr bp+6] ; foreground color
+    mov ax, [word ptr bp+8] ; foreground color
     mov cl, 8 ; make it high word (move into ah)
     shl ax, cl
-    mov bx, [word ptr bp+8] ; background color
+    mov bx, [word ptr bp+10] ; background color
     mov cl, 4
     shl bx, cl
     or ah, bl
     
     pop cx ; restore bytes to write
-    
-    ; cld
+
+    mov bx, [word ptr __video_cols]
+    push ax ; save attribute
+    mov ax, [word ptr bp-2] ; ds string segment
+    mov ds, ax
+    pop ax ; restore attribute
     
 puts_store:
     lodsb
@@ -659,7 +666,7 @@ puts_store:
     dec cx
     jz puts_exit
     inc dx
-    cmp dx, [__video_cols]
+    cmp dx, bx
     jl puts_store
 
 puts_exit:
@@ -702,9 +709,9 @@ screen_set_color_ PROC FAR
     ; sanity checks
     or bx, bx
     jz  setc_exit
-    cmp ax, [__video_cols]
+    cmp ax, [word ptr __video_cols]
     jge setc_exit
-    cmp dx, [__video_rows]
+    cmp dx, [word ptr __video_rows]
     jge setc_exit
     cmp ax, 0
     jge setc_check_count
@@ -717,9 +724,9 @@ screen_set_color_ PROC FAR
 setc_check_count:
     mov si, bx
     add si, ax
-    cmp si, [__video_cols]
+    cmp si, [word ptr __video_cols]
     jle setc_start
-    mov bx, [__video_cols]
+    mov bx, [word ptr __video_cols]
     sub bx, ax
 
 setc_start:
@@ -733,6 +740,7 @@ setc_start:
     shl bx, 1 ; index into video_line_offsets (row * 2)
     mov di, [word ptr video_line_offsets][bx]
     add di, ax ; add column
+    add di, [word ptr video_off]
     mov ax, [word ptr video_seg]
     mov es, ax
     
@@ -791,11 +799,11 @@ screen_getc_ PROC FAR
     
     cmp ax, 0
     jl getc_error
-    cmp ax, [__video_cols]
+    cmp ax, [word ptr __video_cols]
     jge getc_error
     cmp dx, 0
     jl getc_error
-    cmp dx, [__video_rows]
+    cmp dx, [word ptr __video_rows]
     jge getc_error
 
     shl ax, 1 ; each column is 2 bytes (char+attr)
@@ -805,6 +813,7 @@ screen_getc_ PROC FAR
     shl bx, 1 ; index into video_line_offsets (row * 2)
     mov si, [word ptr video_line_offsets][bx]
     add si, ax ; add column
+    add si, [word ptr video_off]
     mov ax, [word ptr video_seg]
     mov ds, ax
     ; cld
@@ -880,7 +889,7 @@ read_start:
     
     push bx ; save number of columns
     push cx ; save column
-    mov dx, [__video_cols]
+    mov dx, [word ptr __video_cols]
 
     mov ax, cx
     shl ax, 1 ; each column is 2 bytes (char+attr)
@@ -890,6 +899,7 @@ read_start:
     shl bx, 1 ; index into video_line_offsets (row * 2)
     mov si, [word ptr video_line_offsets][bx]
     add si, ax ; add column
+    add si, [word ptr video_off]
     mov ax, [word ptr video_seg]
     mov ds, ax
     
@@ -949,11 +959,11 @@ screen_write_ PROC FAR
     mov si, bx ; buffer offset
     mov di, cx ; buffer segment
     
-    cmp ax, [__video_cols]
+    cmp ax, [word ptr __video_cols]
     jge write_ret1
     cmp dx, 0 ; check row
     jl write_ret1
-    cmp dx, [__video_rows]
+    cmp dx, [word ptr __video_rows]
     jge write_ret1
     
     mov cx, [word ptr bp+6] ; repeat count
@@ -985,6 +995,7 @@ write_start:
     shl bx, 1 ; index into video_line_offsets (row * 2)
     mov di, [word ptr video_line_offsets][bx]
     add di, ax ; add column
+    add di, [word ptr video_off]
     mov ax, [word ptr video_seg]
     mov es, ax
     
@@ -1032,24 +1043,35 @@ public screen_push_
 screen_push_ PROC FAR
 
     push ax
+    push bx
     push cx
     push si
     push di
     push ds
     push es
 
-    cmp word ptr [video_seg], VIDEO_BUFFER
-    jne screen_push_exit
+    mov bx, seg video_offscreen
+    cmp bx, [word ptr video_seg]
+    je screen_push_exit
 
-    mov cx, word ptr [video_bytes]
+    mov es, bx
+    mov di, offset video_offscreen
+    mov cx, [word ptr video_bytes]
     shr cx, 1
-    mov ax, word ptr [video_off]
-    mov word ptr [video_seg], ax
-    mov es, ax
+
+    or ax, ax
+    jnz screen_push_copy
+
+    rep stosw
+    jmp screen_push_exit
+
+screen_push_copy:
+
+    mov [word ptr video_seg], bx
+    mov [word ptr video_off], di
     mov ax, VIDEO_BUFFER
     mov ds, ax
     xor si, si
-    xor di, di
     rep movsw
 
 screen_push_exit:
@@ -1059,6 +1081,7 @@ screen_push_exit:
     pop di
     pop si
     pop cx
+    pop bx
     pop ax
 
     retf
@@ -1066,27 +1089,30 @@ screen_push_ ENDP
 
 public screen_pop_
 screen_pop_ PROC FAR
-    
+
     push ax
     push cx
     push si
     push di
     push ds
     push es
+    
+    cmp [word ptr video_seg], VIDEO_BUFFER
+    je screen_pop_exit
 
-    cmp word ptr [video_seg], VIDEO_BUFFER
-    je screen_push_exit
-
-    mov word ptr [video_seg], VIDEO_BUFFER
-    mov cx, word ptr [video_bytes]
+    mov [word ptr video_seg], VIDEO_BUFFER
+    mov [word ptr video_off], 0
+    mov cx, [word ptr video_bytes]
     shr cx, 1
-    mov ax, word ptr [video_off]
+    mov si, offset video_offscreen
+    mov ax, seg video_offscreen
     mov ds, ax
     mov ax, VIDEO_BUFFER
     mov es, ax
-    xor si, si
     xor di, di
     rep movsw
+    
+screen_pop_exit:
 
     pop es
     pop ds
