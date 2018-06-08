@@ -3,6 +3,7 @@
  *********************************/
 
 #include <direct.h>
+#include <dos.h>
 #include <mouse.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,9 +14,10 @@
 #include "lang\en.h"
 #include "lang\tr.h"
 
-// Current Directory
+// Common Variables
 
 char *current_directory = (char *)malloc(MAX_PATH_LENGTH);
+bool show_hidden_file = false;
 
 // Bar
 
@@ -55,16 +57,34 @@ void directory_view(menuitem *, void *)
       {
          continue;
       }
+      else if(element->d_attr == _A_HIDDEN && !show_hidden_file)
+      {
+         continue;
+      }
 
       directories_and_files->add(reinterpret_cast<unsigned char const*>(element->d_name));
    }
+}
+
+void showing_hidden_files(struct menuitem *menu_item, void *)
+{
+   if(menu_item->m_flags & MENUITEM_VALUE)
+   {
+      show_hidden_file = true;
+   }
+   else
+   {
+      show_hidden_file = false;
+   }
+   
+   directory_view(0, 0);
 }
 
 // Bar Menu Functions
 
 void application_file_manager(menuitem *, void *)
 {
-   if(false == file_manager->get_visible())
+   if(!file_manager->get_visible())
    {
       file_manager->set_visible();
 
@@ -167,7 +187,7 @@ struct menuitem edit_menu[] =
 struct menuitem view_menu[] =
 {
    {reinterpret_cast<unsigned char const*>(STRING_REFRESH), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, directory_view, 0},
-   {reinterpret_cast<unsigned char const*>(STRING_SHOW_HIDDEN_FILES), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX | MENUITEM_SEPERATOR, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_SHOW_HIDDEN_FILES), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX | MENUITEM_SEPERATOR, showing_hidden_files, 0},
    {reinterpret_cast<unsigned char const*>(STRING_SORT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE,  MENUITEM_SUBMENU, 0, 0},
    {reinterpret_cast<unsigned char const*>(STRING_BY_NAME), MENUITEM_MNEMONIC_NONE, 0,  SCAN_NONE, 0, 0, 0},
    {reinterpret_cast<unsigned char const*>(STRING_BY_SIZE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
