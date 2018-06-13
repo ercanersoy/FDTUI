@@ -1,0 +1,81 @@
+/*
+ INPDLG.DOX
+
+ License CC0 PUBLIC DOMAIN
+
+ To the extent possible under law, Mark J. Olesen has waived all copyright
+ and related or neighboring rights to FDOSTUI Library. This work is published
+ from: United States.
+*/
+
+
+/*! \file inpdlg.hpp
+\brief contains input dialog class
+*/
+
+/*! \class inputdlg inpdlg.hpp
+\brief Allows a user to input a value
+*/
+
+/*!
+\fn inputdlg::inputdlg(
+        int const                       i_pos_x,
+        int const                       i_pos_y,
+        unsigned int const              i_len_x,
+        unsigned int const              i_len_y)
+\brief constructor 
+\param[in] i_pos_x x position to place widget
+\param[in] i_pos_y y position to place widget
+\param[in] i_len_x x length of widget
+\param[in] i_len_y y length of widget
+\returns none
+\see popup_input
+*/
+
+/*!
+\fn virtual inputdlg::~inputdlg()
+\brief destructor
+\returns none
+*/
+
+/*!
+\fn unsigned char* inputdlg::get_value() const
+\brief get user input value
+\returns buffer containing user input. caller must free.
+*/
+
+/*!
+\fn void inputdlg::set_prompt(
+        unsigned char const*            i_prompt)
+\brief set user prompt
+\param[in] i_prompt description of value to be entered by user
+\returns none
+*/
+
+/*!
+\fn void inputdlg::set_value(
+        unsigned char const*            i_value)
+\brief set default value
+\param[in] i_value default value
+\returns none
+*/
+
+/*!
+\var inputdlg::m_label_prompt
+	prompt label 
+*/
+
+/*!
+\var inputdlg::m_entry_value
+	entry widget for user value
+*/
+
+/*!
+\var inputdlg::m_button_cancel
+	cancel button
+*/
+
+/*!
+\var inputdlg::m_button_ok
+	ok button
+*/

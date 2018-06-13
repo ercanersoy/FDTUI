@@ -42,10 +42,9 @@ specific to Open Watcom are used throughout the code.
 
 \subsection sect_16bit 16-bit Real Mode
 
-The library needs to be compiled in the medium memory model (big code,
-small data).  This is where the code model is large and data model
-is small.  Currently, a large data model will not work because some
-assembler routines such as ::screen_puts require near pointers.
+The library can not be compiled in the small, compact or huge memory
+models.  Use either the medium (mm) or large (ml) memory model. The
+default memory model is medium.
 
 To compile, change into the make directory of FDOSTUI, and type 
 "wmake -f owd16.mak."

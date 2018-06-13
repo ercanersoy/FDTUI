@@ -12,19 +12,19 @@
 
 \mainpage FreeDOS Text User Interface Library
 
-\section intro Introduction
+\section section_intro Introduction
 
 FDOSTUI is free source code for building text user interfaces.
 The language used is C++. It is inspired by the Fast Light
 Toolkit (<a href="http://www.fltk.org/">FLTK</a>).
 
-\section Project
+\section section_project Project
 
 <a href="https://savannah.nongnu.org/projects/fdostui">FDOSTUI</a>
 project is hosted on
 <a href="https://savannah.nongnu.org/">Savannah</a>.
 
-\subsection Source Code
+\subsection subsection_code Source Code
 
 The source code can be viewed online at 
 <a href="http://bzr.savannah.gnu.org/lh/fdostui">
@@ -43,12 +43,22 @@ use the following bzr command:
 
 \subpage page_hello
 
-\section Configuration
+\section section_config Configuration
 
 \subpage page_theme
 
-\section Licensing
+\section section_license Licensing
 
 \subpage page_licensing
+
+\section section_news News
+
+\subsection date_05162018 May 16, 2018
+
+Beginning with revision 26, the 16-bit library supports the large memory
+model.  Consequently, the changes affect the binary interface. This
+means that applications and the library will need to be recompiled.
+By default, the makefile is setup to use the medium model. Manual edit
+of the makefile is required to compile the library in the large model.
 
 */

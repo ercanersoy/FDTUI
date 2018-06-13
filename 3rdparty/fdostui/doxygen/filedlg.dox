@@ -29,10 +29,11 @@
 \param[in] i_len_x x length of widget
 \param[in] i_len_y y length of widget
 \returns none
+\see file_dialog_open
 */
 
 /*!
- \fn virtual filedlg::~filedlg()
+\fn virtual filedlg::~filedlg()
 \brief destructor
 \returns none
 */

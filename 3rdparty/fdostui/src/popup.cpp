@@ -8,12 +8,51 @@
  from: United States.
 */
 #include "popup.hpp"
+#include "inpdlg.hpp"
+#include "strings.h"
 #include "wm.hpp"
 #include "label.hpp"
 #include "button.hpp"
 #include "mouse.h"
 #include "block.h"
 #include "screen.h"
+
+extern unsigned char*
+popup_input(
+    unsigned char const*                i_title,
+    unsigned char const*                i_prompt,
+    unsigned char const*                i_default)
+{
+    inputdlg*                           l_dialog;
+    int                                 l_pos_x;
+    int                                 l_pos_y;
+    enum event_response                 l_response;
+    unsigned char*                      l_value;
+
+    l_value= 0;
+    l_pos_x= (_video_cols / 2) - 20;
+    l_pos_y= (_video_rows / 2) - 5;
+
+    l_dialog= new inputdlg(l_pos_x, l_pos_y, 40, 10);
+    (*l_dialog).set_title(i_title);
+    (*l_dialog).set_prompt(i_prompt);
+    (*l_dialog).set_value(i_default);
+
+    wm_draw_widget(l_dialog);
+
+    l_response= wm_run_modal(*l_dialog);
+
+    if (RESPONSE_ACCEPT == l_response)
+    {
+        l_value= (*l_dialog).get_value();
+    }
+
+    delete l_dialog;
+
+    wm_draw(0);
+
+    return l_value;
+}
 
 extern enum event_response
 popup_menu(
@@ -62,12 +101,12 @@ popup_message(
 
     button* l_button_ok= new button(15,10,10,3);
     (*l_button_ok).set_style(button::STYLE_BOX);
-    (*l_button_ok).set_text(reinterpret_cast<unsigned char const*>("Ok"));
+    (*l_button_ok).set_text(_text_ok);
     (*l_button_ok).set_response(RESPONSE_ACCEPT);
 
     button* l_button_cancel= new button(26,10,10,3);
     (*l_button_cancel).set_style(button::STYLE_BOX);
-    (*l_button_cancel).set_text(reinterpret_cast<unsigned char const*>("Cancel"));
+    (*l_button_cancel).set_text(_text_cancel);
     (*l_button_cancel).set_response(RESPONSE_ACCEPT);
 
     (*l_dialog).add(l_label);
@@ -78,6 +117,8 @@ popup_message(
     l_response= wm_run_modal(*l_dialog);
 
     delete l_dialog;
+
+    wm_draw(0);
 
     return l_response;
 }

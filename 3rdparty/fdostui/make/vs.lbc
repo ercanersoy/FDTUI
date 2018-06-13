@@ -17,6 +17,7 @@
 ..\obj\vs32\hash.obj 
 ..\obj\vs32\hw.obj 
 ..\obj\vs32\ini.obj 
+..\obj\vs32\inpdlg.obj 
 ..\obj\vs32\label.obj
 ..\obj\vs32\listbox.obj
 ..\obj\vs32\matrix.obj 
@@ -32,6 +33,7 @@
 ..\obj\vs32\skin.obj
 ..\obj\vs32\slider.obj
 ..\obj\vs32\spinner.obj
+..\obj\vs32\strings.obj
 ..\obj\vs32\treeitem.obj
 ..\obj\vs32\tree.obj
 ..\obj\vs32\valuator.obj

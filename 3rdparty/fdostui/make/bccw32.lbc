@@ -17,6 +17,7 @@
 -+..\obj\bccw32\hash.obj  &
 -+..\obj\bccw32\hw.obj  &
 -+..\obj\bccw32\ini.obj  &
+-+..\obj\bccw32\inpdlg.obj  &
 -+..\obj\bccw32\label.obj &
 -+..\obj\bccw32\listbox.obj &
 -+..\obj\bccw32\matrix.obj  &
@@ -32,6 +33,7 @@
 -+..\obj\bccw32\skin.obj &
 -+..\obj\bccw32\slider.obj &
 -+..\obj\bccw32\spinner.obj &
+-+..\obj\bccw32\strings.obj &
 -+..\obj\bccw32\treeitem.obj &
 -+..\obj\bccw32\tree.obj &
 -+..\obj\bccw32\valuator.obj &

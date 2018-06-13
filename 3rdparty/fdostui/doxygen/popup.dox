@@ -13,6 +13,20 @@
 */
 
 /*!
+\fn unsigned char* popup_input(
+    unsigned char const*                i_title,
+    unsigned char const*                i_prompt,
+    unsigned char const*                i_default)
+\brief popup an input dialog
+\param[in] i_title string to display in title bar
+\param[in] i_prompt description of value to be entered by user
+\param[in] i_default default value
+\returns 0 user cancelled
+\returns !0 buffer containing user input. caller must free.
+\see inputdlg
+*/
+
+/*!
 \fn enum event_response popup_menu(
     struct menuitem *                   io_menu,
     int const                           i_pos_x,

@@ -17,6 +17,7 @@
 -+..\obj\owd16\hash.obj 
 -+..\obj\owd16\hw.obj 
 -+..\obj\owd16\ini.obj 
+-+..\obj\owd16\inpdlg.obj 
 -+..\obj\owd16\label.obj
 -+..\obj\owd16\listbox.obj
 -+..\obj\owd16\matrix.obj 
@@ -33,6 +34,7 @@
 -+..\obj\owd16\skin.obj
 -+..\obj\owd16\slider.obj
 -+..\obj\owd16\spinner.obj
+-+..\obj\owd16\strings.obj
 -+..\obj\owd16\treeitem.obj
 -+..\obj\owd16\tree.obj
 -+..\obj\owd16\valuator.obj

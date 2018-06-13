@@ -8,6 +8,7 @@
  from: United States.
 */
 #include "filedlg.hpp"
+#include "strings.h"
 #include "hw.h"
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -111,27 +112,27 @@ filedlg::filedlg(
     set_attributes(window::BORDER|window::TITLE);
 
     m_label_file= new label(1,1,5,1);
-    (*m_label_file).set_text(reinterpret_cast<unsigned char const*>("Name:"));
+    (*m_label_file).set_text(_text_name);
 
     m_entry_file= new entry(7,1,33,1);
 
     m_label_filter= new label(1,3,7,1);
-    (*m_label_filter).set_text(reinterpret_cast<unsigned char const*>("Filter:"));
+    (*m_label_filter).set_text(_text_filter);
 
     m_entry_filter= new entry(9,3,13,1);
 
     m_checkbutton_readonly= new checkbutton(1,5,14,1);
-    (*m_checkbutton_readonly).set_text(reinterpret_cast<unsigned char const*>("Read Only"));
+    (*m_checkbutton_readonly).set_text(_text_read_only);
     (*m_checkbutton_readonly).set_user_data(this);
     (*m_checkbutton_readonly).set_signal_clicked(checkbutton_attribute_cb);
 
     m_checkbutton_hidden= new checkbutton(16,5,13,1);
-    (*m_checkbutton_hidden).set_text(reinterpret_cast<unsigned char const*>("Hidden"));
+    (*m_checkbutton_hidden).set_text(_text_hidden);
     (*m_checkbutton_hidden).set_user_data(this);
     (*m_checkbutton_hidden).set_signal_clicked(checkbutton_attribute_cb);
 
     m_checkbutton_system= new checkbutton(28,5,13,1);
-    (*m_checkbutton_system).set_text(reinterpret_cast<unsigned char const*>("System"));
+    (*m_checkbutton_system).set_text(_text_system);
     (*m_checkbutton_system).set_user_data(this);
     (*m_checkbutton_system).set_signal_clicked(checkbutton_attribute_cb);
 
@@ -140,7 +141,7 @@ filedlg::filedlg(
     m_label_message= new label(1,8,48,1);
 
     m_listbox_file= new listbox(1,11,15,10);
-    (*m_listbox_file).set_label(reinterpret_cast<unsigned char const*>("Files"));
+    (*m_listbox_file).set_label(_text_files);
     (*m_listbox_file).set_user_data(this);
     (*m_listbox_file).set_signal_selected(listbox_file_cb);
 
@@ -150,24 +151,24 @@ filedlg::filedlg(
     (*m_combobox_directories).set_editable(false);
 
     m_listbox_drives= new listbox(40, 11, 15, 10);
-    (*m_listbox_drives).set_label(reinterpret_cast<unsigned char const*>("Drives"));
+    (*m_listbox_drives).set_label(_text_drives);
     (*m_listbox_drives).set_user_data(this);
     (*m_listbox_drives).set_signal_selected(listbox_drive_cb);
 
     m_button_refresh= new button(42,1,13,3);
     (*m_button_refresh).set_style(button::STYLE_BOX);
-    (*m_button_refresh).set_text(reinterpret_cast<unsigned char const*>("Refresh"));
+    (*m_button_refresh).set_text(_text_refresh);
     (*m_button_refresh).set_user_data(this);
     (*m_button_refresh).set_signal_clicked(button_refresh_cb);
 
     m_button_cancel= new button(42,4,13,3);
     (*m_button_cancel).set_style(button::STYLE_BOX);
-    (*m_button_cancel).set_text(reinterpret_cast<unsigned char const*>("Cancel"));
+    (*m_button_cancel).set_text(_text_cancel);
     (*m_button_cancel).set_response(RESPONSE_CANCEL);
 
     m_button_ok= new button(42,7,13,3);
     (*m_button_ok).set_style(button::STYLE_BOX);
-    (*m_button_ok).set_text(reinterpret_cast<unsigned char const*>("Ok"));
+    (*m_button_ok).set_text(_text_ok);
     (*m_button_ok).set_response(RESPONSE_ACCEPT);
 
     add(m_label_file);
@@ -437,8 +438,7 @@ filedlg::drive_changed_internal()
 
         if (0 == l_rc)
         {
-            (*m_label_message).set_text(reinterpret_cast<unsigned char const*>(
-                "Error: Unable to change directory"));
+            (*m_label_message).set_text(_text_unable_to_change_directory);
             break;
         }
 
@@ -483,8 +483,7 @@ filedlg::directory_changed_internal()
 
         if (0 == l_rc)
         {
-            (*m_label_message).set_text(reinterpret_cast<unsigned char const*>(
-                "Error: Unable to change directory"));
+            (*m_label_message).set_text(_text_unable_to_change_directory);
             break;
         }
 
@@ -597,8 +596,7 @@ filedlg::set_filename(
         if (0 == l_rc)
         {
             (*m_entry_file).set_text(i_filename);
-            (*m_label_message).set_text(reinterpret_cast<unsigned char const*>(
-                "Error: Unable to change directory"));
+            (*m_label_message).set_text(_text_unable_to_change_directory);
             break;
         }
 
@@ -613,8 +611,7 @@ filedlg::set_filename(
 
         if (0 == l_rc)
         {
-            (*m_label_message).set_text(reinterpret_cast<unsigned char const*>(
-                "Error: Unable to change directory"));
+            (*m_label_message).set_text(_text_unable_to_change_directory);
             break;
         }
 

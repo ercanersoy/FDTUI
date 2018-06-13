@@ -55,6 +55,7 @@ CORE=\
 	${S}/group.cpp\
 	${S}/hash.c\
 	${S}/ini.c\
+	${S}/inpdlg.cpp\
 	${S}/label.cpp\
 	${S}/listbox.cpp\
 	${S}/matrix.c\
@@ -68,6 +69,7 @@ CORE=\
 	${S}/skin.c\
 	${S}/slider.cpp\
 	${S}/spinner.cpp\
+	${S}/strings.c\
 	${S}/tree.cpp\
 	${S}/treeitem.cpp\
 	${S}/valuator.cpp\

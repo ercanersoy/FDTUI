@@ -11,6 +11,12 @@
 
 #include "menu.hpp"
 
+extern unsigned char*
+popup_input(
+    unsigned char const*                i_title,
+    unsigned char const*                i_prompt,
+    unsigned char const*                i_default);
+
 extern enum event_response
 popup_menu(
     struct menuitem *                   io_menu,

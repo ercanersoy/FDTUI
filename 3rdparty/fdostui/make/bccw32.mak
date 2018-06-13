@@ -56,6 +56,7 @@ TUIOBJ=\
 	$(O)\group.obj \
 	$(O)\hash.obj \
 	$(O)\ini.obj \
+	$(O)\inpdlg.obj \
 	$(O)\label.obj \
 	$(O)\listbox.obj \
 	$(O)\matrix.obj \
@@ -69,6 +70,7 @@ TUIOBJ=\
 	$(O)\skin.obj \
 	$(O)\slider.obj  \
 	$(O)\spinner.obj \
+	$(O)\strings.obj \
 	$(O)\tree.obj \
 	$(O)\treeitem.obj \
 	$(O)\valuator.obj \
@@ -177,7 +179,7 @@ $(O)\file.obj: $(S)\file.cpp $(I)\file.hpp $(I)\filedlg.hpp \
  $(I)\entry.hpp $(I)\checkbtn.hpp $(I)\button.hpp \
  $(I)\wm.hpp $(I)\listbox.hpp $(I)\scrllbar.hpp \
  $(I)\slider.hpp $(I)\valuator.hpp $(I)\combobox.hpp \
- $(I)\screen.h $(I)\wm.hpp
+ $(I)\screen.h $(I)\wm.hpp $(I)\strings.h
 	$(CXX) $(CXXFLAGS) -o$@ $(S)\file.cpp
 
 $(O)\gapbuf.obj: $(S)\gapbuf.c $(I)\gapbuf.h
@@ -196,6 +198,14 @@ $(O)\hash.obj: $(S)\hash.c $(I)\hash.h
 
 $(O)\ini.obj: $(S)\ini.c $(I)\ini.h $(I)\hash.h
 	$(CC) $(CFLAGS) -o$@ $(S)\ini.c 
+
+$(O)\inpdlg.obj: $(S)\inpdlg.cpp $(I)\inpdlg.hpp $(I)\window.hpp \
+ $(I)\group.hpp $(I)\array.h $(I)\widget.hpp \
+ $(I)\box.h $(I)\event.h $(I)\keyboard.h \
+ $(I)\cursor.h $(I)\label.hpp $(I)\draw.h \
+ $(I)\screen.h $(I)\skin.h $(I)\entry.hpp \
+ $(I)\button.hpp
+	$(CXX) $(CXXFLAGS) -o$@ $(S)\inpdlg.cpp 
 
 $(O)\label.obj: $(S)\label.cpp $(I)\label.hpp $(I)\draw.h \
  $(I)\screen.h $(I)\skin.h $(I)\box.h \
@@ -286,6 +296,9 @@ $(O)\spinner.obj: $(S)\spinner.cpp $(I)\spinner.hpp \
  $(I)\entry.hpp $(I)\draw.h $(I)\screen.h \
  $(I)\skin.h $(I)\skin.h
 	$(CXX) $(CXXFLAGS) -o$@ $(S)\spinner.cpp
+
+$(O)\strings.obj: $(S)\strings.c $(I)\strings.h
+	$(CC) $(CFLAGS) -o$@ $(S)\strings.c 
 
 $(O)\tree.obj: $(S)\tree.cpp $(I)\tree.hpp $(I)\treeitem.hpp \
  $(I)\array.h $(I)\box.h $(I)\scrllbar.hpp \

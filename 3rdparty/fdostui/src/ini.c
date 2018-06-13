@@ -246,6 +246,7 @@ ini_section_new(
 
     *o_section= 0;
     l_exit= 0;
+    l_section= 0;
     l_ptr= io_line;
 
     do

@@ -8,6 +8,7 @@
  from: United States.
 */
 #include "file.hpp"
+#include "strings.h"
 #include "filedlg.hpp"
 #include "screen.h"
 #include "wm.hpp"
@@ -22,7 +23,7 @@ file_dialog_open()
     l_filename= 0;
     // _mjo fixme: center x&y
     l_dialog= new filedlg(11, 1, 58, 23);
-    (*l_dialog).set_title(reinterpret_cast<unsigned char const*>("Open File"));
+    (*l_dialog).set_title(_text_open_file);
 
     wm_draw_widget(l_dialog);
 

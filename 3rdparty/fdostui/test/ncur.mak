@@ -31,7 +31,10 @@ CXXFLAGS=\
 LIBS= -L ../lib/ -l fdtuicur -l curses 
 
 .PHONY:
-all: hello menu widget scroller file tree
+all: hello menu widget scroller file tree ercan
+
+ercan : ercan.o
+	${CXX} -ggdb -o $@ $? ${LIBS}
 
 hello : thello.o
 	${CXX} -ggdb -o $@ $? ${LIBS}
@@ -59,6 +62,7 @@ tree : ttree.o
     
 .PHONY:
 clean:
+	@rm -f ercan
 	@rm -f tini
 	@rm -f hello
 	@rm -f menu

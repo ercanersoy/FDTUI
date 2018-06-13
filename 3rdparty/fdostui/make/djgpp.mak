@@ -58,6 +58,7 @@ TUIOBJ=\
 	${O}/group.o \
 	${O}/hash.o \
 	${O}/ini.o \
+	${O}/inpdlg.o \
 	${O}/label.o \
 	${O}/listbox.o \
 	${O}/matrix.o \
@@ -71,6 +72,7 @@ TUIOBJ=\
 	${O}/skin.o \
 	${O}/slider.o  \
 	${O}/spinner.o \
+	${O}/strings.o \
 	${O}/tree.o \
 	${O}/treeitem.o \
 	${O}/valuator.o \
@@ -190,7 +192,7 @@ ${O}/file.o: ${S}/file.cpp ${I}/file.hpp ${I}/filedlg.hpp \
  ${I}/entry.hpp ${I}/checkbtn.hpp ${I}/button.hpp \
  ${I}/wm.hpp ${I}/listbox.hpp ${I}/scrllbar.hpp \
  ${I}/slider.hpp ${I}/valuator.hpp ${I}/combobox.hpp \
- ${I}/screen.h ${I}/wm.hpp
+ ${I}/screen.h ${I}/wm.hpp ${I}/strings.h
 	redir -o $*.err -eo ${CXX} -c ${CXXFLAGS} -o $@ ${S}/file.cpp
 
 ${O}/gapbuf.o: ${S}/gapbuf.c ${I}/gapbuf.h
@@ -209,6 +211,14 @@ ${O}/hash.o: ${S}/hash.c ${I}/hash.h
 
 ${O}/ini.o: ${S}/ini.c ${I}/ini.h ${I}/hash.h
 	redir -o $*.err -eo ${CC} -c ${CFLAGS} -o $@ ${S}/ini.c 
+
+${O}/inpdlg.o: ${S}/inpdlg.cpp ${I}/inpdlg.hpp ${I}/window.hpp \
+ ${I}/group.hpp ${I}/array.h ${I}/widget.hpp \
+ ${I}/box.h ${I}/event.h ${I}/keyboard.h \
+ ${I}/cursor.h ${I}/label.hpp ${I}/draw.h \
+ ${I}/screen.h ${I}/skin.h ${I}/entry.hpp \
+ ${I}/button.hpp
+	redir -o $*.err -eo ${CXX} -c ${CXXFLAGS} -o $@ ${S}/inpdlg.cpp 
 
 ${O}/label.o: ${S}/label.cpp ${I}/label.hpp ${I}/draw.h \
  ${I}/screen.h ${I}/skin.h ${I}/box.h \
@@ -299,6 +309,9 @@ ${O}/spinner.o: ${S}/spinner.cpp ${I}/spinner.hpp \
  ${I}/entry.hpp ${I}/draw.h ${I}/screen.h \
  ${I}/skin.h ${I}/skin.h
 	redir -o $*.err -eo ${CXX} -c ${CXXFLAGS} -o $@ ${S}/spinner.cpp
+
+${O}/strings.o: ${S}/strings.c ${I}/strings.h
+	redir -o $*.err -eo ${CC} -c ${CFLAGS} -o $@ ${S}/strings.c 
 
 ${O}/tree.o: ${S}/tree.cpp ${I}/tree.hpp ${I}/treeitem.hpp \
  ${I}/array.h ${I}/box.h ${I}/scrllbar.hpp \
