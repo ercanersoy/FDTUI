@@ -43,6 +43,11 @@ void command_run(char const* command)
    wm_draw(0);
 }
 
+void new_directory(menuitem *, void *)
+{
+   mkdir((char *)popup_input(reinterpret_cast<unsigned char const*>(STRING_NEW_DIRECTORY), reinterpret_cast<unsigned char const*>(STRING_DIRECTORY_NAME), reinterpret_cast<unsigned char const*>("")));
+}
+
 void directory_view(menuitem *, void *)
 {
    struct dirent *element;
@@ -170,7 +175,7 @@ void file_manager_exit(menuitem *, void *)
 struct menuitem file_menu[] =
 {
    {reinterpret_cast<unsigned char const*>(STRING_OPEN), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
-   {reinterpret_cast<unsigned char const*>(STRING_NEW_DIRECTORY), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_NEW_DIRECTORY), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, new_directory, 0},
    {reinterpret_cast<unsigned char const*>(STRING_EXIT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, file_manager_exit, 0},
    {0}
 };

@@ -13,6 +13,7 @@
    #define STRING_COPY "Copy"
    #define STRING_CUT "Cut"
    #define STRING_DELETE "Delete"
+   #define STRING_DIRECTORY_NAME "Directory Name:"
    #define STRING_DOS_APPLICATIONS "DOS Applications"
    #define STRING_EDIT "Edit"
    #define STRING_EXIT "Exit"
