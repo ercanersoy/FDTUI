@@ -43,11 +43,6 @@ void command_run(char const* command)
    wm_draw(0);
 }
 
-void new_directory(menuitem *, void *)
-{
-   mkdir((char *)popup_input(reinterpret_cast<unsigned char const*>(STRING_NEW_DIRECTORY), reinterpret_cast<unsigned char const*>(STRING_DIRECTORY_NAME), reinterpret_cast<unsigned char const*>("")));
-}
-
 void directory_view(menuitem *, void *)
 {
    struct dirent *element;
@@ -71,19 +66,6 @@ void directory_view(menuitem *, void *)
    }
 }
 
-void showing_hidden_files(struct menuitem *menu_item, void *)
-{
-   if(menu_item->m_flags & MENUITEM_VALUE)
-   {
-      show_hidden_file = true;
-   }
-   else
-   {
-      show_hidden_file = false;
-   }
-   
-   directory_view(0, 0);
-}
 
 // Bar Menu Functions
 
@@ -165,6 +147,33 @@ struct menuitembar menus_of_bar[] =
 
 // Menu Function Menus
 
+
+void run_executable_file(menuitem *, void *)
+{
+   command_run((char *)directories_and_files->get_item(directories_and_files->get_selected_first()));
+}
+
+void new_directory(menuitem *, void *)
+{
+   mkdir((char *)popup_input(reinterpret_cast<unsigned char const*>(STRING_NEW_DIRECTORY), reinterpret_cast<unsigned char const*>(STRING_DIRECTORY_NAME), reinterpret_cast<unsigned char const*>("")));
+
+   directory_view(0, 0);
+}
+
+void showing_hidden_files(struct menuitem *menu_item, void *)
+{
+   if(menu_item->m_flags & MENUITEM_VALUE)
+   {
+      show_hidden_file = true;
+   }
+   else
+   {
+      show_hidden_file = false;
+   }
+   
+   directory_view(0, 0);
+}
+
 void file_manager_exit(menuitem *, void *)
 {
    file_manager->set_hidden();
@@ -174,7 +183,7 @@ void file_manager_exit(menuitem *, void *)
 
 struct menuitem file_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(STRING_OPEN), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_OPEN), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, run_executable_file, 0},
    {reinterpret_cast<unsigned char const*>(STRING_NEW_DIRECTORY), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, new_directory, 0},
    {reinterpret_cast<unsigned char const*>(STRING_EXIT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, file_manager_exit, 0},
    {0}
