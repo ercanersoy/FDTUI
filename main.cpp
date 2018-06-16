@@ -66,6 +66,40 @@ void directory_view(menuitem *, void *)
    }
 }
 
+char remove_item(char *removing_item_path)
+{
+   DIR *element;
+   struct dirent *item_properties;
+   char *item_name = (char *) malloc(256);
+   char *item_path = (char *) malloc(260);
+
+   element = opendir(removing_item_path);
+   item_properties = readdir(element);
+   item_name = item_properties->d_name;
+
+   while(item_name[0] != 1)
+   {
+      if(strcmp(item_name, ".") && strcmp(item_name, "..") && (strlen(item_path) + strlen(removing_item_path) <= 258))
+      {
+         strcpy(item_path, removing_item_path);
+         strcat(item_path, "\\");
+         strcat(item_path, item_name);
+         if(remove(item_path))
+         {
+            remove_item(item_path);
+         }
+      }
+      
+      item_properties = readdir(element);
+      item_name = item_properties->d_name;
+   }
+   
+   closedir(element);
+   free(item_name);
+   free(item_path);
+   
+   return rmdir(removing_item_path);
+}
 
 // Bar Menu Functions
 
@@ -160,6 +194,23 @@ void new_directory(menuitem *, void *)
    directory_view(0, 0);
 }
 
+void delete_item(menuitem *, void *)
+{
+   char *item = (char *)directories_and_files->get_item(directories_and_files->get_selected_first());
+
+   if(remove(item))
+   {
+      remove_item(item);
+   }
+   
+   directory_view(0, 0);
+}
+
+void file_manager_exit(menuitem *, void *)
+{
+   file_manager->set_hidden();
+}
+
 void showing_hidden_files(struct menuitem *menu_item, void *)
 {
    if(menu_item->m_flags & MENUITEM_VALUE)
@@ -172,11 +223,6 @@ void showing_hidden_files(struct menuitem *menu_item, void *)
    }
    
    directory_view(0, 0);
-}
-
-void file_manager_exit(menuitem *, void *)
-{
-   file_manager->set_hidden();
 }
 
 // File Manager Menus
@@ -194,7 +240,7 @@ struct menuitem edit_menu[] =
    {reinterpret_cast<unsigned char const*>(STRING_CUT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
    {reinterpret_cast<unsigned char const*>(STRING_COPY), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
    {reinterpret_cast<unsigned char const*>(STRING_PASTE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
-   {reinterpret_cast<unsigned char const*>(STRING_DELETE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_DELETE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, delete_item, 0},
    {0}
 };
 
