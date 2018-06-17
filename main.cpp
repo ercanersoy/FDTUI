@@ -4,20 +4,24 @@
 
 #include <direct.h>
 #include <dos.h>
+#include <fdostui.hpp>
 #include <mouse.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
-#include <fdostui.hpp>
+#include <unistd.h>
 #include "config.h"
 #include "lang\en.h"
 #include "lang\tr.h"
 
 // Common Variables
 
-char *current_directory = (char *)malloc(MAX_PATH_LENGTH);
+char *current_directory = (char *)malloc(MAX_PATH_LENGTH + 1);
 bool show_hidden_file = false;
+char *clipboard_item_name = (char *)calloc(256, 1);
+char *clipboard_item_path = (char *)calloc(MAX_PATH_LENGTH, 1);
+unsigned char clipboard_status = 0;  // 0 for nothing, 1 for copying, 2 for cutting.
 
 // Bar
 
@@ -49,11 +53,13 @@ void directory_view(menuitem *, void *)
 
    directories_and_files->remove_all();
 
-   DIR *directory = opendir(current_directory);
+   DIR *directory = opendir(getcwd(current_directory, PATH_MAX + 1));
+
+   current_directory_label->set_text((unsigned char *)current_directory);
 
    while(element = readdir(directory))
    {
-      if(!strcmp(element->d_name, ".") || !strcmp(element->d_name, ".."))
+      if(!strcmp(element->d_name, "."))
       {
          continue;
       }
@@ -64,6 +70,74 @@ void directory_view(menuitem *, void *)
 
       directories_and_files->add(reinterpret_cast<unsigned char const*>(element->d_name));
    }
+}
+
+void copy_file(char *file, char *target)
+{
+   FILE *source_file, *target_file;
+   char buffer = 0;
+
+   source_file = fopen(file, "rb");
+   target_file = fopen(target, "wb");
+
+   while((buffer = fgetc(source_file)) != 255 && !feof(source_file))
+   {
+      fputc(buffer, target_file);
+   }
+
+   fclose(target_file);
+   fclose(source_file);
+}
+
+void copy_directory(char *directory, char *target)
+{
+   DIR *element;
+   struct dirent *item_properties;
+   char *item_name = (char *) malloc(256);
+   char *item_path = (char *) malloc(MAX_PATH_LENGTH + 1);
+   char *target_item_path = (char *) malloc(MAX_PATH_LENGTH + 1);
+   struct stat status;
+
+   mkdir(target);
+
+   element = opendir(directory);
+   item_properties = readdir(element);
+   item_name = item_properties->d_name;
+
+   while(item_name[0] != 1)
+   {
+      if(strcmp(item_name, ".") && strcmp(item_name, "..") && (strlen(item_path) + strlen(target_item_path) <= (MAX_PATH_LENGTH + 1) * 2))
+      {
+         strcpy(item_path, directory);
+         strcat(item_path, "\\");
+         strcat(item_path, item_name);
+
+         strcpy(target_item_path, target);
+         strcat(target_item_path, "\\");
+         strcat(target_item_path, item_name);
+
+         stat(item_path, &status);
+         if(S_ISDIR(status.st_mode))
+         {
+            copy_directory(item_path, target_item_path);
+         }
+         else
+         {
+            copy_file(item_path, target_item_path);
+         }
+      }
+      
+      item_properties = readdir(element);
+      item_name = item_properties->d_name;
+      
+      *item_path = '\0';
+      *target_item_path = '\0';
+   }
+
+   closedir(element);
+   free(item_name);
+   free(item_path);
+   free(target_item_path);
 }
 
 char remove_item(char *removing_item_path)
@@ -92,6 +166,8 @@ char remove_item(char *removing_item_path)
       
       item_properties = readdir(element);
       item_name = item_properties->d_name;
+      
+      *item_path = '\0';
    }
    
    closedir(element);
@@ -181,16 +257,79 @@ struct menuitembar menus_of_bar[] =
 
 // Menu Function Menus
 
-
-void run_executable_file(menuitem *, void *)
+void item_open(menuitem *, void *)
 {
-   command_run((char *)directories_and_files->get_item(directories_and_files->get_selected_first()));
+   char *item_name = (char *)directories_and_files->get_item(directories_and_files->get_selected_first());
+   struct stat status;
+
+   stat(item_name, &status);
+   if(S_ISDIR(status.st_mode))
+   {
+      chdir(item_name);
+
+      directory_view(0, 0);
+   }
+   else
+   {
+      command_run(item_name);
+   }
 }
 
 void new_directory(menuitem *, void *)
 {
    mkdir((char *)popup_input(reinterpret_cast<unsigned char const*>(STRING_NEW_DIRECTORY), reinterpret_cast<unsigned char const*>(STRING_DIRECTORY_NAME), reinterpret_cast<unsigned char const*>("")));
 
+   directory_view(0, 0);
+}
+
+void cut_item(menuitem *, void *)
+{
+   strcat(clipboard_item_name, (char *)directories_and_files->get_item(directories_and_files->get_selected_first()));
+   strcat(clipboard_item_path, current_directory);
+   strcat(clipboard_item_path, "\\");
+   strcat(clipboard_item_path, clipboard_item_name);
+   clipboard_status = 2;
+}
+
+void copy_item(menuitem *, void *)
+{
+   strcat(clipboard_item_name, (char *)directories_and_files->get_item(directories_and_files->get_selected_first()));
+   strcat(clipboard_item_path, current_directory);
+   strcat(clipboard_item_path, "\\");
+   strcat(clipboard_item_path, clipboard_item_name);
+   clipboard_status = 1;
+}
+
+void paste_item(menuitem *, void *)
+{
+   char *target_path = current_directory;
+   struct stat status;
+
+   strcat(target_path, "\\");
+   strcat(target_path, clipboard_item_name);
+
+   if(clipboard_status == 1)
+   {
+      stat(clipboard_item_path, &status);
+      if(S_ISDIR(status.st_mode))
+      {
+         copy_directory(clipboard_item_path, target_path);
+      }
+      else
+      {
+         copy_file(clipboard_item_path, target_path);
+      }
+      
+   }
+   else if(clipboard_status == 2)
+   {
+      rename(clipboard_item_path, target_path);
+   }
+
+   clipboard_status = 0;
+   *clipboard_item_name = '\0';
+   *clipboard_item_path = '\0';
+   
    directory_view(0, 0);
 }
 
@@ -229,7 +368,7 @@ void showing_hidden_files(struct menuitem *menu_item, void *)
 
 struct menuitem file_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(STRING_OPEN), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, run_executable_file, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_OPEN), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, item_open, 0},
    {reinterpret_cast<unsigned char const*>(STRING_NEW_DIRECTORY), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, new_directory, 0},
    {reinterpret_cast<unsigned char const*>(STRING_EXIT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, file_manager_exit, 0},
    {0}
@@ -237,9 +376,9 @@ struct menuitem file_menu[] =
 
 struct menuitem edit_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(STRING_CUT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
-   {reinterpret_cast<unsigned char const*>(STRING_COPY), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
-   {reinterpret_cast<unsigned char const*>(STRING_PASTE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_CUT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, cut_item, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_COPY), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, copy_item, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_PASTE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, paste_item, 0},
    {reinterpret_cast<unsigned char const*>(STRING_DELETE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, delete_item, 0},
    {0}
 };
@@ -328,6 +467,8 @@ int main(void)
    wm_deinit();
 
    free(current_directory);
+   free(clipboard_item_name);
+   free(clipboard_item_path);
 
    return 0;
 }
