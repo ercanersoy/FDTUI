@@ -7,7 +7,7 @@ This program is licensed under GNU General Public License version 3.
 
 This project includes FDOSTUI library. FDOSTUI has own licenses.
 
-# Teşekkür
+# Thanks
 
 Thanks to Mark Olesen for some code changes and FDOSTUI.
 
