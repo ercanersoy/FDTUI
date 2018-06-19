@@ -22,6 +22,8 @@ bool show_hidden_file = false;
 char *clipboard_item_name = (char *)calloc(256, 1);
 char *clipboard_item_path = (char *)calloc(MAX_PATH_LENGTH, 1);
 unsigned char clipboard_status = 0;  // 0 for nothing, 1 for copying, 2 for cutting.
+char history_path_names[HISTORY_LENGTH][MAX_PATH_LENGTH + 1];
+int history_index = 0;
 
 // Bar
 
@@ -38,6 +40,7 @@ listbox *directories_and_files = new listbox(1, 6, 65, 9);
 
 // Common Functions
 
+// Command run function
 void command_run(char const* command)
 {
    mouse_deinit();
@@ -47,6 +50,7 @@ void command_run(char const* command)
    wm_draw(0);
 }
 
+// Directory view function
 void directory_view(menuitem *, void *)
 {
    struct dirent *element;
@@ -59,7 +63,7 @@ void directory_view(menuitem *, void *)
 
    while(element = readdir(directory))
    {
-      if(!strcmp(element->d_name, "."))
+      if(!strcmp(element->d_name, ".") || !strcmp(element->d_name, ".."))
       {
          continue;
       }
@@ -72,6 +76,7 @@ void directory_view(menuitem *, void *)
    }
 }
 
+// Copy file function
 void copy_file(char *file, char *target)
 {
    FILE *source_file, *target_file;
@@ -89,6 +94,7 @@ void copy_file(char *file, char *target)
    fclose(source_file);
 }
 
+// Copy directory function
 void copy_directory(char *directory, char *target)
 {
    DIR *element;
@@ -140,6 +146,7 @@ void copy_directory(char *directory, char *target)
    free(target_item_path);
 }
 
+// Remove item function
 char remove_item(char *removing_item_path)
 {
    DIR *element;
@@ -175,6 +182,26 @@ char remove_item(char *removing_item_path)
    free(item_path);
    
    return rmdir(removing_item_path);
+}
+
+// History back function
+void history_back(menuitem *, void *)
+{
+
+}
+
+// History foward function
+void history_foward(menuitem *, void *)
+{
+
+}
+
+// Change to upper directory function
+void change_to_upper_directory(menuitem *, void *)
+{
+   chdir("..");
+   
+   directory_view(0, 0);
 }
 
 // Bar Menu Functions
@@ -300,6 +327,7 @@ void copy_item(menuitem *, void *)
    clipboard_status = 1;
 }
 
+// Paste Function
 void paste_item(menuitem *, void *)
 {
    char *target_path = current_directory;
@@ -333,6 +361,7 @@ void paste_item(menuitem *, void *)
    directory_view(0, 0);
 }
 
+// Delete Function
 void delete_item(menuitem *, void *)
 {
    char *item = (char *)directories_and_files->get_item(directories_and_files->get_selected_first());
@@ -345,12 +374,15 @@ void delete_item(menuitem *, void *)
    directory_view(0, 0);
 }
 
+// Exit file manager function
 void file_manager_exit(menuitem *, void *)
 {
    file_manager->set_hidden();
 }
 
-void showing_hidden_files(struct menuitem *menu_item, void *)
+
+// Show hidden files function
+void show_hidden_files(struct menuitem *menu_item, void *)
 {
    if(menu_item->m_flags & MENUITEM_VALUE)
    {
@@ -386,7 +418,7 @@ struct menuitem edit_menu[] =
 struct menuitem view_menu[] =
 {
    {reinterpret_cast<unsigned char const*>(STRING_REFRESH), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, directory_view, 0},
-   {reinterpret_cast<unsigned char const*>(STRING_SHOW_HIDDEN_FILES), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX | MENUITEM_SEPERATOR, showing_hidden_files, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_SHOW_HIDDEN_FILES), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX | MENUITEM_SEPERATOR, show_hidden_files, 0},
    {reinterpret_cast<unsigned char const*>(STRING_SORT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE,  MENUITEM_SUBMENU, 0, 0},
    {reinterpret_cast<unsigned char const*>(STRING_BY_NAME), MENUITEM_MNEMONIC_NONE, 0,  SCAN_NONE, 0, 0, 0},
    {reinterpret_cast<unsigned char const*>(STRING_BY_SIZE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
@@ -398,9 +430,9 @@ struct menuitem view_menu[] =
 
 struct menuitem go_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(STRING_BACK), MENUITEM_MNEMONIC_NONE, 0,  SCAN_NONE, 0, 0, 0},
-   {reinterpret_cast<unsigned char const*>(STRING_FOWARD), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
-   {reinterpret_cast<unsigned char const*>(STRING_UP), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_BACK), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, history_back, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_FOWARD), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, history_foward, 0},
+   {reinterpret_cast<unsigned char const*>(STRING_UP), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, change_to_upper_directory, 0},
    {0}
 };
 struct menuitembar menus_of_file_manager[] =
