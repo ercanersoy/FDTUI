@@ -54,6 +54,20 @@ listbox *directories_and_files = new listbox(1, 6, 65, 9);
 
 // Common Functions
 
+// Exit window manager function
+void exit_window_manager(menuitem *, void *)
+{
+   // Close window manager
+   wm_deinit();
+
+   // Release current directory string on memory
+   free(current_directory);
+   // Release clipboard item path name string on memory
+   free(clipboard_item_name);
+   // Release clipboard item path string on memory
+   free(clipboard_item_path);
+}
+
 // Command run function
 void command_run(char const* command)
 {
@@ -321,17 +335,17 @@ void run_application_edlin(menuitem *, void *)
 void quit(menuitem *, void *)
 {
    // Exit window manager
-   wm_deinit();
+   exit_window_manager(0, 0);
 
    // Exit FreeDOS TUI Shell
-   exit(0);
+   exit(EXIT_SUCCESS);
 }
 
 // Reboot function
 void reboot(menuitem *, void *)
 {
    // Exit window manager
-   wm_deinit();
+   exit_window_manager(0, 0);
 
    // Reboot computer via FDAPM
    command_run("FDAPM WARMBOOT");
@@ -343,7 +357,7 @@ void reboot(menuitem *, void *)
 void poweroff(menuitem *, void *)
 {
    // Exit window manager
-   wm_deinit();
+   exit_window_manager(0, 0);
 
    // Poweroff computer via FDAPM
    command_run("FDAPM POWEROFF");
@@ -473,7 +487,7 @@ void paste_item(menuitem *, void *)
          // Copy file
          copy_file(clipboard_item_path, target_path);
       }
-      
+
    }
    else if(clipboard_status == 2)  // If cut
    {
@@ -485,7 +499,7 @@ void paste_item(menuitem *, void *)
    clipboard_status = 0;
    *clipboard_item_name = '\0';
    *clipboard_item_path = '\0';
-   
+
    // Refresh directories
    directory_view(0, 0);
 }
@@ -501,7 +515,7 @@ void delete_item(menuitem *, void *)
       // Remove item
       remove_item(item);
    }
-   
+
    // Refresh directories
    directory_view(0, 0);
 }
@@ -641,11 +655,7 @@ int main(void)
    wm_run();
 
    // Exit Window Manager
-   wm_deinit();
-
-   free(current_directory);
-   free(clipboard_item_name);
-   free(clipboard_item_path);
+   exit_window_manager(0, 0);
 
    // Exit FreeDOS TUI Shell
    return EXIT_SUCCESS;
