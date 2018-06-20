@@ -4,9 +4,9 @@
 
 // Language Configure
 
-#define LANGUAGE TR  // EN or TR
+#define LANGUAGE EN  // EN or TR
 
-// Common Configure
+// Common Configures
 
-#define MAX_PATH_LENGTH 260
-#define HISTORY_LENGTH 10
+#define MAX_PATH_LENGTH 260  // Maximum path length
+#define HISTORY_LENGTH 10  // History array length
