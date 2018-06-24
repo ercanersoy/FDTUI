@@ -42,15 +42,15 @@ menubar *bar_menus = new menubar(0, 0, _video_cols, 1);
 // File Manager
 
 // Window of file manager pointer variable
-window *file_manager = new window(5, 6, 68, 17);
+window *file_manager = new window(5, 6, 68, 18);
 // Menubar of file manager pointer variable
 menubar *file_manager_menus = new menubar(0, 0, _video_cols, 1);
 // Current directory label of file manager pointer variable
 label *current_directory_label = new label(1, 2, 65, 1);
 // Current drivers listbox of file manager pointer variable
-listbox *drivers = new listbox(1, 3, 65, 3);
+listbox *drivers = new listbox(1, 3, 65, 5);
 // Current directories and files of file manager pointer variable
-listbox *directories_and_files = new listbox(1, 6, 65, 9);
+listbox *directories_and_files = new listbox(1, 8, 65, 8);
 
 // Function prototypes
 

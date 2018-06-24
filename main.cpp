@@ -2,7 +2,7 @@
  * FreeDOS TUI Shell Source File *
  *********************************/
 
-#include "dosshell.h"
+#include "main.h"
 
 // Common Functions
 
@@ -44,9 +44,18 @@ void directory_view(menuitem *, void *)
 {
    // Element pointer variable
    struct dirent *element;
-
    // Directory pointer variable
    DIR *directory = opendir(getcwd(current_directory, PATH_MAX + 1));
+   // Current drive letter
+   unsigned int current_drive_letter;
+   // Drive letter count information
+   unsigned int drive_letter_count;
+   // Drive letter information
+   unsigned int drive_letter;
+   // Previous drive letter information
+   unsigned int previous_drive_letter = 0;
+   // Drive
+   char drive[3];
 
    // Clear the directories and files listbox
    directories_and_files->remove_all();
@@ -70,6 +79,47 @@ void directory_view(menuitem *, void *)
       // Add item on the directories and files listbox
       directories_and_files->add(reinterpret_cast<unsigned char const*>(element->d_name));
    }
+
+   // Clear the drivers listbox
+   drivers->remove_all();
+
+   // Get currnet drive letter
+   _dos_getdrive(&current_drive_letter);
+
+   // Get drive letter count
+   _dos_setdrive(NULL, &drive_letter_count);
+
+   // All drive letters been tested
+   for(int i = 1; i <= drive_letter_count; i++)
+   {
+      // Drive letter test
+      _dos_setdrive(i, &drive_letter_count);
+
+      //If drive letter is exists
+      _dos_getdrive(&drive_letter);
+
+      if(!drive_letter || drive_letter == previous_drive_letter) // If drive letter is null or drive letter is not changed
+      {
+         // COntinue loop
+         continue;
+      }
+
+      // Drive letter calculation and assignment
+      drive[0] = 64 + drive_letter;
+      // Assignment double dot
+      drive[1] = ':';
+      // Assignment null
+      drive[2] = '\0';
+
+      // Add drive to drivers listbox
+      drivers->add((unsigned char *)drive);
+
+      // Set previous drive letter
+      previous_drive_letter = drive_letter;
+   }
+
+   // Set current drive letter
+   _dos_setdrive(current_drive_letter, &drive_letter_count);
 }
 
 // Upper directory control function
@@ -87,9 +137,49 @@ void upper_directory_control(void)
    }
 }
 
+// Change current drive function
+void change_current_drive(listbox const *, void *)
+{
+   // Drive
+   char *drive = (char *)malloc(4);
+   // Drive letter information
+   unsigned int drive_letter_information = 0;
+   // Drive letter count information
+   unsigned int drive_letter_count = 0;
+
+   // Get item from drivers listbox
+   drive = (char *)drivers->get_item(drivers->get_selected_first());
+
+   // Calculate drive
+   drive_letter_information = *drive - 64;
+
+   // Change current drive
+   _dos_setdrive(drive_letter_information, &drive_letter_count);
+   // Get drive letter information
+   _dos_getdrive(&drive_letter_information);
+
+   if(!drive_letter_information)  // If drive letter information is null
+   {
+      // Free drive information from memory
+      free(drive);
+
+      // Exit function
+      return;
+   }
+
+   // Change current directory
+   change_current_directory(strcat(drive, "\\"), 0);
+
+   // Free drive information from memory
+   free(drive);
+}
+
 // Change current directory function
 void change_current_directory(char *directory, unsigned char status)
 {
+   char previous_drive_letter;
+   unsigned int drive_letter_count = 0;
+
    if(status == 0)  // If status is adding new history item
    {
       if(directory != 0)  // If directory pointer is not null
@@ -105,8 +195,9 @@ void change_current_directory(char *directory, unsigned char status)
          // History save
          strcpy(history_path_names[history_index], getcwd(current_directory, PATH_MAX + 1));
 
-         for(int i = history_index + 1; i < HISTORY_LENGTH - 1; i++)
+         for(int i = history_index + 1; i < HISTORY_LENGTH - 1; i++)  // History path names clear loop
          {
+            // History path names clear
             history_path_names[i][0] = '\0';
          }
       }
@@ -124,16 +215,32 @@ void change_current_directory(char *directory, unsigned char status)
    }
    else if(status == 1)  // If status is changing previous history item
    {
+      previous_drive_letter = history_path_names[history_index][0];
+
       // Decrase History
       history_index--;
+
+      if(history_path_names[history_index][0] != previous_drive_letter)    // If equals currnet drive letter and previous drive letter
+      {
+         // Change current drive
+        _dos_setdrive(history_path_names[history_index][0] - 64, &drive_letter_count);
+      }
 
       // Change Directory
       chdir(history_path_names[history_index]);
    }
    else if(status == 2)  // If status is changing previous history item
    {
+      previous_drive_letter = history_path_names[history_index][0];
+
       // Increase History
       history_index++;
+
+      if(history_path_names[history_index][0] != previous_drive_letter)  // If equals currnet drive letter and previous drive letter
+      {
+         // Change current drive
+        _dos_setdrive(history_path_names[history_index][0] - 64, &drive_letter_count);
+      }
 
       // Change Directory
       chdir(history_path_names[history_index]);
@@ -160,12 +267,12 @@ void change_current_directory(char *directory, unsigned char status)
    }
    else
    {
-      // Foward menu item disabled
+      // Foward menu item enabled
       go_menu[1].m_flags = !(go_menu[1].m_flags ^ MENUITEM_DISABLED);
    }
 
    // Refresh directory
-   directory_view(0, 0);
+   directory_view(NULL, NULL);
 }
 
 // Copy file function
@@ -255,9 +362,9 @@ void copy_directory(char *source_directory, char *target_directory)
       source_item_name = source_item_properties->d_name;
 
       // Clean source item path
-      *source_item_path = '\0';
+      *source_item_path = NULL;
       // Clean target item path
-      *target_item_path = '\0';
+      *target_item_path = NULL;
    }
 
    // Close directory
@@ -312,7 +419,7 @@ char remove_item(char *removing_item_path)
       item_name = item_properties->d_name;
 
       // Clean item path string
-      *item_path = '\0';
+      *item_path = NULL;
    }
 
    // Close directory
@@ -338,7 +445,7 @@ void history_back(struct menuitem *menu_item, void *)
 void history_foward(menuitem *, void *)
 {
    // Change current directory to foward history item
-   change_current_directory(0, 2);
+   change_current_directory(NULL, 2);
 }
 
 // Change to upper directory function
@@ -357,7 +464,7 @@ void show_file_manager(menuitem *, void *)
    {
       file_manager->set_visible();
 
-      directory_view(0, 0);
+      directory_view(NULL, NULL);
 
       wm_draw(file_manager);
    }
@@ -382,7 +489,7 @@ void run_application_edlin(menuitem *, void *)
 void quit(menuitem *, void *)
 {
    // Exit window manager
-   exit_window_manager(0, 0);
+   exit_window_manager(NULL, NULL);
 
    // Exit FreeDOS TUI Shell
    exit(EXIT_SUCCESS);
@@ -392,7 +499,7 @@ void quit(menuitem *, void *)
 void reboot(menuitem *, void *)
 {
    // Exit window manager
-   exit_window_manager(0, 0);
+   exit_window_manager(NULL, NULL);
 
    // Reboot computer via FDAPM
    command_run("FDAPM WARMBOOT");
@@ -404,7 +511,7 @@ void reboot(menuitem *, void *)
 void poweroff(menuitem *, void *)
 {
    // Exit window manager
-   exit_window_manager(0, 0);
+   exit_window_manager(NULL, NULL);
 
    // Poweroff computer via FDAPM
    command_run("FDAPM POWEROFF");
@@ -442,7 +549,7 @@ void new_directory(menuitem *, void *)
    mkdir((char *)popup_input(reinterpret_cast<unsigned char const*>(STRING_NEW_DIRECTORY), reinterpret_cast<unsigned char const*>(STRING_DIRECTORY_NAME), reinterpret_cast<unsigned char const*>("")));
 
    // Refresh directories
-   directory_view(0, 0);
+   directory_view(NULL, NULL);
 }
 
 // Exit file manager function
@@ -519,7 +626,7 @@ void paste_item(menuitem *, void *)
    *clipboard_item_path = '\0';
 
    // Refresh directories
-   directory_view(0, 0);
+   directory_view(NULL, NULL);
 }
 
 // Delete Function
@@ -535,7 +642,7 @@ void delete_item(menuitem *, void *)
    }
 
    // Refresh directories
-   directory_view(0, 0);
+   directory_view(NULL, NULL);
 }
 
 // Show hidden files function
@@ -551,7 +658,7 @@ void show_hidden_files(menuitem *menu_item, void *)
    }
    
    // Refresh directories
-   directory_view(0, 0);  
+   directory_view(NULL, NULL);  
 }
 
 // Main Function
@@ -597,11 +704,14 @@ int main(void)
    // Register file manager window
    wm_register_window(file_manager);
 
-   // Set menu of file manager
-   file_manager_menus->set_menu(menus_of_file_manager);
-
    // Set current directory label text
    current_directory_label->set_text((unsigned char *)current_directory);
+
+   // Set menu of drivers
+   drivers->set_signal_selected(change_current_drive);
+
+   // Set menu of file manager
+   file_manager_menus->set_menu(menus_of_file_manager);
 
    // Set file manager window
    file_manager->set_attributes(window::TITLE | window::BORDER);
@@ -619,7 +729,7 @@ int main(void)
    wm_run();
 
    // Exit Window Manager
-   exit_window_manager(0, 0);
+   exit_window_manager(NULL, NULL);
 
    // Exit FreeDOS TUI Shell
    return EXIT_SUCCESS;
