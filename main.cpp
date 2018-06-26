@@ -36,7 +36,7 @@ void command_run(char const* command)
    mouse_show();
 
    // Draw window manager
-   wm_draw(0);
+   wm_draw(NULL);
 }
 
 // Directory view function
@@ -55,7 +55,7 @@ void directory_view(menuitem *, void *)
    // Previous drive letter information
    unsigned int previous_drive_letter = 0;
    // Drive
-   char drive[3];
+   unsigned char *drive = (unsigned char *)malloc(3);
 
    // Clear the directories and files listbox
    directories_and_files->remove_all();
@@ -80,11 +80,13 @@ void directory_view(menuitem *, void *)
       directories_and_files->add(reinterpret_cast<unsigned char const*>(element->d_name));
    }
 
+   closedir(directory);
+
    // Clear the drivers listbox
    drivers->remove_all();
 
-   // Get currnet drive letter
-   _dos_getdrive(&current_drive_letter);
+   // Get current drive letter
+   current_drive_letter = (int)current_directory[0] - 64;
 
    // Get drive letter count
    _dos_setdrive(NULL, &drive_letter_count);
@@ -100,26 +102,30 @@ void directory_view(menuitem *, void *)
 
       if(!drive_letter || drive_letter == previous_drive_letter) // If drive letter is null or drive letter is not changed
       {
-         // COntinue loop
+         // Continue loop
          continue;
       }
 
       // Drive letter calculation and assignment
-      drive[0] = 64 + drive_letter;
+      *drive = (unsigned char)(64 + i);
       // Assignment double dot
-      drive[1] = ':';
+      *(drive + 1) = ':';
       // Assignment null
-      drive[2] = '\0';
+      *(drive + 2) = '\0';
 
       // Add drive to drivers listbox
-      drivers->add((unsigned char *)drive);
+      drivers->add(drive);
 
       // Set previous drive letter
-      previous_drive_letter = drive_letter;
+      previous_drive_letter = i;
    }
+
+   free(drive);
 
    // Set current drive letter
    _dos_setdrive(current_drive_letter, &drive_letter_count);
+
+   wm_draw(NULL);
 }
 
 // Upper directory control function
@@ -148,7 +154,7 @@ void change_current_drive(listbox const *, void *)
    unsigned int drive_letter_count = 0;
 
    // Get item from drivers listbox
-   drive = (char *)drivers->get_item(drivers->get_selected_first());
+   strcpy(drive, (char *)drivers->get_item(drivers->get_selected_first()));
 
    // Calculate drive
    drive_letter_information = *drive - 64;
