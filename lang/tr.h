@@ -28,7 +28,6 @@
    #define STRING_REFRESH "Yenile"
    #define STRING_RUN "Äalçütçr"
    #define STRING_SHOW_HIDDEN_FILES "Gizli Dosyalarç Gîster"
-   #define STRING_SORT "Sçrala"
    #define STRING_UNABLE_TO_INITIALZE_FDOSTUI_SYSTEM "FDOSTUI sistemi baülatçlamadç."
    #define STRING_UP "Yukarç"
    #define STRING_VIEW "GîrÅnÅm"

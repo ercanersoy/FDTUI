@@ -28,7 +28,6 @@
    #define STRING_REFRESH "Refresh"
    #define STRING_RUN "Run"
    #define STRING_SHOW_HIDDEN_FILES "Show Hidden Files"
-   #define STRING_SORT "Sort"
    #define STRING_UNABLE_TO_INITIALZE_FDOSTUI_SYSTEM "Unable to initialze FDOSTUI subsystem."
    #define STRING_UP "Up"
    #define STRING_VIEW "View"
