@@ -9,6 +9,6 @@
 // Common Configures
 
 // Maximum path length
-#define MAX_PATH_LENGTH 260
+#define MAX_PATH_LENGTH NAME_MAX
 // History array length
 #define HISTORY_LENGTH 10
