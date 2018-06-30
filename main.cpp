@@ -26,6 +26,8 @@ void command_run(char const* command)
    // Mouse release on memory
    mouse_deinit();
 
+   system("CLS");
+
    // Run command
    system(command);
 
@@ -475,6 +477,12 @@ void show_file_manager(menuitem *, void *)
       wm_draw(file_manager);
    }
    return;
+}
+
+// Show file manager function
+void show_run(menuitem *, void *)
+{
+   command_run((char *)popup_input(reinterpret_cast<unsigned char const*>(STRING_RUN), reinterpret_cast<unsigned char const*>(STRING_COMMAND_TO_RUN), reinterpret_cast<unsigned char const*>("")));
 }
 
 // Run application EDIT function

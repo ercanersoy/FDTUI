@@ -78,6 +78,8 @@ void history_foward(menuitem *, void *);
 void change_to_upper_directory(menuitem *, void *);
 // Show file manager function
 void show_file_manager(menuitem *, void *);
+// Show run function
+void show_run(menuitem *, void *);
 // Run application EDIT function
 void run_application_edit(menuitem *, void *);
 // Run application EDLIN function
@@ -111,6 +113,7 @@ void show_hidden_files(menuitem *, void *);
 struct menuitem internal_applications_menu[] =
 {
    {reinterpret_cast<unsigned char const*>(STRING_FILE_MANAGER), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, show_file_manager, 0},  // File manager
+   {reinterpret_cast<unsigned char const*>(STRING_RUN), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, show_run, 0},  // Run
    {0}
 };
 
