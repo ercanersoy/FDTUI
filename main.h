@@ -168,13 +168,7 @@ struct menuitem edit_menu[] =
 struct menuitem view_menu[] =
 {
    {reinterpret_cast<unsigned char const*>(STRING_REFRESH), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, directory_view, 0},  // Refresh
-   {reinterpret_cast<unsigned char const*>(STRING_SHOW_HIDDEN_FILES), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX | MENUITEM_SEPERATOR, show_hidden_files, 0},  // Show hidden files
-   {reinterpret_cast<unsigned char const*>(STRING_SORT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE,  MENUITEM_SUBMENU, 0, 0},  // Sort
-   {reinterpret_cast<unsigned char const*>(STRING_BY_NAME), MENUITEM_MNEMONIC_NONE, 0,  SCAN_NONE, 0, 0, 0},  // By name
-   {reinterpret_cast<unsigned char const*>(STRING_BY_SIZE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},  // By size
-   {reinterpret_cast<unsigned char const*>(STRING_BY_TYPE), MENUITEM_MNEMONIC_NONE, 0,  SCAN_NONE, 0, 0, 0},  // By type
-   {reinterpret_cast<unsigned char const*>(STRING_BY_DATE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, 0, 0},  // By date
-   {0},
+   {reinterpret_cast<unsigned char const*>(STRING_SHOW_HIDDEN_FILES), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_hidden_files, 0},  // Show hidden files
    {0}
 };
 

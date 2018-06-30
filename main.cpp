@@ -482,6 +482,7 @@ void show_file_manager(menuitem *, void *)
 // Show file manager function
 void show_run(menuitem *, void *)
 {
+   // Run command
    command_run((char *)popup_input(reinterpret_cast<unsigned char const*>(STRING_RUN), reinterpret_cast<unsigned char const*>(STRING_COMMAND_TO_RUN), reinterpret_cast<unsigned char const*>("")));
 }
 

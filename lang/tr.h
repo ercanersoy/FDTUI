@@ -6,10 +6,6 @@
 
 #if LANGUAGE == TR
    #define STRING_BACK "Geri"
-   #define STRING_BY_DATE "Tarihe Gîre"
-   #define STRING_BY_NAME "òsme Gîre"
-   #define STRING_BY_SIZE "Boyuta Gîre"
-   #define STRING_BY_TYPE "TÅre Gîre"
    #define STRING_COMMAND_TO_RUN "Äalçütçrçlacak Komut:"
    #define STRING_COPY "Kopyala"
    #define STRING_CUT "Kes"

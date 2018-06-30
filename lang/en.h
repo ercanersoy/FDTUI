@@ -6,10 +6,6 @@
 
 #if LANGUAGE == EN
    #define STRING_BACK "Back"
-   #define STRING_BY_DATE "By Date"
-   #define STRING_BY_NAME "By Name"
-   #define STRING_BY_SIZE "By Size"
-   #define STRING_BY_TYPE "By Type"
    #define STRING_COMMAND_TO_RUN "Command to Run:"
    #define STRING_COPY "Copy"
    #define STRING_CUT "Cut"
