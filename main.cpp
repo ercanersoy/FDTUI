@@ -37,6 +37,9 @@ void command_run(char const* command)
    // Mouse show
    mouse_show();
 
+   // Hide cursor
+   cursor_hide();
+
    // Draw window manager
    wm_draw(NULL);
 }
