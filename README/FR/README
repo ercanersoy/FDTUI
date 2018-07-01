@@ -1,0 +1,20 @@
+FreeDOS TUI Shell
+
+Interface utilisateur textuelle pour FreeDOS.
+
+Copyright (C) 2018 Ercan Ersoy
+Ce programme est un logiciel libre. (Licence publique générale GNU)
+
+Ce projet comprend la bibliothèque FDOSTUI. FDOSTUI a sa propre licence.
+
+Remerciments :
+
+  Merci à Mark Olesen pour certains changements de code et pour la bibliothèque FDOSTUI.
+
+Compiler :
+
+  This software should be compiled with Open Watcom.
+
+Contribuer :
+
+  Si vous voulez contribuer à ce projet, vous pouvez proposer une pull request sur le dépot de FreeDOS-TUI-Shell.

@@ -2,7 +2,7 @@
  * FreeDOS TUI Shell Turksih Language Header File *
  **************************************************/
 
-#define TR 2
+#define TR 3
 
 #if LANGUAGE == TR
    #define STRING_BACK "Geri"
