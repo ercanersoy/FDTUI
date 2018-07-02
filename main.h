@@ -1,6 +1,7 @@
-/*********************************
- * FreeDOS TUI Shell Header File *
- *********************************/
+/*
+ *  main.h - Main header file
+ *  Written by Ercan Ersoy.
+ */
 
 #include <direct.h>
 #include <dos.h>

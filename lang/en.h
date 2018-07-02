@@ -1,6 +1,7 @@
-/**************************************************
- * FreeDOS TUI Shell English Language Header File *
- **************************************************/
+/*
+ *  en.h - English language header file
+ *  Written by Ercan Ersoy.
+ */
 
 #define EN 1
 

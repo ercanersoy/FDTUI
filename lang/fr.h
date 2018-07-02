@@ -1,6 +1,7 @@
-/*************************************************
- * FreeDOS TUI Shell French Language Header File *
- *************************************************/
+/*
+ *  fr.h - Turkish language header file
+ *  Written by Atnode.
+ */
 
 #define FR 2
 

@@ -1,6 +1,7 @@
-/**************************************************
- * FreeDOS TUI Shell Turksih Language Header File *
- **************************************************/
+/*
+ *  tr.h - Turkish language header file
+ *  Written by Ercan Ersoy and Atnode.
+ */
 
 #define TR 3
 

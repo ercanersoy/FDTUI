@@ -1,6 +1,7 @@
-/*********************************
- * FreeDOS TUI Shell Source File *
- *********************************/
+/*
+ *  main.c - Main source file
+ *  Written by Ercan Ersoy and Mark Olesen.
+ */
 
 #include "main.h"
 

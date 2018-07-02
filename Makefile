@@ -1,3 +1,6 @@
+# Makefile - Build file
+# Written by Ercan Ersoy.
+
 all: dosshell.exe
 
 dosshell.exe: main.obj 3rdparty\fdostui\lib\fdtuid16.lib

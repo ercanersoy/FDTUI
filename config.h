@@ -1,6 +1,7 @@
-/***********************************************
- * FreeDOS TUI Shell Configuration Header File *
- ***********************************************/
+/*
+ *  config.h - Configure header file
+ *  Written by Ercan Ersoy and Atnode.
+ */
 
 // Language Configure
 
