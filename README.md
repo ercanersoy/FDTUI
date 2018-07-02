@@ -19,4 +19,4 @@ This software should be compiled with Open Watcom.
 # Contribute
 
 If you want to contribute to this project, you can make a pull request to the 
-FreeDOS-TUI-Shell repository.
+FreeDOS TUI Shell repository.
