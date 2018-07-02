@@ -49,9 +49,9 @@ menubar *file_manager_menus = new menubar(0, 0, _video_cols, 1);
 // Current directory label of file manager pointer variable
 label *current_directory_label = new label(1, 2, 65, 1);
 // Current drivers listbox of file manager pointer variable
-listbox *drivers = new listbox(1, 3, 65, 5);
+listbox *drivers = new listbox(0, 3, 66, 5);
 // Current directories and files of file manager pointer variable
-listbox *directories_and_files = new listbox(1, 8, 65, 8);
+listbox *directories_and_files = new listbox(0, 8, 66, 8);
 
 // Function prototypes
 
