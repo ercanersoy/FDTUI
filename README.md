@@ -16,7 +16,7 @@ Thanks to Atnode for French translation.
 
 This software should be compiled with Open Watcom.
 
-# Contirbute
+# Contribute
 
 If you want contribute of this project, you make a pull request of
 DOS Coreutils's repository.
