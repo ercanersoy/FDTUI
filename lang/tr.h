@@ -1,6 +1,6 @@
 /*
  *  tr.h - Turkish language header file
- *  Written by Ercan Ersoy and Atnode.
+ *  Written by Ercan Ersoy.
  */
 
 #define TR 3
