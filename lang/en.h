@@ -17,7 +17,7 @@
    #define STRING_EXIT "Exit"
    #define STRING_FILE "File"
    #define STRING_FILE_MANAGER "File Manager"
-   #define STRING_FOWARD "Foward"
+   #define STRING_FOWARD "Forward"
    #define STRING_GO "Go"
    #define STRING_INTERNAL_APPLICATIONS "Internal Applications"
    #define STRING_NEW_DIRECTORY "New Directory"
