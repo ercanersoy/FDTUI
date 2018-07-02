@@ -125,6 +125,7 @@ void directory_view(menuitem *, void *)
       previous_drive_letter = i;
    }
 
+   // Free drive string
    free(drive);
 
    // Set current drive letter
@@ -188,7 +189,9 @@ void change_current_drive(listbox const *, void *)
 // Change current directory function
 void change_current_directory(char *directory, unsigned char status)
 {
+   // Previous drive letter
    char previous_drive_letter;
+   // Drive letter count
    unsigned int drive_letter_count = 0;
 
    if(status == 0)  // If status is adding new history item
@@ -226,6 +229,7 @@ void change_current_directory(char *directory, unsigned char status)
    }
    else if(status == 1)  // If status is changing previous history item
    {
+      // Get previous drive letter
       previous_drive_letter = history_path_names[history_index][0];
 
       // Decrase History
@@ -242,6 +246,7 @@ void change_current_directory(char *directory, unsigned char status)
    }
    else if(status == 2)  // If status is changing previous history item
    {
+      // Get previous drive letter
       previous_drive_letter = history_path_names[history_index][0];
 
       // Increase History
@@ -298,6 +303,7 @@ void copy_file(char *source_file, char *target_file)
 
    // Source file open
    source = fopen(source_file, "rb");
+   // Target file open
    target = fopen(target_file, "wb");
 
    while((buffer = fgetc(source)) != 255 && !feof(source))  // While read source file to buffer as one character
@@ -471,15 +477,17 @@ void change_to_upper_directory(struct menuitem *menu_item, void *)
 // Show file manager function
 void show_file_manager(menuitem *, void *)
 {
-   if(!file_manager->get_visible())
+   if(!file_manager->get_visible())  // If file manager visible
    {
+      // File manager set to visible
       file_manager->set_visible();
 
+      // Refresh directory
       directory_view(NULL, NULL);
 
+      // Draw file manager
       wm_draw(file_manager);
    }
-   return;
 }
 
 // Show file manager function

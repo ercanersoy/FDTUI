@@ -67,6 +67,8 @@ void directory_view(menuitem *, void *);
 void upper_directory_control(void);
 // Change current directory function
 void change_current_directory(char *, unsigned char);
+// Change current drive function
+void change_current_drive(listbox const *, void *);
 // Copy directory function
 void copy_directory(char *, char *);
 // Remove item function
