@@ -1,5 +1,5 @@
 /*
- *  fr.h - Turkish language header file
+ *  fr.h - French language header file
  *  Written by Atnode.
  */
 
