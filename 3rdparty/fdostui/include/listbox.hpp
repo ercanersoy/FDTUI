@@ -102,6 +102,10 @@ public:
         signal_selected_t               i_signal);
 
     void
+    set_emit_selected_signal_always(
+        bool const                      i_emit_always);
+
+    void
     set_selected(
         size_t const                    i_slot,
         bool const                      i_selected=true);
@@ -111,6 +115,7 @@ public:
 
 protected:
 
+    bool                                m_emit_selected_always;
     bool                                m_multiline;
     size_t                              m_line;
     struct array                        m_array;
@@ -150,6 +155,16 @@ public:
     scroll_internal();
 
 };
+
+inline void
+listbox::set_emit_selected_signal_always(
+    bool const                          i_emit_always)
+{
+
+    m_emit_selected_always= i_emit_always;
+
+    return;
+}
 
 inline size_t
 listbox::get_count() const

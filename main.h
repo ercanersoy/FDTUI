@@ -21,6 +21,8 @@
 
 // Current directory string pointer variable
 char *current_directory = (char *)malloc(MAX_PATH_LENGTH + 1);
+// Selected directory or file
+int selected_item = 0;
 // Show hidden file variable
 bool show_hidden_file = false;
 // Clipboard item name string pointer variable
@@ -66,6 +68,8 @@ void copy_file(char *, char *);
 void directory_view(menuitem *, void *);
 // Upper directory control function
 void upper_directory_control(void);
+// Select directory or file function
+void select_directory_or_file(listbox const *, void *);
 // Change current directory function
 void change_current_directory(char *, unsigned char);
 // Change current drive function

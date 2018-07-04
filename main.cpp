@@ -88,6 +88,9 @@ void directory_view(menuitem *, void *)
 
    closedir(directory);
 
+   // Set selected item variable
+   selected_item = 0;
+
    // Clear the drivers listbox
    drivers->remove_all();
 
@@ -148,6 +151,25 @@ void upper_directory_control(void)
       // Up directory menu enabled
       go_menu[2].m_flags = !(go_menu[2].m_flags ^ MENUITEM_DISABLED);
    }
+}
+
+// Select directory or file function
+void select_directory_or_file(listbox const *, void *)
+{
+   if(selected_item == directories_and_files->get_selected_first())  // If selected item is clicked
+   {
+      // Open item
+      item_open(NULL, NULL);
+
+      // Refresh directory
+      directory_view(NULL, NULL);
+
+      // Exit function
+      return;
+   }
+
+   // Set selected item
+   selected_item = directories_and_files->get_selected_first();
 }
 
 // Change current drive function
@@ -736,6 +758,10 @@ int main(void)
 
    // Set menu of drivers
    drivers->set_signal_selected(change_current_drive);
+
+   // Set menu of directories and files
+   directories_and_files->set_signal_selected(select_directory_or_file);
+   directories_and_files->set_emit_selected_signal_always(true);
 
    // Set menu of file manager
    file_manager_menus->set_menu(menus_of_file_manager);

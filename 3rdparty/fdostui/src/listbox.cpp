@@ -43,6 +43,7 @@ listbox::listbox(
     unsigned int const                  i_len_x,
     unsigned int const                  i_len_y) :
     widget(i_pos_x, i_pos_y, i_len_x, i_len_y),
+    m_emit_selected_always(false),
     m_multiline(false),
     m_line(0),
     m_array(),
@@ -230,7 +231,7 @@ listbox::select(
         set_damage(DAMAGE_VALUE);
         wm_draw_widget(this);
     
-        if (l_value != (*l_item).m_selected)
+        if ((l_value != (*l_item).m_selected) || m_emit_selected_always)
         {
             emit_selected();
         }
