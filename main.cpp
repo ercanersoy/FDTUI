@@ -1,5 +1,5 @@
 /*
- *  main.c - Main source file
+ *  main.cpp - Main source file
  *  Written by Ercan Ersoy and Mark Olesen.
  */
 
@@ -756,10 +756,10 @@ int main(void)
    // Set current directory label text
    current_directory_label->set_text((unsigned char *)current_directory);
 
-   // Set menu of drivers
+   // Set signal of drivers listbox
    drivers->set_signal_selected(change_current_drive);
 
-   // Set menu of directories and files
+   // Set signal of directories and files listbox
    directories_and_files->set_signal_selected(select_directory_or_file);
    directories_and_files->set_emit_selected_signal_always(true);
 
