@@ -67,7 +67,7 @@ void copy_file(char *, char *);
 // Directory view function
 void directory_view(menuitem *, void *);
 // Upper directory control function
-void upper_directory_control(void);
+void upper_directory_control_for_go_menu_item(void);
 // Select directory or file function
 void select_directory_or_file(listbox const *, void *);
 // Change current directory function
@@ -110,6 +110,8 @@ void cut_item(menuitem *, void *);
 void copy_item(menuitem *, void *);
 // Paste Function
 void paste_item(menuitem *, void *);
+// Rename item function
+void rename_item(menuitem *, void *);
 // Delete Function
 void delete_item(menuitem *, void *);
 // Show hidden files function
@@ -168,6 +170,7 @@ struct menuitem edit_menu[] =
    {reinterpret_cast<unsigned char const*>(STRING_CUT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, cut_item, 0},  // Cut
    {reinterpret_cast<unsigned char const*>(STRING_COPY), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, copy_item, 0},  // Copy
    {reinterpret_cast<unsigned char const*>(STRING_PASTE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, paste_item, 0},  // Paste
+   {reinterpret_cast<unsigned char const*>(STRING_RENAME), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, rename_item, 0},  // Reanme
    {reinterpret_cast<unsigned char const*>(STRING_DELETE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, delete_item, 0},  // Delete
    {0}
 };

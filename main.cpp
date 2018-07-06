@@ -71,7 +71,7 @@ void directory_view(menuitem *, void *)
 
    while(element = readdir(directory))  // If element is exists
    {
-      if(!strcmp(element->d_name, ".") || !strcmp(element->d_name, ".."))  // If item names not "." or ".."
+      if(!strcmp(element->d_name, ".") || (!strcmp(element->d_name, "..") && (strlen(current_directory) == 3)))  // If item names not "." or ".." and currnet directory is upper directory
       {
          // Continue while loop
          continue;
@@ -139,7 +139,7 @@ void directory_view(menuitem *, void *)
 }
 
 // Upper directory control function
-void upper_directory_control(void)
+void upper_directory_control_for_go_menu_item(void)
 {
    if(strlen(current_directory) == 3)  // If directory exists
    {
@@ -286,7 +286,7 @@ void change_current_directory(char *directory, unsigned char status)
    }
 
    // Upper directory control
-   upper_directory_control();
+   upper_directory_control_for_go_menu_item();
 
    if(history_index == 0)  // If history index equals 0
    {
@@ -475,7 +475,7 @@ char remove_item(char *removing_item_path)
 }
 
 // History back function
-void history_back(struct menuitem *menu_item, void *)
+void history_back(menuitem *, void *)
 {
    // Change current directory to back history item
    change_current_directory(NULL, 1);
@@ -489,7 +489,7 @@ void history_foward(menuitem *, void *)
 }
 
 // Change to upper directory function
-void change_to_upper_directory(struct menuitem *menu_item, void *)
+void change_to_upper_directory(menuitem *, void *)
 {
    // Change current directory to upper directory
    change_current_directory("..", 0);
@@ -678,6 +678,15 @@ void paste_item(menuitem *, void *)
    directory_view(NULL, NULL);
 }
 
+// Rename function
+void rename_item(menuitem *, void *)
+{
+   rename((char *)directories_and_files->get_item(directories_and_files->get_selected_first()), (char *)popup_input(reinterpret_cast<unsigned char const*>(STRING_RENAME), reinterpret_cast<unsigned char const*>(STRING_NEW_NAME), reinterpret_cast<unsigned char const*>("")));
+
+   // Refresh directories
+   directory_view(NULL, NULL);
+}
+
 // Delete Function
 void delete_item(menuitem *, void *)
 {
@@ -731,7 +740,7 @@ int main(void)
    getcwd(current_directory, PATH_MAX + 1);
 
    // Upper directory control
-   upper_directory_control();
+   upper_directory_control_for_go_menu_item();
 
    // Bar
 
