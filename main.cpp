@@ -517,7 +517,7 @@ void show_file_manager(menuitem *, void *)
 void show_run(menuitem *, void *)
 {
    // Run command
-   command_run((char *)popup_input(reinterpret_cast<unsigned char const*>(STRING_RUN), reinterpret_cast<unsigned char const*>(STRING_COMMAND_TO_RUN), reinterpret_cast<unsigned char const*>("")));
+   command_run((char *)popup_input(reinterpret_cast<unsigned char const*>(kittengets(11, 0, "Run")), reinterpret_cast<unsigned char const*>(kittengets(11, 1, "Command to Run:")), reinterpret_cast<unsigned char const*>("")));
 }
 
 // Run application EDIT function
@@ -595,7 +595,7 @@ void item_open(menuitem *, void *)
 void new_directory(menuitem *, void *)
 {
    // Make new directory of specified name
-   mkdir((char *)popup_input(reinterpret_cast<unsigned char const*>(STRING_NEW_DIRECTORY), reinterpret_cast<unsigned char const*>(STRING_DIRECTORY_NAME), reinterpret_cast<unsigned char const*>("")));
+   mkdir((char *)popup_input(reinterpret_cast<unsigned char const*>(kittengets(9, 0, "New Directory")), reinterpret_cast<unsigned char const*>(kittengets(9, 1, "Directory Name:")), reinterpret_cast<unsigned char const*>("")));
 
    // Refresh directories
    directory_view(NULL, NULL);
@@ -681,7 +681,7 @@ void paste_item(menuitem *, void *)
 // Rename function
 void rename_item(menuitem *, void *)
 {
-   rename((char *)directories_and_files->get_item(directories_and_files->get_selected_first()), (char *)popup_input(reinterpret_cast<unsigned char const*>(STRING_RENAME), reinterpret_cast<unsigned char const*>(STRING_NEW_NAME), reinterpret_cast<unsigned char const*>("")));
+   rename((char *)directories_and_files->get_item(directories_and_files->get_selected_first()), (char *)popup_input(reinterpret_cast<unsigned char const*>(kittengets(10, 0, "Rename")), reinterpret_cast<unsigned char const*>(kittengets(10, 1, "New Name:")), reinterpret_cast<unsigned char const*>("")));
 
    // Refresh directories
    directory_view(NULL, NULL);
@@ -728,7 +728,12 @@ int main(void)
 
    if(error)  // If FDOSTUI initalization give error
    {
-      puts(STRING_UNABLE_TO_INITIALZE_FDOSTUI_SYSTEM);
+      // Display error message
+      puts(kittengets(0, 0, "Unable to initialze FDOSTUI subsystem."));
+
+      // CLose Kitten Library
+      kittenclose();
+
       return error;
    }
 
@@ -777,7 +782,7 @@ int main(void)
 
    // Set file manager window
    file_manager->set_attributes(window::TITLE | window::BORDER);
-   file_manager->set_title((unsigned char *)STRING_FILE_MANAGER);
+   file_manager->set_title((unsigned char *)kittengets(4, 0, "File Manager"));
    file_manager->add(file_manager_menus);
    file_manager->add(current_directory_label);
    file_manager->add(drivers);
@@ -792,6 +797,12 @@ int main(void)
 
    // Exit Window Manager
    exit_window_manager(NULL, NULL);
+
+   if(kitten_status != -1)  // If Kitten library is open
+   {
+      // Close Kitten library
+      kittenclose();
+   }
 
    // Exit FreeDOS TUI Shell
    return EXIT_SUCCESS;

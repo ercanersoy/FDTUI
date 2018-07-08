@@ -1,0 +1,44 @@
+0.0:Impossible d'initialiser le sous-systŠme FDOSTUI
+
+1.0:Applications internes
+1.1:Gestionnaire de fichiers
+1.2:Ex‚cuter
+
+2.0:Applications DOS
+
+3.0:Quitter
+3.1:Quitter
+3.2:Red‚marrer l\'ordinateur
+3.3:Eteindre l\'ordinateur
+
+4.0:Gestionnaire de fichiers
+
+5.0:Fichier
+5.1:Ouvir
+5.2:Nouveau r‚pertoire
+5.3:Quitter
+
+6.0:Editer
+6.1:Couper
+6.2:Copier
+6.3:Coller
+6.4:Reanme
+6.5:Supprimer
+
+7.0:Affichage
+7.1:Rafraichir
+7.2:Afficher les fichiers cach‚s
+
+8.0:Aller
+8.1:Retour
+8.2:Avant
+8.3:Haut
+
+9.0:Nouveau r‚pertoire
+9.1:Nom du r‚pertoire :
+
+10.0:Reanme
+10.1:New Name:
+
+11.0:Ex‚cuter
+11.1:Commande … ex‚cuter :

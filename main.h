@@ -12,10 +12,9 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <kitten.h>
 #include "config.h"
-#include "lang\en.h"
-#include "lang\fr.h"
-#include "lang\tr.h"
+
 
 // Common Variables
 
@@ -35,6 +34,8 @@ unsigned char clipboard_status = 0;  // 0 for nothing, 1 for copying, 2 for cutt
 char history_path_names[HISTORY_LENGTH][MAX_PATH_LENGTH + 1];
 // History index variable
 int history_index = 0;
+// Open Kitten library
+int kitten_status = kittenopen("DOSSHELL");
 
 // Bar
 
@@ -122,8 +123,8 @@ void show_hidden_files(menuitem *, void *);
 // Internal applications menu of bar
 struct menuitem internal_applications_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(STRING_FILE_MANAGER), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, show_file_manager, 0},  // File manager
-   {reinterpret_cast<unsigned char const*>(STRING_RUN), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, show_run, 0},  // Run
+   {reinterpret_cast<unsigned char const*>(kittengets(1, 1, "File Manager")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, show_file_manager, 0},  // File manager
+   {reinterpret_cast<unsigned char const*>(kittengets(1, 2, "Run")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, show_run, 0},  // Run
    {0}
 };
 
@@ -138,18 +139,18 @@ struct menuitem dos_applications_menu[] =
 // Exit menu of bar
 struct menuitem exit_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(STRING_QUIT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, quit, 0},  // Quit
-   {reinterpret_cast<unsigned char const*>(STRING_REBOOT_COMPUTER), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, reboot, 0},  // Reboot Computer
-   {reinterpret_cast<unsigned char const*>(STRING_POWEROFF_COMPUTER), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, poweroff, 0},  // Power Off Computer
+   {reinterpret_cast<unsigned char const*>(kittengets(3, 1, "Quit")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, quit, 0},  // Quit
+   {reinterpret_cast<unsigned char const*>(kittengets(3, 2, "Reboot Computer")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, reboot, 0},  // Reboot Computer
+   {reinterpret_cast<unsigned char const*>(kittengets(3, 3, "Power Off Computer")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, poweroff, 0},  // Power Off Computer
    {0}
 };
 
 // Menubar of bar
 struct menuitembar menus_of_bar[] =
 {
-   {reinterpret_cast<unsigned char const*>(STRING_INTERNAL_APPLICATIONS), 0, SCAN_NONE, internal_applications_menu},  // Internal Applications
-   {reinterpret_cast<unsigned char const*>(STRING_DOS_APPLICATIONS), 0, SCAN_NONE, dos_applications_menu},  // Dos Applications
-   {reinterpret_cast<unsigned char const*>(STRING_EXIT), 0, SCAN_NONE, exit_menu},  // Exit
+   {reinterpret_cast<unsigned char const*>(kittengets(1, 0, "Internal Applications")), 0, SCAN_NONE, internal_applications_menu},  // Internal Applications
+   {reinterpret_cast<unsigned char const*>(kittengets(2, 0, "DOS Applications")), 0, SCAN_NONE, dos_applications_menu},  // Dos Applications
+   {reinterpret_cast<unsigned char const*>(kittengets(3, 0, "Exit")), 0, SCAN_NONE, exit_menu},  // Exit
    {0}
 };
 
@@ -158,46 +159,46 @@ struct menuitembar menus_of_bar[] =
 // Fİle menu of file manager
 struct menuitem file_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(STRING_OPEN), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, item_open, 0},  // Open
-   {reinterpret_cast<unsigned char const*>(STRING_NEW_DIRECTORY), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, new_directory, 0},  // New directory
-   {reinterpret_cast<unsigned char const*>(STRING_EXIT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, file_manager_exit, 0},  // Exit
+   {reinterpret_cast<unsigned char const*>(kittengets(5, 1, "Open")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, item_open, 0},  // Open
+   {reinterpret_cast<unsigned char const*>(kittengets(5, 2, "New Directory")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, new_directory, 0},  // New directory
+   {reinterpret_cast<unsigned char const*>(kittengets(5, 3, "Exit")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, file_manager_exit, 0},  // Exit
    {0}
 };
 
 // Edit menu of file manager
 struct menuitem edit_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(STRING_CUT), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, cut_item, 0},  // Cut
-   {reinterpret_cast<unsigned char const*>(STRING_COPY), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, copy_item, 0},  // Copy
-   {reinterpret_cast<unsigned char const*>(STRING_PASTE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, paste_item, 0},  // Paste
-   {reinterpret_cast<unsigned char const*>(STRING_RENAME), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, rename_item, 0},  // Reanme
-   {reinterpret_cast<unsigned char const*>(STRING_DELETE), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, delete_item, 0},  // Delete
+   {reinterpret_cast<unsigned char const*>(kittengets(6, 1, "Cut")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, cut_item, 0},  // Cut
+   {reinterpret_cast<unsigned char const*>(kittengets(6, 2, "Copy")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, copy_item, 0},  // Copy
+   {reinterpret_cast<unsigned char const*>(kittengets(6, 3, "Paste")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, paste_item, 0},  // Paste
+   {reinterpret_cast<unsigned char const*>(kittengets(6, 4, "Rename")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, rename_item, 0},  // Reanme
+   {reinterpret_cast<unsigned char const*>(kittengets(6, 5, "Delete")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, delete_item, 0},  // Delete
    {0}
 };
 
 // View menu of file manager
 struct menuitem view_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(STRING_REFRESH), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, directory_view, 0},  // Refresh
-   {reinterpret_cast<unsigned char const*>(STRING_SHOW_HIDDEN_FILES), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_hidden_files, 0},  // Show hidden files
+   {reinterpret_cast<unsigned char const*>(kittengets(7, 1, "Refresh")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, directory_view, 0},  // Refresh
+   {reinterpret_cast<unsigned char const*>(kittengets(7, 2, "Show Hidden Files")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_hidden_files, 0},  // Show hidden files
    {0}
 };
 
 // Go menu of file manager
 struct menuitem go_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(STRING_BACK), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_DISABLED, history_back, 0},  // Back
-   {reinterpret_cast<unsigned char const*>(STRING_FOWARD), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_DISABLED, history_foward, 0},  // Foward
-   {reinterpret_cast<unsigned char const*>(STRING_UP), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_DISABLED, change_to_upper_directory, 0},  // Up
+   {reinterpret_cast<unsigned char const*>(kittengets(8, 1, "Back")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_DISABLED, history_back, 0},  // Back
+   {reinterpret_cast<unsigned char const*>(kittengets(8, 2, "Foward")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_DISABLED, history_foward, 0},  // Foward
+   {reinterpret_cast<unsigned char const*>(kittengets(8, 3, "Up")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_DISABLED, change_to_upper_directory, 0},  // Up
    {0}
 };
 
 // Menubar of file manager
 struct menuitembar menus_of_file_manager[] =
 {
-   {reinterpret_cast<unsigned char const*>(STRING_FILE), 0, SCAN_NONE, file_menu},  // File
-   {reinterpret_cast<unsigned char const*>(STRING_EDIT), 0, SCAN_NONE, edit_menu},  // Edit
-   {reinterpret_cast<unsigned char const*>(STRING_VIEW), 0, SCAN_NONE, view_menu},  // View
-   {reinterpret_cast<unsigned char const*>(STRING_GO), 0, SCAN_NONE, go_menu},  // Go
+   {reinterpret_cast<unsigned char const*>(kittengets(5, 0, "File")), 0, SCAN_NONE, file_menu},  // File
+   {reinterpret_cast<unsigned char const*>(kittengets(6, 0, "Edit")), 0, SCAN_NONE, edit_menu},  // Edit
+   {reinterpret_cast<unsigned char const*>(kittengets(7, 0, "View")), 0, SCAN_NONE, view_menu},  // View
+   {reinterpret_cast<unsigned char const*>(kittengets(8, 0, "Go")), 0, SCAN_NONE, go_menu},  // Go
    {0}
 };

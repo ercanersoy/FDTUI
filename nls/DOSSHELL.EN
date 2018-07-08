@@ -1,0 +1,44 @@
+0.0:Unable to initialze FDOSTUI subsystem.
+
+1.0:Internal Applications
+1.1:File Manager
+1.2:Run
+
+2.0:DOS Applications
+
+3.0:Exit
+3.1:Quit
+3.2:Reboot Computer
+3.3:Power Off Computer
+
+4.0:File Manager
+
+5.0:File
+5.1:Open
+5.2:New Directory
+5.3:Exit
+
+6.0:Edit
+6.1:Cut
+6.2:Copy
+6.3:Paste
+6.4:Rename
+6.5:Delete
+
+7.0:View
+7.1:Refresh
+7.2:Show Hidden Files
+
+8.0:Go
+8.1:Back
+8.2:Foward
+8.3:Up
+
+9.0:New Directory
+9.1:Directory Name:
+
+10.0:Rename
+10.1:New Name:
+
+11.0:Run
+11.1:Command to Run:
