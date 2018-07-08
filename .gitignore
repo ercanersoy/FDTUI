@@ -1,1 +1,4 @@
 MAIN.OBJ
+main.obj
+3rdparty\kitten\KITTEN.OBJ
+3rdparty\kitten\kitten.obj
