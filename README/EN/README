@@ -9,8 +9,11 @@ This project includes FDOSTUI library. FDOSTUI has own licenses.
 
 Thanks:
 
-  Thanks to Mark Olesen for some code changes and FDOSTUI.
   Thanks to Atnode for French translation.
+  Thanks to Eric Auer for Kitten library.
+  Thanks to Jim Hall for Kitten library.
+  Thanks to Mark Olesen for some code changes and FDOSTUI library.
+  Thanks to Tom Ehlert for Kitten library.
 
 Compile:
 
