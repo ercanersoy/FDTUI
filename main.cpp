@@ -540,6 +540,12 @@ void quit(menuitem *, void *)
    // Exit window manager
    exit_window_manager(NULL, NULL);
 
+   if(kitten_status != -1)  // If Kitten library is open
+   {
+      // Close Kitten library
+      kittenclose();
+   }
+
    // Exit FreeDOS TUI Shell
    exit(EXIT_SUCCESS);
 }
@@ -551,7 +557,7 @@ void reboot(menuitem *, void *)
    exit_window_manager(NULL, NULL);
 
    // Reboot computer via FDAPM
-   command_run("FDAPM WARMBOOT");
+   system("FDAPM WARMBOOT");
    
    return;
 }
@@ -563,7 +569,7 @@ void poweroff(menuitem *, void *)
    exit_window_manager(NULL, NULL);
 
    // Poweroff computer via FDAPM
-   command_run("FDAPM POWEROFF");
+   system("FDAPM POWEROFF");
 }
 
 // Menu Function Menus

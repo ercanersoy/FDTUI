@@ -131,8 +131,8 @@ struct menuitem internal_applications_menu[] =
 // DOS applications menu of bar
 struct menuitem dos_applications_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>("EDIT"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, run_application_edit, 0},  // Edit
-   {reinterpret_cast<unsigned char const*>("EDLIN"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, run_application_edlin, 0},  // Edlin
+   {reinterpret_cast<unsigned char const*>("FreeDOS Edit"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, run_application_edit, 0},  // Edit
+   {reinterpret_cast<unsigned char const*>("FreeDOS Edlin"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, run_application_edlin, 0},  // Edlin
    {0}
 };
 
