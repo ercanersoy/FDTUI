@@ -52,6 +52,10 @@ void directory_view(menuitem *, void *)
    struct dirent *element;
    // Directory pointer variable
    DIR *directory = opendir(getcwd(current_directory, PATH_MAX + 1));
+   // Element status
+   struct stat element_status;
+   // Listbox item of element
+   char listbox_item_of_element[MAX_PATH_LENGTH + 8] = { 0 };
    // Current drive letter
    unsigned int current_drive_letter;
    // Drive letter count information
@@ -82,8 +86,22 @@ void directory_view(menuitem *, void *)
          continue;
       }
 
-      // Add item on the directories and files listbox
-      directories_and_files->add(reinterpret_cast<unsigned char const*>(element->d_name));
+      stat(element->d_name, &element_status);
+
+      if(S_ISDIR(element_status.st_mode))  // If item is directory
+      {
+         strcat(listbox_item_of_element, "<DIR>  ");
+         // Add item on the directories listbox
+         directories_and_files->add(reinterpret_cast<unsigned char const*>(strcat(listbox_item_of_element, element->d_name)));
+      }
+      else  // If item is file
+      {
+         strcat(listbox_item_of_element, "<FILE> ");
+         // Add item on the files listbox
+         directories_and_files->add(reinterpret_cast<unsigned char const*>(strcat(listbox_item_of_element, element->d_name)));
+      }
+
+      listbox_item_of_element[0] = '\0';
    }
 
    closedir(directory);
@@ -151,6 +169,31 @@ void upper_directory_control_for_go_menu_item(void)
       // Up directory menu enabled
       go_menu[2].m_flags = !(go_menu[2].m_flags ^ MENUITEM_DISABLED);
    }
+}
+
+// Get item name function
+char *get_item_name(char* name, int selected)
+{
+   int i;  // Counter
+
+   // Copy selected listbox item
+   name = strcpy(name, (char *)directories_and_files->get_item(selected));
+
+   // Shift listbox item for item name
+   for(i = 0; i < MAX_PATH_LENGTH; i++)
+   {
+      // Shifting
+      name[i] = name[i + 7];
+   }
+
+   // Clear last characters
+   for(i = MAX_PATH_LENGTH - 1; i < MAX_PATH_LENGTH + 8; i++)
+   {
+      // Clearing
+      name[i] = '\0';
+   }
+
+   return name;
 }
 
 // Select directory or file function
@@ -426,9 +469,9 @@ char remove_item(char *removing_item_path)
    // Item properties pointer variable
    struct dirent *item_properties;
    // Item name string pointer variable
-   char *item_name = (char *) malloc(256);
+   char *item_name = (char *)malloc(256);
    // Item path string pointer variable
-   char *item_path = (char *) malloc(260);
+   char *item_path = (char *)malloc(260);
 
    // Open directory
    element = opendir(removing_item_path);
@@ -577,10 +620,13 @@ void poweroff(menuitem *, void *)
 // Item open function
 void item_open(menuitem *, void *)
 {
-   // Get item name
-   char *item_name = (char *)directories_and_files->get_item(directories_and_files->get_selected_first());
+   // Item name
+   char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
    // Status variable
    struct stat status;
+
+   // Copy listbox item
+   item_name = get_item_name(item_name, directories_and_files->get_selected_first());
 
    // Get item status
    stat(item_name, &status);
@@ -595,6 +641,8 @@ void item_open(menuitem *, void *)
       // Run executable file
       command_run(item_name);
    }
+
+   free(item_name);
 }
 
 // New directory function
@@ -617,27 +665,43 @@ void file_manager_exit(menuitem *, void *)
 // Cut function
 void cut_item(menuitem *, void *)
 {
+   // Item name
+   char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
+
+   // Copy listbox item
+   item_name = get_item_name(item_name, directories_and_files->get_selected_first());
+
    // Get selected item
-   strcat(clipboard_item_name, (char *)directories_and_files->get_item(directories_and_files->get_selected_first()));
+   strcat(clipboard_item_name, item_name);
    // Set clipboard item path
    strcat(clipboard_item_path, current_directory);
    strcat(clipboard_item_path, "\\");
    strcat(clipboard_item_path, clipboard_item_name);
    // Set clipboard status to cut
    clipboard_status = 2;
+
+   free(item_name);
 }
 
 // Copy function
 void copy_item(menuitem *, void *)
 {
+   // Item name
+   char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
+
+   // Copy listbox item
+   item_name = get_item_name(item_name, directories_and_files->get_selected_first());
+
    // Get selected item
-   strcat(clipboard_item_name, (char *)directories_and_files->get_item(directories_and_files->get_selected_first()));
+   strcat(clipboard_item_name, item_name);
    // Set clipboard item path
    strcat(clipboard_item_path, current_directory);
    strcat(clipboard_item_path, "\\");
    strcat(clipboard_item_path, clipboard_item_name);
    // Set clipboard status to copy
    clipboard_status = 1;
+
+   free(item_name);
 }
 
 // Paste Function
@@ -687,17 +751,28 @@ void paste_item(menuitem *, void *)
 // Rename function
 void rename_item(menuitem *, void *)
 {
-   rename((char *)directories_and_files->get_item(directories_and_files->get_selected_first()), (char *)popup_input(reinterpret_cast<unsigned char const*>(kittengets(10, 0, "Rename")), reinterpret_cast<unsigned char const*>(kittengets(10, 1, "New Name:")), reinterpret_cast<unsigned char const*>("")));
+   // Item name
+   char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
+
+   // Copy listbox item
+   item_name = get_item_name(item_name, directories_and_files->get_selected_first());
+
+   rename((char *)item_name, (char *)popup_input(reinterpret_cast<unsigned char const*>(kittengets(10, 0, "Rename")), reinterpret_cast<unsigned char const*>(kittengets(10, 1, "New Name:")), reinterpret_cast<unsigned char const*>("")));
 
    // Refresh directories
    directory_view(NULL, NULL);
+
+   free(item_name);
 }
 
 // Delete Function
 void delete_item(menuitem *, void *)
 {
-   // Get selected item
-   char *item = (char *)directories_and_files->get_item(directories_and_files->get_selected_first());
+   // Item name
+   char *item = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
+
+   // Copy listbox item
+   item = get_item_name(item, directories_and_files->get_selected_first());
 
    if(remove(item))  // If file and it can be deleted
    {
@@ -707,6 +782,8 @@ void delete_item(menuitem *, void *)
 
    // Refresh directories
    directory_view(NULL, NULL);
+
+   free(item);
 }
 
 // Show hidden files function

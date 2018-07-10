@@ -5,13 +5,13 @@
 
 #include <direct.h>
 #include <dos.h>
-#include <fdostui.hpp>
-#include <mouse.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <fdostui.hpp>
+#include <mouse.h>
 #include <kitten.h>
 #include "config.h"
 
@@ -25,7 +25,7 @@ int selected_item = 0;
 // Show hidden file variable
 bool show_hidden_file = false;
 // Clipboard item name string pointer variable
-char *clipboard_item_name = (char *)calloc(256, 1);
+char *clipboard_item_name = (char *)calloc(NAME_MAX, 1);
 // Clipboard item path string pointer variable
 char *clipboard_item_path = (char *)calloc(MAX_PATH_LENGTH, 1);
 // Clipboard status variable
@@ -69,6 +69,8 @@ void copy_file(char *, char *);
 void directory_view(menuitem *, void *);
 // Upper directory control function
 void upper_directory_control_for_go_menu_item(void);
+// Get item name function
+char *get_item_name(char *);
 // Select directory or file function
 void select_directory_or_file(listbox const *, void *);
 // Change current directory function
