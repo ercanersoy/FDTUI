@@ -27,7 +27,8 @@
 
 7.0:Affichage
 7.1:Rafraichir
-7.2:Afficher les fichiers cach‚s
+7.2:Show Hidden Items
+7.3:Show System Items
 
 8.0:Aller
 8.1:Retour

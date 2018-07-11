@@ -22,8 +22,10 @@
 char *current_directory = (char *)malloc(MAX_PATH_LENGTH + 1);
 // Selected directory or file
 int selected_item = 0;
-// Show hidden file variable
-bool show_hidden_file = false;
+// Show hidden item variable
+bool show_hidden_item = false;
+// Show system item variable
+bool show_system_item = false;
 // Clipboard item name string pointer variable
 char *clipboard_item_name = (char *)calloc(NAME_MAX, 1);
 // Clipboard item path string pointer variable
@@ -117,8 +119,10 @@ void paste_item(menuitem *, void *);
 void rename_item(menuitem *, void *);
 // Delete Function
 void delete_item(menuitem *, void *);
-// Show hidden files function
-void show_hidden_files(menuitem *, void *);
+// Show hidden items function
+void show_hidden_items(menuitem *, void *);
+// Show system items function
+void show_system_items(menuitem *, void *);
 
 // Bar Menus
 
@@ -182,7 +186,8 @@ struct menuitem edit_menu[] =
 struct menuitem view_menu[] =
 {
    {reinterpret_cast<unsigned char const*>(kittengets(7, 1, "Refresh")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, directory_view, 0},  // Refresh
-   {reinterpret_cast<unsigned char const*>(kittengets(7, 2, "Show Hidden Files")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_hidden_files, 0},  // Show hidden files
+   {reinterpret_cast<unsigned char const*>(kittengets(7, 2, "Show Hidden Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_hidden_items, 0},  // Show hidden files
+   {reinterpret_cast<unsigned char const*>(kittengets(7, 3, "Show System Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_system_items, 0},  // Show hidden files
    {0}
 };
 

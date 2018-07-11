@@ -80,7 +80,12 @@ void directory_view(menuitem *, void *)
          // Continue while loop
          continue;
       }
-      else if(element->d_attr == _A_HIDDEN && !show_hidden_file)  // If showing hidden files condition is false
+      else if((element->d_attr & _A_HIDDEN )&& !show_hidden_item)  // If showing hidden items condition is false
+      {
+         // Continue while loop
+         continue;
+      }
+      else if((element->d_attr & _A_SYSTEM )&& !show_system_item)  // If showing system items condition is false
       {
          // Continue while loop
          continue;
@@ -787,15 +792,31 @@ void delete_item(menuitem *, void *)
 }
 
 // Show hidden files function
-void show_hidden_files(menuitem *menu_item, void *)
+void show_hidden_items(menuitem *menu_item, void *)
 {
    if(menu_item->m_flags & MENUITEM_VALUE)  // If checked
    {
-      show_hidden_file = true;
+      show_hidden_item = true;
    }
-   else
+   else  // If not checked
    {
-      show_hidden_file = false;
+      show_hidden_item = false;
+   }
+   
+   // Refresh directories
+   directory_view(NULL, NULL);  
+}
+
+// Show hidden files function
+void show_system_items(menuitem *menu_item, void *)
+{
+   if(menu_item->m_flags & MENUITEM_VALUE)  // If checked
+   {
+      show_system_item = true;
+   }
+   else  // If not checked
+   {
+      show_system_item = false;
    }
    
    // Refresh directories
