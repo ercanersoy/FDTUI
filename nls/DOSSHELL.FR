@@ -27,8 +27,10 @@
 
 7.0:Affichage
 7.1:Rafraichir
-7.2:Show Hidden Items
-7.3:Show System Items
+7.2:Show Archive Items
+7.3:Show Hidden Items
+7.4:Show Read Only Items
+7.5:Show System Items
 
 8.0:Aller
 8.1:Retour
@@ -41,5 +43,7 @@
 10.0:Reanme
 10.1:New Name:
 
-11.0:Ex‚cuter
-11.1:Commande … ex‚cuter :
+11.0:Item Attributes:
+
+12.0:Ex‚cuter
+12.1:Commande … ex‚cuter :

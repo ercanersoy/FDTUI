@@ -22,8 +22,12 @@
 char *current_directory = (char *)malloc(MAX_PATH_LENGTH + 1);
 // Selected directory or file
 int selected_item = 0;
+// Show archive item variable
+bool show_archive_item = false;
 // Show hidden item variable
 bool show_hidden_item = false;
+// Show read only item variable
+bool show_read_only_item = false;
 // Show system item variable
 bool show_system_item = false;
 // Clipboard item name string pointer variable
@@ -36,6 +40,8 @@ unsigned char clipboard_status = 0;  // 0 for nothing, 1 for copying, 2 for cutt
 char history_path_names[HISTORY_LENGTH][MAX_PATH_LENGTH + 1];
 // History index variable
 int history_index = 0;
+// Item attributes variable
+unsigned char *item_attributes = (unsigned char *)"----";
 // Open Kitten library
 int kitten_status = kittenopen("DOSSHELL");
 
@@ -49,7 +55,7 @@ menubar *bar_menus = new menubar(0, 0, _video_cols, 1);
 // File Manager
 
 // Window of file manager pointer variable
-window *file_manager = new window(5, 6, 68, 18);
+window *file_manager = new window(5, 6, 68, 19);
 // Menubar of file manager pointer variable
 menubar *file_manager_menus = new menubar(0, 0, _video_cols, 1);
 // Current directory label of file manager pointer variable
@@ -58,6 +64,10 @@ label *current_directory_label = new label(1, 2, 65, 1);
 listbox *drivers = new listbox(0, 3, 66, 5);
 // Current directories and files of file manager pointer variable
 listbox *directories_and_files = new listbox(0, 8, 66, 8);
+// "Item Attribute:" message label
+label *item_attributes_label = new label(0, 16, 16, 1);
+// Item attribute label
+label *item_attributes_view = new label(17, 16, 4, 1);
 
 // Function prototypes
 
@@ -73,6 +83,8 @@ void directory_view(menuitem *, void *);
 void upper_directory_control_for_go_menu_item(void);
 // Get item name function
 char *get_item_name(char *);
+// Item attribute viewing function
+void item_attributes_viewing(void);
 // Select directory or file function
 void select_directory_or_file(listbox const *, void *);
 // Change current directory function
@@ -119,8 +131,12 @@ void paste_item(menuitem *, void *);
 void rename_item(menuitem *, void *);
 // Delete Function
 void delete_item(menuitem *, void *);
+// Show archive items function
+void show_archive_items(menuitem *, void *);
 // Show hidden items function
 void show_hidden_items(menuitem *, void *);
+// Show read only items function
+void show_read_only_items(menuitem *, void *);
 // Show system items function
 void show_system_items(menuitem *, void *);
 
@@ -186,8 +202,10 @@ struct menuitem edit_menu[] =
 struct menuitem view_menu[] =
 {
    {reinterpret_cast<unsigned char const*>(kittengets(7, 1, "Refresh")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, directory_view, 0},  // Refresh
-   {reinterpret_cast<unsigned char const*>(kittengets(7, 2, "Show Hidden Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_hidden_items, 0},  // Show hidden files
-   {reinterpret_cast<unsigned char const*>(kittengets(7, 3, "Show System Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_system_items, 0},  // Show hidden files
+   {reinterpret_cast<unsigned char const*>(kittengets(7, 2, "Show Archive Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_archive_items, 0},  // Show archive files
+   {reinterpret_cast<unsigned char const*>(kittengets(7, 3, "Show Hidden Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_hidden_items, 0},  // Show hidden files
+   {reinterpret_cast<unsigned char const*>(kittengets(7, 4, "Show Readonly Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_read_only_items, 0},  // Show read only files
+   {reinterpret_cast<unsigned char const*>(kittengets(7, 5, "Show System Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_system_items, 0},  // Show system files
    {0}
 };
 

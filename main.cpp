@@ -52,19 +52,19 @@ void directory_view(menuitem *, void *)
    struct dirent *element;
    // Directory pointer variable
    DIR *directory = opendir(getcwd(current_directory, PATH_MAX + 1));
-   // Element status
+   // Element status variable
    struct stat element_status;
-   // Listbox item of element
+   // Listbox item of element  variable
    char listbox_item_of_element[MAX_PATH_LENGTH + 8] = { 0 };
-   // Current drive letter
+   // Current drive letter  variable
    unsigned int current_drive_letter;
-   // Drive letter count information
+   // Drive letter count information  variable
    unsigned int drive_letter_count;
-   // Drive letter information
+   // Drive letter information  variable
    unsigned int drive_letter;
-   // Previous drive letter information
+   // Previous drive letter information  variable
    unsigned int previous_drive_letter = 0;
-   // Drive
+   // Drive  variable
    unsigned char *drive = (unsigned char *)malloc(3);
 
    // Clear the directories and files listbox
@@ -80,12 +80,26 @@ void directory_view(menuitem *, void *)
          // Continue while loop
          continue;
       }
-      else if((element->d_attr & _A_HIDDEN )&& !show_hidden_item)  // If showing hidden items condition is false
+
+      if((element->d_attr & _A_ARCH) && !show_archive_item)  // If archive item not showing condition is true
       {
          // Continue while loop
          continue;
       }
-      else if((element->d_attr & _A_SYSTEM )&& !show_system_item)  // If showing system items condition is false
+
+      if((element->d_attr & _A_HIDDEN) && !show_hidden_item)  // If hidden item not showing condition is true
+      {
+         // Continue while loop
+         continue;
+      }
+
+      if((element->d_attr & _A_RDONLY) && !show_read_only_item)  // If read only item not showing condition is true
+      {
+         // Continue while loop
+         continue;
+      }
+
+      if((element->d_attr & _A_SYSTEM) && !show_system_item)  // If system item not showing condition is true
       {
          // Continue while loop
          continue;
@@ -179,7 +193,7 @@ void upper_directory_control_for_go_menu_item(void)
 // Get item name function
 char *get_item_name(char* name, int selected)
 {
-   int i;  // Counter
+   int i;  // Counter variable
 
    // Copy selected listbox item
    name = strcpy(name, (char *)directories_and_files->get_item(selected));
@@ -201,6 +215,67 @@ char *get_item_name(char* name, int selected)
    return name;
 }
 
+void item_attributes_viewing(void)
+{
+   // Item name variable
+   char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
+   // Selected item attributes variable
+   unsigned int selected_item_attributes;
+
+   // Get selected item attributes
+   _dos_getfileattr(reinterpret_cast<char const*>(get_item_name(item_name, directories_and_files->get_selected_first())), &selected_item_attributes);
+
+   if(selected_item_attributes & _A_ARCH)  // If item is archive item
+   {
+      // Set item attributes as archive
+      item_attributes[0] = 'A';
+   }
+   else  // If item isn't archive item
+   {
+      // Set item attributes as not archive
+      item_attributes[0] = '-';
+   }
+
+   if(selected_item_attributes & _A_HIDDEN)  // If item is hidden item
+   {
+      // Set item attributes as hidden
+      item_attributes[1] = 'H';
+   }
+   else  // If item isn't hidden item
+   {
+      // Set item attributes as not hidden
+      item_attributes[1] = '-';
+   }
+
+   if(selected_item_attributes & _A_RDONLY)  // If item is read only item
+   {
+      // Set item attributes as read only
+      item_attributes[2] = 'R';
+   }
+   else  // If item isn't read only item
+   {
+      // Set item attributes as not read only
+      item_attributes[2] = '-';
+   }
+
+   if(selected_item_attributes & _A_SYSTEM)  // If item is system item
+   {
+      // Set item attributes as system
+      item_attributes[3] = 'S';
+   }
+   else  // If item isn't system item
+   {
+      // Set item attributes as not system
+      item_attributes[3] = '-';
+   }
+
+   // Set item attributes label text
+   item_attributes_view->set_text(item_attributes);
+
+   // Free item name variable
+   free(item_name);
+}
+
 // Select directory or file function
 void select_directory_or_file(listbox const *, void *)
 {
@@ -216,18 +291,23 @@ void select_directory_or_file(listbox const *, void *)
       return;
    }
 
+   // Item attribute viewing function
+   item_attributes_viewing();
+
    // Set selected item
    selected_item = directories_and_files->get_selected_first();
+
+   wm_draw(NULL);
 }
 
 // Change current drive function
 void change_current_drive(listbox const *, void *)
 {
-   // Drive
+   // Drive variable
    char *drive = (char *)malloc(4);
-   // Drive letter information
+   // Drive letter information variable
    unsigned int drive_letter_information = 0;
-   // Drive letter count information
+   // Drive letter count information variable
    unsigned int drive_letter_count = 0;
 
    // Get item from drivers listbox
@@ -260,9 +340,9 @@ void change_current_drive(listbox const *, void *)
 // Change current directory function
 void change_current_directory(char *directory, unsigned char status)
 {
-   // Previous drive letter
+   // Previous drive letter variable
    char previous_drive_letter;
-   // Drive letter count
+   // Drive letter count variable
    unsigned int drive_letter_count = 0;
 
    if(status == 0)  // If status is adding new history item
@@ -565,7 +645,7 @@ void show_file_manager(menuitem *, void *)
 void show_run(menuitem *, void *)
 {
    // Run command
-   command_run((char *)popup_input(reinterpret_cast<unsigned char const*>(kittengets(11, 0, "Run")), reinterpret_cast<unsigned char const*>(kittengets(11, 1, "Command to Run:")), reinterpret_cast<unsigned char const*>("")));
+   command_run((char *)popup_input(reinterpret_cast<unsigned char const*>(kittengets(12, 0, "Run")), reinterpret_cast<unsigned char const*>(kittengets(12, 1, "Command to Run:")), reinterpret_cast<unsigned char const*>("")));
 }
 
 // Run application EDIT function
@@ -625,7 +705,7 @@ void poweroff(menuitem *, void *)
 // Item open function
 void item_open(menuitem *, void *)
 {
-   // Item name
+   // Item name variable
    char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
    // Status variable
    struct stat status;
@@ -670,7 +750,7 @@ void file_manager_exit(menuitem *, void *)
 // Cut function
 void cut_item(menuitem *, void *)
 {
-   // Item name
+   // Item name variable
    char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
 
    // Copy listbox item
@@ -691,7 +771,7 @@ void cut_item(menuitem *, void *)
 // Copy function
 void copy_item(menuitem *, void *)
 {
-   // Item name
+   // Item name variable
    char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
 
    // Copy listbox item
@@ -756,7 +836,7 @@ void paste_item(menuitem *, void *)
 // Rename function
 void rename_item(menuitem *, void *)
 {
-   // Item name
+   // Item name variable
    char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
 
    // Copy listbox item
@@ -773,7 +853,7 @@ void rename_item(menuitem *, void *)
 // Delete Function
 void delete_item(menuitem *, void *)
 {
-   // Item name
+   // Item name variable
    char *item = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
 
    // Copy listbox item
@@ -791,15 +871,35 @@ void delete_item(menuitem *, void *)
    free(item);
 }
 
-// Show hidden files function
+// Show archive items function
+void show_archive_items(menuitem *menu_item, void *)
+{
+   if(menu_item->m_flags & MENUITEM_VALUE)  // If checked
+   {
+      // Set show archive item as true
+      show_archive_item = true;
+   }
+   else  // If not checked
+   {
+      // Set show archive item as false
+      show_archive_item = false;
+   }
+   
+   // Refresh directories
+   directory_view(NULL, NULL);  
+}
+
+// Show hidden items function
 void show_hidden_items(menuitem *menu_item, void *)
 {
    if(menu_item->m_flags & MENUITEM_VALUE)  // If checked
    {
+      // Set show hidden item as true
       show_hidden_item = true;
    }
    else  // If not checked
    {
+      // Set show hidden item as false
       show_hidden_item = false;
    }
    
@@ -807,15 +907,35 @@ void show_hidden_items(menuitem *menu_item, void *)
    directory_view(NULL, NULL);  
 }
 
-// Show hidden files function
+// Show read only items function
+void show_read_only_items(menuitem *menu_item, void *)
+{
+   if(menu_item->m_flags & MENUITEM_VALUE)  // If checked
+   {
+      // Set show read only item as true
+      show_read_only_item = true;
+   }
+   else  // If not checked
+   {
+      // Set show read only item as false
+      show_read_only_item = false;
+   }
+   
+   // Refresh directories
+   directory_view(NULL, NULL);  
+}
+
+// Show system items function
 void show_system_items(menuitem *menu_item, void *)
 {
    if(menu_item->m_flags & MENUITEM_VALUE)  // If checked
    {
+      // Set show system item as true
       show_system_item = true;
    }
    else  // If not checked
    {
+      // Set show system item as false
       show_system_item = false;
    }
    
@@ -823,8 +943,7 @@ void show_system_items(menuitem *menu_item, void *)
    directory_view(NULL, NULL);  
 }
 
-// Main Function
-
+// Main function
 int main(void)
 {
    // Initializtion window and get error information
@@ -871,6 +990,9 @@ int main(void)
    // Register file manager window
    wm_register_window(file_manager);
 
+   // Set menu of file manager
+   file_manager_menus->set_menu(menus_of_file_manager);
+
    // Set current directory label text
    current_directory_label->set_text((unsigned char *)current_directory);
 
@@ -881,8 +1003,10 @@ int main(void)
    directories_and_files->set_signal_selected(select_directory_or_file);
    directories_and_files->set_emit_selected_signal_always(true);
 
-   // Set menu of file manager
-   file_manager_menus->set_menu(menus_of_file_manager);
+   // Set "Item Attribute:" message label text
+   item_attributes_label->set_text((unsigned char *)kittengets(11, 0, "Item Attributes:"));
+
+   item_attributes_viewing();
 
    // Set file manager window
    file_manager->set_attributes(window::TITLE | window::BORDER);
@@ -891,6 +1015,8 @@ int main(void)
    file_manager->add(current_directory_label);
    file_manager->add(drivers);
    file_manager->add(directories_and_files);
+   file_manager->add(item_attributes_label);
+   file_manager->add(item_attributes_view);
    file_manager->set_hidden();
 
    // Drawing

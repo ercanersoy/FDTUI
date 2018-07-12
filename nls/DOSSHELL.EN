@@ -27,8 +27,10 @@
 
 7.0:View
 7.1:Refresh
-7.2:Show Hidden Items
-7.3:Show System Items
+7.2:Show Archive Items
+7.3:Show Hidden Items
+7.4:Show Read Only Items
+7.5:Show System Items
 
 8.0:Go
 8.1:Back
@@ -41,5 +43,7 @@
 10.0:Rename
 10.1:New Name:
 
-11.0:Run
-11.1:Command to Run:
+11.0:Item Attributes:
+
+12.0:Run
+12.1:Command to Run:

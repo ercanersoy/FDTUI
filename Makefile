@@ -15,4 +15,3 @@ main.obj: main.cpp
 
 clean-obj: .SYMBOLIC
 	@if exist main.obj del main.obj
-	@if exist 3rdparty\kitten\kitten.obj del 3rdparty\kitten\kitten.obj
