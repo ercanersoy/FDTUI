@@ -1,3 +1,5 @@
+# French strings written by Atnode.
+
 0.0:Impossible d'initialiser le sous-systäme FDOSTUI
 
 1.0:Applications internes
