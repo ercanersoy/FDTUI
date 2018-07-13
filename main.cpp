@@ -53,11 +53,11 @@ void directory_view(menuitem *, void *)
    // Element pointer variable
    struct dirent *element;
    // Directory pointer variable
-   DIR *directory = opendir(getcwd(current_directory, PATH_MAX + 1));
+   DIR *directory = opendir(getcwd(current_directory, MAX_NAME_LENGTH + 1));
    // Element status variable
    struct stat element_status;
    // Listbox item of element  variable
-   char listbox_item_of_element[MAX_PATH_LENGTH + 8] = { 0 };
+   char listbox_item_of_element[MAX_NAME_LENGTH + 8] = { 0 };
    // Current drive letter  variable
    unsigned int current_drive_letter;
    // Drive letter count information  variable
@@ -202,14 +202,14 @@ char *get_item_name(char* item_name, int selected)
    item_name = strcpy(item_name, (char *)directories_and_files->get_item(selected));
 
    // Shift listbox item for item name
-   for(i = 0; i < MAX_PATH_LENGTH; i++)
+   for(i = 0; i < MAX_NAME_LENGTH; i++)
    {
       // Shifting
       item_name[i] = item_name[i + 7];
    }
 
    // Clear last characters
-   for(i = MAX_PATH_LENGTH - 1; i < MAX_PATH_LENGTH + 8; i++)
+   for(i = MAX_NAME_LENGTH - 1; i < MAX_NAME_LENGTH + 8; i++)
    {
       // Clearing
       item_name[i] = '\0';
@@ -223,7 +223,7 @@ char *get_item_name(char* item_name, int selected)
 void item_attributes_viewing(void)
 {
    // Item name variable
-   char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
+   char *item_name = (char *)calloc(MAX_NAME_LENGTH + 8, 1);
    // Selected item attributes variable
    unsigned int selected_item_attributes;
 
@@ -388,7 +388,7 @@ void change_current_directory(char *directory, unsigned char status)
          // History index increase
          history_index++;
          // History save
-         strcpy(history_path_names[history_index], getcwd(current_directory, PATH_MAX + 1));
+         strcpy(history_path_names[history_index], getcwd(current_directory, MAX_PATH_LENGTH + 1));
 
          for(int i = history_index + 1; i < HISTORY_LENGTH - 1; i++)  // History path names clear loop
          {
@@ -405,7 +405,7 @@ void change_current_directory(char *directory, unsigned char status)
          }
 
          // History save
-         strcpy(history_path_names[history_index], getcwd(current_directory, PATH_MAX + 1));
+         strcpy(history_path_names[history_index], getcwd(current_directory, MAX_PATH_LENGTH + 1));
       }
    }
    else if(status == 1)  // If status is changing previous history item
@@ -506,8 +506,8 @@ void copy_directory(char *source_directory, char *target_directory)
    DIR *element;
    // Source item properties string pointer variable
    struct dirent *source_item_properties;
-   // Source tem name string pointer variable
-   char *source_item_name = (char *)malloc(256);
+   // Source item name string pointer variable
+   char *source_item_name = (char *)malloc(MAX_NAME_LENGTH + 1);
    // Item path string pointer variable
    char *source_item_path = (char *)malloc(MAX_PATH_LENGTH + 1);
    // Target item path string pointer variable
@@ -584,9 +584,9 @@ char remove_item(char *removing_item_path)
    // Item properties pointer variable
    struct dirent *item_properties;
    // Item name string pointer variable
-   char *item_name = (char *)malloc(256);
+   char *item_name = (char *)malloc(MAX_NAME_LENGTH + 1);
    // Item path string pointer variable
-   char *item_path = (char *)malloc(260);
+   char *item_path = (char *)malloc(MAX_PATH_LENGTH + 1);
 
    // Open directory
    element = opendir(removing_item_path);
@@ -738,7 +738,7 @@ void poweroff(menuitem *, void *)
 void item_open(menuitem *, void *)
 {
    // Item name variable
-   char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
+   char *item_name = (char *)calloc(MAX_NAME_LENGTH + 8, 1);
    // Status variable
    struct stat status;
 
@@ -869,7 +869,7 @@ void paste_item(menuitem *, void *)
 void rename_item(menuitem *, void *)
 {
    // Item name variable
-   char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
+   char *item_name = (char *)calloc(MAX_NAME_LENGTH + 8, 1);
 
    // Copy listbox item
    item_name = get_item_name(item_name, directories_and_files->get_selected_first());
@@ -888,7 +888,7 @@ void change_archive_attribute(menuitem *menu_item, void *)
    // Attribute variable
    unsigned int attribute;
    // Item name variable
-   char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
+   char *item_name = (char *)calloc(MAX_NAME_LENGTH + 8, 1);
 
    // Get item name
    item_name = get_item_name(item_name, directories_and_files->get_selected_first());
@@ -919,7 +919,7 @@ void change_hidden_attribute(menuitem *menu_item, void *)
    // Attribute variable
    unsigned int attribute;
    // Item name variable
-   char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
+   char *item_name = (char *)calloc(MAX_NAME_LENGTH + 8, 1);
 
    // Get item name
    item_name = get_item_name(item_name, directories_and_files->get_selected_first());
@@ -950,7 +950,7 @@ void change_read_only_attribute(menuitem *menu_item, void *)
    // Attribute variable
    unsigned int attribute;
    // Item name variable
-   char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
+   char *item_name = (char *)calloc(MAX_NAME_LENGTH + 8, 1);
 
    // Get item name
    item_name = get_item_name(item_name, directories_and_files->get_selected_first());
@@ -981,7 +981,7 @@ void change_system_attribute(menuitem *menu_item, void *)
    // Attribute variable
    unsigned int attribute;
    // Item name variable
-   char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
+   char *item_name = (char *)calloc(MAX_NAME_LENGTH + 8, 1);
 
    // Get item name
    item_name = get_item_name(item_name, directories_and_files->get_selected_first());
@@ -1142,9 +1142,9 @@ int main(int argc, char *argv[])
    // Current Directory
 
    // Current directory variable allocate
-   current_directory = (char *) malloc(PATH_MAX + 1);
+   current_directory = (char *) malloc(MAX_PATH_LENGTH + 1);
    // Get current directory
-   getcwd(current_directory, PATH_MAX + 1);
+   getcwd(current_directory, MAX_PATH_LENGTH + 1);
 
    // Upper directory control
    upper_directory_control_for_go_menu_item();
