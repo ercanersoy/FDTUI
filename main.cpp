@@ -5,6 +5,7 @@
 
 #include "main.h"
 
+
 // Common Functions
 
 // Exit window manager function
@@ -27,6 +28,7 @@ void command_run(char const* command)
    // Mouse release on memory
    mouse_deinit();
 
+   // Clear screen
    system("CLS");
 
    // Run command
@@ -172,6 +174,7 @@ void directory_view(menuitem *, void *)
    // Set current drive letter
    _dos_setdrive(current_drive_letter, &drive_letter_count);
 
+   // Draw window manager
    wm_draw(NULL);
 }
 
@@ -191,30 +194,32 @@ void upper_directory_control_for_go_menu_item(void)
 }
 
 // Get item name function
-char *get_item_name(char* name, int selected)
+char *get_item_name(char* item_name, int selected)
 {
    int i;  // Counter variable
 
    // Copy selected listbox item
-   name = strcpy(name, (char *)directories_and_files->get_item(selected));
+   item_name = strcpy(item_name, (char *)directories_and_files->get_item(selected));
 
    // Shift listbox item for item name
    for(i = 0; i < MAX_PATH_LENGTH; i++)
    {
       // Shifting
-      name[i] = name[i + 7];
+      item_name[i] = item_name[i + 7];
    }
 
    // Clear last characters
    for(i = MAX_PATH_LENGTH - 1; i < MAX_PATH_LENGTH + 8; i++)
    {
       // Clearing
-      name[i] = '\0';
+      item_name[i] = '\0';
    }
 
-   return name;
+   // Return item name
+   return item_name;
 }
 
+// Item attributes viewing function
 void item_attributes_viewing(void)
 {
    // Item name variable
@@ -321,6 +326,7 @@ void select_directory_or_file(listbox const *, void *)
    // Set selected item
    selected_item = directories_and_files->get_selected_first();
 
+   // Draw window manager
    wm_draw(NULL);
 }
 
@@ -647,6 +653,7 @@ void change_to_upper_directory(menuitem *, void *)
    change_current_directory("..", 0);
 }
 
+
 // Bar Menu Functions
 
 // Show file manager function
@@ -724,7 +731,8 @@ void poweroff(menuitem *, void *)
    system("FDAPM POWEROFF");
 }
 
-// Menu Function Menus
+
+// File Manager Menu Functions
 
 // Item open function
 void item_open(menuitem *, void *)
@@ -1091,9 +1099,13 @@ void show_system_items(menuitem *menu_item, void *)
    directory_view(NULL, NULL);  
 }
 
-// Main function
+
+// Main Function
+
 int main(void)
 {
+   // Initalization
+
    // Initializtion window and get error information
    wm_error error= wm_init();
 
@@ -1108,6 +1120,7 @@ int main(void)
       return error;
    }
 
+
    // Current Directory
 
    // Current directory variable allocate
@@ -1117,6 +1130,7 @@ int main(void)
 
    // Upper directory control
    upper_directory_control_for_go_menu_item();
+
 
    // Bar
 
@@ -1129,6 +1143,7 @@ int main(void)
    // Set bar window
    bar->set_attributes(window::EMPTY);
    bar->add(bar_menus);
+
 
    // File Manager
 
@@ -1167,13 +1182,13 @@ int main(void)
    file_manager->add(item_attributes_view);
    file_manager->set_hidden();
 
-   // Drawing
+   // Draw bar
    wm_draw_widget(bar);
 
-   // Run Window Manager
+   // Run window manager
    wm_run();
 
-   // Exit Window Manager
+   // Exit window manager
    exit_window_manager(NULL, NULL);
 
    if(kitten_status != -1)  // If Kitten library is open

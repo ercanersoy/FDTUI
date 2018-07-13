@@ -45,12 +45,14 @@ unsigned char *item_attributes = (unsigned char *)"----";
 // Open Kitten library
 int kitten_status = kittenopen("DOSSHELL");
 
+
 // Bar
 
 // Window of bar pointer variable
 window *bar = new window(0, 0, _video_cols, 3);
 // Menubar of bar pointer variable
 menubar *bar_menus = new menubar(0, 0, _video_cols, 1);
+
 
 // File Manager
 
@@ -68,6 +70,7 @@ listbox *directories_and_files = new listbox(0, 8, 66, 8);
 label *item_attributes_label = new label(0, 16, 16, 1);
 // Item attribute label
 label *item_attributes_view = new label(17, 16, 4, 1);
+
 
 // Function prototypes
 
@@ -147,6 +150,7 @@ void show_hidden_items(menuitem *, void *);
 void show_read_only_items(menuitem *, void *);
 // Show system items function
 void show_system_items(menuitem *, void *);
+
 
 // Bar Menus
 
