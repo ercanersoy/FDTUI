@@ -1102,9 +1102,26 @@ void show_system_items(menuitem *menu_item, void *)
 
 // Main Function
 
-int main(void)
+int main(int argc, char *argv[])
 {
    // Initalization
+
+   if(argc == 2)  // If argument count is 2.
+   {
+      if(argv[1][0] == '/' && argv[1][1] == '?')  // If help argument have used.
+      {
+         // Help message.
+         puts("FreeDOS TUI Shell");
+         puts("");
+         puts(kittengets(0, 1, "  FreeDOS TUI Shell is a TUI Shell for FreeDOS."));
+         puts("");
+         puts(kittengets(0, 2, "  Copyright (C) 2018 Ercan Ersoy"));
+         puts(kittengets(0, 3, "  FreeDOS TUI Shell licensed under GNU GPL version 3."));
+
+         // Exit FreeDOS TUI Shell
+         return EXIT_SUCCESS;
+      }
+   }
 
    // Initializtion window and get error information
    wm_error error= wm_init();
@@ -1117,6 +1134,7 @@ int main(void)
       // CLose Kitten Library
       kittenclose();
 
+      // Exit FreeDOS TUI Shell with error
       return error;
    }
 
