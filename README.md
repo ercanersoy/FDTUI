@@ -27,3 +27,7 @@ This software should be compiled with Open Watcom.
 
 If you want to contribute to this project, you can make a pull request to the
 FreeDOS TUI Shell repository.
+
+# Changelog
+
+**0.1 (07-13-2018):** Create first version.

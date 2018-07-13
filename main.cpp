@@ -1111,7 +1111,7 @@ int main(int argc, char *argv[])
       if(argv[1][0] == '/' && argv[1][1] == '?')  // If help argument have used.
       {
          // Help message.
-         puts("FreeDOS TUI Shell");
+         puts("FreeDOS TUI Shell 0.1");
          puts("");
          puts(kittengets(0, 1, "  FreeDOS TUI Shell is a TUI Shell for FreeDOS."));
          puts("");
