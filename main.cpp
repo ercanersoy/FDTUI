@@ -229,44 +229,68 @@ void item_attributes_viewing(void)
    {
       // Set item attributes as archive
       item_attributes[0] = 'A';
+
+      // Set "Archive" menu item
+      edit_menu[5].m_flags |= MENUITEM_VALUE;
    }
    else  // If item isn't archive item
    {
       // Set item attributes as not archive
       item_attributes[0] = '-';
+
+      // Clear "Archive" menu item
+      edit_menu[5].m_flags &= edit_menu[5].m_flags ^ MENUITEM_VALUE;
    }
 
    if(selected_item_attributes & _A_HIDDEN)  // If item is hidden item
    {
       // Set item attributes as hidden
       item_attributes[1] = 'H';
+
+      // Set "Hidden" menu item
+      edit_menu[6].m_flags |= MENUITEM_VALUE;
    }
    else  // If item isn't hidden item
    {
       // Set item attributes as not hidden
       item_attributes[1] = '-';
+
+      // Clear "Hidden" menu item
+      edit_menu[6].m_flags &= edit_menu[6].m_flags ^ MENUITEM_VALUE;
    }
 
    if(selected_item_attributes & _A_RDONLY)  // If item is read only item
    {
       // Set item attributes as read only
       item_attributes[2] = 'R';
+
+      // Set "Read Only" menu item
+      edit_menu[7].m_flags |= MENUITEM_VALUE;
    }
    else  // If item isn't read only item
    {
       // Set item attributes as not read only
       item_attributes[2] = '-';
+
+      // Clear "Read Only" menu item
+      edit_menu[7].m_flags &= edit_menu[7].m_flags ^ MENUITEM_VALUE;
    }
 
    if(selected_item_attributes & _A_SYSTEM)  // If item is system item
    {
       // Set item attributes as system
       item_attributes[3] = 'S';
+
+      // Set "System" menu item
+      edit_menu[8].m_flags |= MENUITEM_VALUE;
    }
    else  // If item isn't system item
    {
       // Set item attributes as not system
       item_attributes[3] = '-';
+
+      // Clear "System" menu item
+      edit_menu[8].m_flags &= edit_menu[8].m_flags ^ MENUITEM_VALUE;
    }
 
    // Set item attributes label text
@@ -848,6 +872,130 @@ void rename_item(menuitem *, void *)
    directory_view(NULL, NULL);
 
    free(item_name);
+}
+
+// Change archive attribute function
+void change_archive_attribute(menuitem *menu_item, void *)
+{
+   // Attribute variable
+   unsigned int attribute;
+   // Item name variable
+   char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
+
+   // Get item name
+   item_name = get_item_name(item_name, directories_and_files->get_selected_first());
+
+   // Get item attribute
+   _dos_getfileattr(item_name, &attribute);
+
+   if(menu_item->m_flags & MENUITEM_VALUE)  // If checked
+   {
+      // Add archive file attribute
+      _dos_setfileattr(item_name, attribute | _A_ARCH);
+   }
+   else  // If not checked
+   {
+      // Remove archive file attribute
+      _dos_setfileattr(item_name, !(attribute ^ _A_ARCH));
+   }
+
+   free(item_name);
+
+   // Refresh directories
+   directory_view(NULL, NULL);
+}
+
+// Change hidden attribute function
+void change_hidden_attribute(menuitem *menu_item, void *)
+{
+   // Attribute variable
+   unsigned int attribute;
+   // Item name variable
+   char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
+
+   // Get item name
+   item_name = get_item_name(item_name, directories_and_files->get_selected_first());
+
+   // Get item attribute
+   _dos_getfileattr(item_name, &attribute);
+
+   if(menu_item->m_flags & MENUITEM_VALUE)  // If checked
+   {
+      // Add hidden file attribute
+      _dos_setfileattr(item_name, attribute | _A_HIDDEN);
+   }
+   else  // If not checked
+   {
+      // Remove hidden file attribute
+      _dos_setfileattr(item_name, !(attribute ^ _A_HIDDEN));
+   }
+
+   free(item_name);
+
+   // Refresh directories
+   directory_view(NULL, NULL);
+}
+
+// Change read only attribute function
+void change_read_only_attribute(menuitem *menu_item, void *)
+{
+   // Attribute variable
+   unsigned int attribute;
+   // Item name variable
+   char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
+
+   // Get item name
+   item_name = get_item_name(item_name, directories_and_files->get_selected_first());
+
+   // Get item attribute
+   _dos_getfileattr(item_name, &attribute);
+
+   if(menu_item->m_flags & MENUITEM_VALUE)  // If checked
+   {
+      // Add read only file attribute
+      _dos_setfileattr(item_name, attribute | _A_RDONLY);
+   }
+   else  // If not checked
+   {
+      // Remove read only file attribute
+      _dos_setfileattr(item_name, !(attribute ^ _A_RDONLY));
+   }
+
+   free(item_name);
+
+   // Refresh directories
+   directory_view(NULL, NULL);
+}
+
+// Change system attribute function
+void change_system_attribute(menuitem *menu_item, void *)
+{
+   // Attribute variable
+   unsigned int attribute;
+   // Item name variable
+   char *item_name = (char *)calloc(MAX_PATH_LENGTH + 8, 1);
+
+   // Get item name
+   item_name = get_item_name(item_name, directories_and_files->get_selected_first());
+
+   // Get item attribute
+   _dos_getfileattr(item_name, &attribute);
+
+   if(menu_item->m_flags & MENUITEM_VALUE)  // If checked
+   {
+      // Add system file attribute
+      _dos_setfileattr(item_name, attribute | _A_SYSTEM);
+   }
+   else  // If not checked
+   {
+      // Remove system file attribute
+      _dos_setfileattr(item_name, !(attribute ^ _A_SYSTEM));
+   }
+
+   free(item_name);
+
+   // Refresh directories
+   directory_view(NULL, NULL);
 }
 
 // Delete Function

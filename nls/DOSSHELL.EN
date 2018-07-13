@@ -23,7 +23,12 @@
 6.2:Copy
 6.3:Paste
 6.4:Rename
-6.5:Delete
+6.5:Change Attribute
+6.6:Archive
+6.7:Hidden
+6.8:Read Only
+6.9:System
+6.10:Delete
 
 7.0:View
 7.1:Refresh

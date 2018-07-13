@@ -55,7 +55,7 @@ menubar *bar_menus = new menubar(0, 0, _video_cols, 1);
 // File Manager
 
 // Window of file manager pointer variable
-window *file_manager = new window(5, 6, 68, 19);
+window *file_manager = new window(5, 4, 68, 19);
 // Menubar of file manager pointer variable
 menubar *file_manager_menus = new menubar(0, 0, _video_cols, 1);
 // Current directory label of file manager pointer variable
@@ -125,11 +125,19 @@ void file_manager_exit(menuitem *, void *);
 void cut_item(menuitem *, void *);
 // Copy function
 void copy_item(menuitem *, void *);
-// Paste Function
+// Paste function
 void paste_item(menuitem *, void *);
 // Rename item function
 void rename_item(menuitem *, void *);
-// Delete Function
+// Change archive attribute function
+void change_archive_attribute(menuitem *, void *);
+// Change hidden attribute function
+void change_hidden_attribute(menuitem *, void *);
+// Change read only attribute function
+void change_read_only_attribute(menuitem *, void *);
+// Change system attribute function
+void change_system_attribute(menuitem *, void *);
+// Delete function
 void delete_item(menuitem *, void *);
 // Show archive items function
 void show_archive_items(menuitem *, void *);
@@ -194,7 +202,13 @@ struct menuitem edit_menu[] =
    {reinterpret_cast<unsigned char const*>(kittengets(6, 2, "Copy")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, copy_item, 0},  // Copy
    {reinterpret_cast<unsigned char const*>(kittengets(6, 3, "Paste")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, paste_item, 0},  // Paste
    {reinterpret_cast<unsigned char const*>(kittengets(6, 4, "Rename")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, rename_item, 0},  // Reanme
-   {reinterpret_cast<unsigned char const*>(kittengets(6, 5, "Delete")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, delete_item, 0},  // Delete
+   {reinterpret_cast<unsigned char const*>(kittengets(6, 5, "Change Attribute")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SUBMENU | MENUITEM_SEPERATOR, 0, 0},  // Change Attribute
+   {reinterpret_cast<unsigned char const*>(kittengets(6, 6, "Archive")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, change_archive_attribute, 0},  // Archive
+   {reinterpret_cast<unsigned char const*>(kittengets(6, 7, "Hidden")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, change_hidden_attribute, 0},  // Hidden
+   {reinterpret_cast<unsigned char const*>(kittengets(6, 8, "Read Only")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, change_read_only_attribute, 0},  // Read Only
+   {reinterpret_cast<unsigned char const*>(kittengets(6, 9, "System")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, change_system_attribute, 0},  // System
+   {0},
+   {reinterpret_cast<unsigned char const*>(kittengets(6, 10, "Delete")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, delete_item, 0},  // Delete
    {0}
 };
 
