@@ -2,7 +2,9 @@
 
 Text User Interface Shell for FreeDOS
 
-Copyright (C) 2018 Ercan Ersoy
+![Screenshot](screenshot.png)
+
+Copyright (C) 2018 Ercan Ersoy<br>
 This program is licensed under GNU General Public License version 3.
 
 This project includes FDOSTUI library. FDOSTUI has own licenses.
