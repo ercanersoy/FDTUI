@@ -28,9 +28,11 @@ This software should be compiled with Open Watcom.
 
 # Contribute
 
-If you want to contribute to this project, you can make a pull request to the
-FreeDOS TUI Shell repository.
+If you want to contribute to this project, you can report possible bugs and
+make a pull request to the FreeDOS TUI Shell repository.
 
 # Changelog
+
+**0.2 (09-24-2018):** Disabled menuitem foreground color have changed to grey on "FDOSTUI.INI". But, it seems red. (Possible another bug.) Changed default is showing archive items to enabled and showing readonly items to enabled. Fixed popup input of run command not cancelling bug. Add pause to ending to running command. Fixed newline bug of some files.
 
 **0.1 (07-13-2018):** Create first version.

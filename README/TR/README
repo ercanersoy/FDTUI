@@ -3,7 +3,7 @@ FreeDOS TUI Shell
 FreeDOS i‡in metin kullanc arayz kabu§u
 
 Telif Hakk (C) 2018 Ercan Ersoy
-Bu program bir ”zgr yazlmdr. (GNU Genel Kamu Lisans)
+Bu program bir ”zgr yazlmdr. (GNU Genel Kamu Lisans 3. srm)
 
 Bu tasar FDOSTUI ktphanesi i‡erir. FDOSTUI kendi lisanslarna
 sahiptir.
@@ -23,9 +23,16 @@ Derleme:
 
 Katkda Bulunma:
 
-  E§er bu tasarya katkda bulunmak isterseniz, FreeDOS TUI Shell'in
-  deposuna katkda bulunmalsnz.
+  E§er bu tasarya katkda bulunmak isterseniz, olas hatalar bildirebilir ve
+  FreeDOS TUI Shell'in deposuna katkda bulunabilirsiniz.
 
 De§iŸim Gnl§:
+
+  0.2 (24.09.2018): "FDOSTUI.INI"'de devredŸ men se‡ene§i rengi griye
+                    de§iŸtirildi. Ancak, krmz g”rnyor. (BaŸka bir hata
+                    olabilir.) Varsaylan arŸiv ”gelerinin g”rntlenmesi
+                    etkinleŸtirildi ve yalnz okunur ”gelerinin g”rntlenmesi
+                    etkinleŸtirildi. Komut yrtmenin sonunda duraklama
+                    eklendi. Baz dosyalarda satr sonu hatas dzeltildi.
 
   0.1 (13.07.2018): ˜lk srm oluŸturuldu.

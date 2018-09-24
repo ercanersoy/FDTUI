@@ -3,7 +3,7 @@ FreeDOS TUI Shell
 Text User Interface Shell for FreeDOS
 
 Copyright (C) 2018 Ercan Ersoy
-This program is free software. (GNU General Public License)
+This program is free software. (GNU General Public License version 3)
 
 This project includes FDOSTUI library. FDOSTUI has own licenses.
 
@@ -25,5 +25,12 @@ Contribute:
   FreeDOS TUI Shell repository.
 
 Changelog:
+
+  0.2 (09-24-2018): Disabled menuitem foreground color have changed to grey on
+                    "FDOSTUI.INI". But, it seems red. (Possible another
+                    bug.) Changed default is showing archive items to enabled
+                    and showing readonly items to enabled. Fixed popup input
+                    of run command not cancelling bug. Add pause to ending to
+                    running command. Fixed newline bug of some files.
 
   0.1 (07-13-2018): Create first version.
