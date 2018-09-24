@@ -679,8 +679,13 @@ void show_file_manager(menuitem *, void *)
 // Show file manager function
 void show_run(menuitem *, void *)
 {
-   // Run command
-   command_run((char *)popup_input(reinterpret_cast<unsigned char const*>(kittengets(12, 0, "Run")), reinterpret_cast<unsigned char const*>(kittengets(12, 1, "Command to Run:")), reinterpret_cast<unsigned char const*>("")));
+   char* command = (char *)popup_input(reinterpret_cast<unsigned char const*>(kittengets(12, 0, "Run")), reinterpret_cast<unsigned char const*>(kittengets(12, 1, "Command to Run:")), reinterpret_cast<unsigned char const*>(""));
+   if(command)
+   {
+      // Run command
+      command_run(command);
+   }
+   
 }
 
 // Run application EDIT function
