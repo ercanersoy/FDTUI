@@ -1,6 +1,7 @@
 # French strings written by Atnode.
 
 0.0:Impossible d'initialiser le sous-systäme FDOSTUI
+0.1:\r\nPress any key to return to the DOSSHELL.
 
 1.0:Applications internes
 1.1:Gestionnaire de fichiers

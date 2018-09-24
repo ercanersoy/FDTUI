@@ -1,6 +1,7 @@
 # English strings written by Ercan Ersoy.
 
 0.0:Unable to initialze FDOSTUI subsystem.
+0.1:\r\nPress any key to return to the DOSSHELL.
 
 1.0:Internal Applications
 1.1:File Manager

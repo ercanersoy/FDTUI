@@ -34,6 +34,10 @@ void command_run(char const* command)
    // Run command
    system(command);
 
+   // Show end
+   printf(kittengets(0, 1, "\r\nPress any key to return to the DOSSHELL."));
+   getchar();
+
    // Mouse initalization
    mouse_init();
 
