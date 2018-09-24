@@ -23,11 +23,11 @@ char *current_directory = (char *)malloc(MAX_PATH_LENGTH + 1);
 // Selected directory or file
 int selected_item = 0;
 // Show archive item variable
-bool show_archive_item = false;
+bool show_archive_item = true;
 // Show hidden item variable
 bool show_hidden_item = false;
 // Show read only item variable
-bool show_read_only_item = false;
+bool show_read_only_item = true;
 // Show system item variable
 bool show_system_item = false;
 // Clipboard item name string pointer variable
