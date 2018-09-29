@@ -108,16 +108,8 @@ void change_to_upper_directory(menuitem *, void *);
 void show_file_manager(menuitem *, void *);
 // Show run function
 void show_run(menuitem *, void *);
-// Run application EDIT function
-void run_application_edit(menuitem *, void *);
-// Run application EDLIN function
-void run_application_edlin(menuitem *, void *);
 // Quit function
 void quit(menuitem *, void *);
-// Reboot function
-void reboot(menuitem *, void *);
-// Poweroff function
-void poweroff(menuitem *, void *);
 // Item open function
 void item_open(menuitem *, void *);
 // New directory function
@@ -157,33 +149,22 @@ void show_system_items(menuitem *, void *);
 // Internal applications menu of bar
 struct menuitem internal_applications_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(kittengets(1, 1, "File Manager")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, show_file_manager, 0},  // File manager
-   {reinterpret_cast<unsigned char const*>(kittengets(1, 2, "Run")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, show_run, 0},  // Run
-   {0}
-};
-
-// DOS applications menu of bar
-struct menuitem dos_applications_menu[] =
-{
-   {reinterpret_cast<unsigned char const*>("FreeDOS Edit"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, run_application_edit, 0},  // Edit
-   {reinterpret_cast<unsigned char const*>("FreeDOS Edlin"), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, run_application_edlin, 0},  // Edlin
+   {reinterpret_cast<unsigned char const*>(kittengets(2, 1, "File Manager")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, show_file_manager, 0},  // File manager
+   {reinterpret_cast<unsigned char const*>(kittengets(2, 2, "Run")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, show_run, 0},  // Run
    {0}
 };
 
 // Exit menu of bar
 struct menuitem exit_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(kittengets(3, 1, "Quit")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, quit, 0},  // Quit
-   {reinterpret_cast<unsigned char const*>(kittengets(3, 2, "Reboot Computer")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, reboot, 0},  // Reboot Computer
-   {reinterpret_cast<unsigned char const*>(kittengets(3, 3, "Power Off Computer")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, poweroff, 0},  // Power Off Computer
+   {reinterpret_cast<unsigned char const*>(kittengets(3, 1, "Quit")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, quit, 0},  // Quit
    {0}
 };
 
 // Menubar of bar
 struct menuitembar menus_of_bar[] =
 {
-   {reinterpret_cast<unsigned char const*>(kittengets(1, 0, "Internal Applications")), 0, SCAN_NONE, internal_applications_menu},  // Internal Applications
-   {reinterpret_cast<unsigned char const*>(kittengets(2, 0, "DOS Applications")), 0, SCAN_NONE, dos_applications_menu},  // Dos Applications
+   {reinterpret_cast<unsigned char const*>(kittengets(2, 0, "Internal Applications")), 0, SCAN_NONE, internal_applications_menu},  // Internal Applications
    {reinterpret_cast<unsigned char const*>(kittengets(3, 0, "Exit")), 0, SCAN_NONE, exit_menu},  // Exit
    {0}
 };

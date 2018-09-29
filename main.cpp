@@ -35,7 +35,7 @@ void command_run(char const* command)
    system(command);
 
    // Show end
-   printf(kittengets(0, 1, "\r\nPress any key to return to the DOSSHELL."));
+   printf(kittengets(1, 1, "\r\nPress any key to return to the DOSSHELL."));
    getchar();
 
    // Mouse initalization
@@ -679,27 +679,15 @@ void show_file_manager(menuitem *, void *)
 // Show file manager function
 void show_run(menuitem *, void *)
 {
+   // Input of command line
    char* command = (char *)popup_input(reinterpret_cast<unsigned char const*>(kittengets(12, 0, "Run")), reinterpret_cast<unsigned char const*>(kittengets(12, 1, "Command to Run:")), reinterpret_cast<unsigned char const*>(""));
-   if(command)
+
+   if(command)  // If command is not blank
    {
       // Run command
       command_run(command);
    }
    
-}
-
-// Run application EDIT function
-void run_application_edit(menuitem *, void *)
-{
-   // Run EDIT
-   command_run("EDIT");
-}
-
-// Run application EDLIN function
-void run_application_edlin(menuitem *, void *)
-{
-   // Run EDLIN
-   command_run("EDLIN");
 }
 
 // Quit function
@@ -716,28 +704,6 @@ void quit(menuitem *, void *)
 
    // Exit FreeDOS TUI Shell
    exit(EXIT_SUCCESS);
-}
-
-// Reboot function
-void reboot(menuitem *, void *)
-{
-   // Exit window manager
-   exit_window_manager(NULL, NULL);
-
-   // Reboot computer via FDAPM
-   system("FDAPM WARMBOOT");
-   
-   return;
-}
-
-// Poweroff function
-void poweroff(menuitem *, void *)
-{
-   // Exit window manager
-   exit_window_manager(NULL, NULL);
-
-   // Poweroff computer via FDAPM
-   system("FDAPM POWEROFF");
 }
 
 
@@ -883,6 +849,7 @@ void rename_item(menuitem *, void *)
    // Copy listbox item
    item_name = get_item_name(item_name, directories_and_files->get_selected_first());
 
+   // Rename item to specified name
    rename((char *)item_name, (char *)popup_input(reinterpret_cast<unsigned char const*>(kittengets(10, 0, "Rename")), reinterpret_cast<unsigned char const*>(kittengets(10, 1, "New Name:")), reinterpret_cast<unsigned char const*>("")));
 
    // Refresh directories
@@ -1120,12 +1087,12 @@ int main(int argc, char *argv[])
       if(argv[1][0] == '/' && argv[1][1] == '?')  // If help argument have used.
       {
          // Help message.
-         puts("FreeDOS TUI Shell 0.1");
+         puts("FreeDOS TUI Shell 0.2");
          puts("");
-         puts(kittengets(0, 1, "  FreeDOS TUI Shell is a TUI Shell for FreeDOS."));
+         puts(kittengets(0, 0, "  FreeDOS TUI Shell is a TUI Shell for FreeDOS."));
          puts("");
-         puts(kittengets(0, 2, "  Copyright (C) 2018 Ercan Ersoy"));
-         puts(kittengets(0, 3, "  FreeDOS TUI Shell licensed under GNU GPL version 3."));
+         puts(kittengets(0, 1, "  Copyright (C) 2018 Ercan Ersoy"));
+         puts(kittengets(0, 2, "  FreeDOS TUI Shell licensed under GNU GPL version 3."));
 
          // Exit FreeDOS TUI Shell
          return EXIT_SUCCESS;
@@ -1138,7 +1105,7 @@ int main(int argc, char *argv[])
    if(error)  // If FDOSTUI initalization give error
    {
       // Display error message
-      puts(kittengets(0, 0, "Unable to initialze FDOSTUI subsystem."));
+      puts(kittengets(1, 0, "Unable to initialze FDOSTUI subsystem."));
 
       // CLose Kitten Library
       kittenclose();
