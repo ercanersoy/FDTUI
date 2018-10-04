@@ -1,5 +1,5 @@
 /*
- *  main.cpp - Main source file
+ *  dosshell.cpp - Main source file
  *  Written by Ercan Ersoy and Mark Olesen.
  */
 

@@ -1,5 +1,5 @@
 /*
- *  main.h - Main header file
+ *  dosshell.h - Main header file
  *  Written by Ercan Ersoy.
  */
 
@@ -13,7 +13,7 @@
 #include <fdostui.hpp>
 #include <mouse.h>
 #include <kitten.h>
-#include "config.h"
+#include <config.h>
 
 
 // Common Variables
@@ -172,7 +172,7 @@ struct menuitembar menus_of_bar[] =
 
 // File Manager Menus
 
-// Fİle menu of file manager
+// File menu of file manager
 struct menuitem file_menu[] =
 {
    {reinterpret_cast<unsigned char const*>(kittengets(5, 1, "Open")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, item_open, 0},  // Open
