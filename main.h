@@ -44,7 +44,8 @@ int history_index = 0;
 unsigned char *item_attributes = (unsigned char *)"----";
 // Open Kitten library
 int kitten_status = kittenopen("DOSSHELL");
-
+// Disable ESC key variable from FDOSTUI
+extern bool _wm_esc_flag = false;
 
 // Bar
 
