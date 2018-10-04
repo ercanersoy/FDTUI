@@ -14,15 +14,14 @@
 #include <string.h>
 #include <stdlib.h>
 #if defined(__DOS__) || defined(__NT__) && !defined(__NTCRUSTY__)
-#include <sys\types.h>
-#include <sys\stat.h>
 #include <direct.h>
 #else
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <unistd.h>
 #include <limits.h>
 #endif
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <ctype.h>
 
 #if !defined(PATH_MAX)
 #   define PATH_MAX                     4096
@@ -40,6 +39,12 @@ strtobcolor(
 
     do
     {
+
+        if (isdigit(*i_color))
+        {
+            l_color= (enum background)atoi(i_color);
+            break;
+        }
 
         l_rc= strcmp(i_color, "black");
         if (0 == l_rc)
@@ -107,6 +112,12 @@ strtofcolor(
 
     do
     {
+
+        if (isdigit(*i_color))
+        {
+            l_color= (enum background)atoi(i_color);
+            break;
+        }
 
         l_rc= strcmp(i_color, "black");
         if (0 == l_rc)

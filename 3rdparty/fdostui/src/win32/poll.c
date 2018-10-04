@@ -7,11 +7,11 @@
  and related or neighboring rights to FDOSTUI Library. This work is published
  from: United States.
 */
-#include "poll.h"
-#include "mouse.h"
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <string.h>
+#include "poll.h"
+#include "mouse.h"
 
 extern HANDLE                           _screen_stdin;
 
@@ -83,7 +83,7 @@ poll_block(
                 else
                 {
                     (*o_event).m_record.m_key.m_ascii= (*l_key).uChar.AsciiChar;
-                    (*o_event).m_record.m_key.m_scan= (*l_key).wVirtualScanCode;
+                    (*o_event).m_record.m_key.m_scan= (*l_key).wVirtualKeyCode;
                 }
                 l_exit= 1;
                 break;

@@ -7,15 +7,15 @@
  and related or neighboring rights to FDOSTUI Library. This work is published
  from: United States.
 */
-#include "filedlg.hpp"
-#include "strings.h"
-#include "hw.h"
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <limits.h>
 #include <errno.h>
+#include "filedlg.hpp"
+#include "strings.h"
+#include "hw.h"
 
 #ifndef PATH_MAX
 #define PATH_MAX                        4096

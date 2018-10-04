@@ -201,8 +201,8 @@ struct menuitem edit_menu[] =
 struct menuitem view_menu[] =
 {
    {reinterpret_cast<unsigned char const*>(kittengets(7, 1, "Refresh")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, directory_view, 0},  // Refresh
-   {reinterpret_cast<unsigned char const*>(kittengets(7, 2, "Show Archive Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_archive_items, 0},  // Show archive files
-   {reinterpret_cast<unsigned char const*>(kittengets(7, 3, "Show Hidden Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_hidden_items, 0},  // Show hidden files
+   {reinterpret_cast<unsigned char const*>(kittengets(7, 2, "Show Archive Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX | MENUITEM_VALUE, show_archive_items, 0},  // Show archive files
+   {reinterpret_cast<unsigned char const*>(kittengets(7, 3, "Show Hidden Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX | MENUITEM_VALUE, show_hidden_items, 0},  // Show hidden files
    {reinterpret_cast<unsigned char const*>(kittengets(7, 4, "Show Readonly Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_read_only_items, 0},  // Show read only files
    {reinterpret_cast<unsigned char const*>(kittengets(7, 5, "Show System Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_system_items, 0},  // Show system files
    {0}

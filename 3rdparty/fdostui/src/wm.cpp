@@ -44,6 +44,7 @@ static window*                          _wm_grab;
 static window*                          _wm_focused;
 static struct array                     _wm_array;
 static enum wm_error                    _wm_quit_flag;
+bool                                    _wm_esc_flag= true;
 #if (__WATCOMC__)
 static unsigned int                     _saved_drive;
 #endif
@@ -298,6 +299,53 @@ wm_register_window(
     return;
 }
 
+static void
+wm_window_next()
+{
+    unsigned                            l_slot;
+    window*                             l_window;
+
+    l_window= 0;
+
+    do
+    {
+
+        if (0 == _wm_focused)
+        {
+            l_window= (window*)_wm_array.m_base[0];
+            break;
+        }
+
+        for (l_slot= 0; _wm_array.m_taken > l_slot; l_slot++)
+        {
+            l_window= (window*)_wm_array.m_base[l_slot];
+            if (_wm_focused == l_window)
+            {
+                if (_wm_array.m_taken > (l_slot+1))
+                {
+                    l_window= (window*)_wm_array.m_base[(l_slot+1)];
+                }
+                else
+                {
+                    l_window= (window*)_wm_array.m_base[0];
+                }
+                break;
+            }
+        }
+
+    }while(0);
+
+    if (l_window && _wm_focused != l_window)
+    {
+        (*_wm_focused).focus_leave();
+        _wm_focused= l_window;
+         wm_draw(_wm_focused);
+        (*_wm_focused).focus_enter();
+    }
+
+    return;
+}
+
 static enum event_response
 wm_event_keyboard(
     struct event_key const&             i_key)
@@ -323,6 +371,13 @@ wm_event_keyboard(
 
         if (RESPONSE_NONE != l_response)
         {
+            break;
+        }
+
+        if (SCAN_F6 == i_key.m_scan)
+        {
+            wm_window_next();
+            l_response= RESPONSE_HANDLED;
             break;
         }
 
@@ -500,7 +555,7 @@ wm_run()
 
         if (EVENT_KEY == l_event.m_type)
         {
-            if (ASCII_ESC == l_event.m_record.m_key.m_ascii)
+            if (_wm_esc_flag && ASCII_ESC == l_event.m_record.m_key.m_ascii)
             {
                 break;
             }

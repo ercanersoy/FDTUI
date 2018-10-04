@@ -50,7 +50,7 @@ extern void
 cursor_block()
 {
 
-    curs_set(1);
+    curs_set(2);
 
     return;
 }

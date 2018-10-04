@@ -7,9 +7,9 @@
  and related or neighboring rights to FDOSTUI Library. This work is published
  from: United States.
 */
-#include "hw.h"
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include "hw.h"
 
 unsigned char                           _hw_drives[HW_DRIVE_MAX]; /* drives 'A'-'Z' 0=not available 1=available */
 

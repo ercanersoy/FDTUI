@@ -1,7 +1,7 @@
 {
 INFO.PAS this file was extracted from 
 
-https::/gitub.com/shidel/DustyTP7/blob/master/INFO/INFO.PAS
+https:/github.com/shidel/DustyTP7/blob/master/INFO/INFO.PAS
 
 This file was used to adapt VIDEO.ASM.
 }

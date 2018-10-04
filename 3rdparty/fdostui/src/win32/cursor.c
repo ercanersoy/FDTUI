@@ -7,8 +7,8 @@
  and related or neighboring rights to FDOSTUI Library. This work is published
  from: United States.
 */
-#include "cursor.h"
 #include <windows.h>
+#include "cursor.h"
 
 extern HANDLE                           _screen_active;
 enum cursor_mode                        _cursor_mode= CURSOR_OVERWRITE;
