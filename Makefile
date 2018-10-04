@@ -1,17 +1,48 @@
-# Makefile - Build file
+# Makefile - Build FreeDOS TUI Shell
 # Written by Ercan Ersoy.
 
-all: dosshell.exe
+# Directory variables
 
-dosshell.exe: main.obj 3rdparty\kitten\kitten.obj 3rdparty\fdostui\lib\fdtuid16.lib
-	wlink system dos op stack=4096 file main.obj,3rdparty\kitten\kitten.obj,3rdparty\fdostui\lib\fdtuid16.lib
-	mv main.exe dosshell.exe
+LIB=lib
+INCLUDE=include
+SRC=src
+OBJ=bin
+BIN=bin
 
-main.obj: main.cpp
-	wpp -mm -0 -bt=DOS -d3 -i=3rdparty\fdostui\include -i=3rdparty\kitten main.cpp
+# Command variables
 
-3rdparty\kitten\kitten.obj: 3rdparty\kitten\kitten.c
-	wcc -mm -0 -bt=DOS -d3 -s -i=3rdparty\kitten 3rdparty\kitten\kitten.c -fo=3rdparty\kitten\kitten.obj
+CPP=wpp
+LINK=wlink
+
+# Command flags
+
+CPPFLAGS=-mm -0 -bt=DOS
+LINKFLAGS=system dos op stack=4096 file 
+
+# Objects
+
+OBJECTS=$(OBJ)\dosshell.obj &
+$(LIB)\kitten\kitten.obj &
+$(LIB)\fdostui\lib\fdtuid16.lib
+
+# Directives
+
+all: $(BIN)\dosshell.exe
+
+$(BIN)\dosshell.exe: $(OBJECTS)
+	$(LINK) $(LINKFLAGS) &
+$(OBJ)\dosshell.obj, &
+$(LIB)\kitten\kitten.obj, &
+$(LIB)\fdostui\lib\fdtuid16.lib
+ 
+
+$(OBJ)\dosshell.obj: $(SRC)\dosshell.cpp
+	$(CPP) $(CPPFLAGS) &
+-i=$(LIB)\fdostui\include &
+-i=$(LIB)\kitten &
+-i=$(INCLUDE) &
+$? &
+-fo=$@
 
 clean-obj: .SYMBOLIC
-	@if exist main.obj del main.obj
+	@if exist $(OBJ)\*.obj del $(OBJ)\*.obj

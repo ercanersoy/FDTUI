@@ -3,7 +3,7 @@
  *  Written by Ercan Ersoy and Mark Olesen.
  */
 
-#include "main.h"
+#include <dosshell.h>
 
 
 // Common Functions
