@@ -21,7 +21,9 @@
 // Current directory string pointer variable
 char *current_directory = (char *)malloc(MAX_PATH_LENGTH + 1);
 // Selected directory or file
-int selected_item = 0;
+int selected_directory_or_file = 0;
+// Selected drive
+int selected_drive = 0;
 // Show archive item variable
 bool show_archive_item = true;
 // Show hidden item variable
@@ -88,7 +90,7 @@ void upper_directory_control_for_go_menu_item(void);
 // Get item name function
 char *get_item_name(char *);
 // Item attribute viewing function
-void item_attributes_viewing(void);
+void item_attributes_viewing(int);
 // Select directory or file function
 void select_directory_or_file(listbox const *, void *);
 // Change current directory function

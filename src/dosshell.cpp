@@ -132,7 +132,7 @@ void directory_view(menuitem *, void *)
    closedir(directory);
 
    // Set selected item variable
-   selected_item = 0;
+   selected_directory_or_file = 0;
 
    // Clear the drivers listbox
    drivers->remove_all();
@@ -224,17 +224,17 @@ char *get_item_name(char* item_name, int selected)
 }
 
 // Item attributes viewing function
-void item_attributes_viewing(void)
+void item_attributes_viewing(int selected)
 {
    // Item name variable
    char *item_name = (char *)calloc(MAX_NAME_LENGTH + 8, 1);
    // Selected item attributes variable
-   unsigned int selected_item_attributes;
+   unsigned int selected_directory_or_file_attributes;
 
    // Get selected item attributes
-   _dos_getfileattr(reinterpret_cast<char const*>(get_item_name(item_name, directories_and_files->get_selected_first())), &selected_item_attributes);
+   _dos_getfileattr(reinterpret_cast<char const*>(get_item_name(item_name, selected)), &selected_directory_or_file_attributes);
 
-   if(selected_item_attributes & _A_ARCH)  // If item is archive item
+   if(selected_directory_or_file_attributes & _A_ARCH)  // If item is archive item
    {
       // Set item attributes as archive
       item_attributes[0] = 'A';
@@ -251,7 +251,7 @@ void item_attributes_viewing(void)
       edit_menu[5].m_flags &= edit_menu[5].m_flags ^ MENUITEM_VALUE;
    }
 
-   if(selected_item_attributes & _A_HIDDEN)  // If item is hidden item
+   if(selected_directory_or_file_attributes & _A_HIDDEN)  // If item is hidden item
    {
       // Set item attributes as hidden
       item_attributes[1] = 'H';
@@ -268,7 +268,7 @@ void item_attributes_viewing(void)
       edit_menu[6].m_flags &= edit_menu[6].m_flags ^ MENUITEM_VALUE;
    }
 
-   if(selected_item_attributes & _A_RDONLY)  // If item is read only item
+   if(selected_directory_or_file_attributes & _A_RDONLY)  // If item is read only item
    {
       // Set item attributes as read only
       item_attributes[2] = 'R';
@@ -285,7 +285,7 @@ void item_attributes_viewing(void)
       edit_menu[7].m_flags &= edit_menu[7].m_flags ^ MENUITEM_VALUE;
    }
 
-   if(selected_item_attributes & _A_SYSTEM)  // If item is system item
+   if(selected_directory_or_file_attributes & _A_SYSTEM)  // If item is system item
    {
       // Set item attributes as system
       item_attributes[3] = 'S';
@@ -312,7 +312,7 @@ void item_attributes_viewing(void)
 // Select directory or file function
 void select_directory_or_file(listbox const *, void *)
 {
-   if(selected_item == directories_and_files->get_selected_first())  // If selected item is clicked
+   if(selected_directory_or_file == directories_and_files->get_selected_first())  // If selected item is clicked
    {
       // Open item
       item_open(NULL, NULL);
@@ -325,10 +325,10 @@ void select_directory_or_file(listbox const *, void *)
    }
 
    // Item attribute viewing function
-   item_attributes_viewing();
+   item_attributes_viewing(selected_directory_or_file);
 
-   // Set selected item
-   selected_item = directories_and_files->get_selected_first();
+   // Set selected directory or file
+   selected_directory_or_file = directories_and_files->get_selected_first();
 
    // Draw window manager
    wm_draw(NULL);
@@ -337,38 +337,50 @@ void select_directory_or_file(listbox const *, void *)
 // Change current drive function
 void change_current_drive(listbox const *, void *)
 {
-   // Drive variable
-   char *drive = (char *)malloc(4);
-   // Drive letter information variable
-   unsigned int drive_letter_information = 0;
-   // Drive letter count information variable
-   unsigned int drive_letter_count = 0;
-
-   // Get item from drivers listbox
-   strcpy(drive, (char *)drivers->get_item(drivers->get_selected_first()));
-
-   // Calculate drive
-   drive_letter_information = *drive - 64;
-
-   // Change current drive
-   _dos_setdrive(drive_letter_information, &drive_letter_count);
-   // Get drive letter information
-   _dos_getdrive(&drive_letter_information);
-
-   if(!drive_letter_information)  // If drive letter information is null
+   if(selected_drive == drivers->get_selected_first())  // If selected item is clicked
    {
+      // Drive variable
+      char *drive = (char *)malloc(4);
+      // Drive letter information variable
+      unsigned int drive_letter_information = 0;
+      // Drive letter count information variable
+      unsigned int drive_letter_count = 0;
+
+      // Get item from drivers listbox
+      strcpy(drive, (char *)drivers->get_item(drivers->get_selected_first()));
+
+      // Calculate drive
+      drive_letter_information = *drive - 64;
+
+      // Change current drive
+      _dos_setdrive(drive_letter_information, &drive_letter_count);
+      // Get drive letter information
+      _dos_getdrive(&drive_letter_information);
+
+      if(!drive_letter_information)  // If drive letter information is null
+      {
+         // Free drive information from memory
+         free(drive);
+
+         // Exit function
+         return;
+      }
+
+      // Item attribute viewing function
+      item_attributes_viewing(0);
+
+      // Change current directory
+      change_current_directory(strcat(drive, "\\"), 0);
+
       // Free drive information from memory
       free(drive);
-
-      // Exit function
-      return;
    }
 
-   // Change current directory
-   change_current_directory(strcat(drive, "\\"), 0);
+   // Set selected drive
+   selected_drive = drivers->get_selected_first();
 
-   // Free drive information from memory
-   free(drive);
+   // Draw window manager
+   wm_draw(NULL);
 }
 
 // Change current directory function
@@ -670,6 +682,9 @@ void show_file_manager(menuitem *, void *)
 
       // Refresh directory
       directory_view(NULL, NULL);
+
+	  // Item attributes viewing
+      item_attributes_viewing(0);
 
       // Draw file manager
       wm_draw(file_manager);
@@ -1155,6 +1170,7 @@ int main(int argc, char *argv[])
 
    // Set signal of drivers listbox
    drivers->set_signal_selected(change_current_drive);
+   drivers->set_emit_selected_signal_always(true);
 
    // Set signal of directories and files listbox
    directories_and_files->set_signal_selected(select_directory_or_file);
@@ -1162,8 +1178,6 @@ int main(int argc, char *argv[])
 
    // Set "Item Attribute:" message label text
    item_attributes_label->set_text((unsigned char *)kittengets(11, 0, "Item Attributes:"));
-
-   item_attributes_viewing();
 
    // Set file manager window
    file_manager->set_attributes(window::TITLE | window::BORDER);
