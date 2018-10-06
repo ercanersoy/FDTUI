@@ -6,7 +6,7 @@
 LIB=lib
 INCLUDE=include
 SRC=src
-OBJ=bin
+OBJ=src
 BIN=bin
 
 # Command variables
@@ -17,11 +17,14 @@ LINK=wlink
 # Command flags
 
 CPPFLAGS=-mm -0 -bt=DOS
-LINKFLAGS=system dos op stack=4096 file 
+LINKFLAGS=system dos op stack=4096
 
 # Objects
 
-OBJECTS=$(OBJ)\dosshell.obj &
+OBJECTS=$(OBJ)\common.obj &
+$(OBJ)\fm.obj &
+$(OBJ)\run.obj &
+$(OBJ)\main.obj &
 $(LIB)\kitten\kitten.obj &
 $(LIB)\fdostui\lib\fdtuid16.lib
 
@@ -30,13 +33,33 @@ $(LIB)\fdostui\lib\fdtuid16.lib
 all: $(BIN)\dosshell.exe
 
 $(BIN)\dosshell.exe: $(OBJECTS)
-	$(LINK) $(LINKFLAGS) &
-$(OBJ)\dosshell.obj, &
-$(LIB)\kitten\kitten.obj, &
-$(LIB)\fdostui\lib\fdtuid16.lib
+	$(LINK) $(LINKFLAGS) name $@ file @link.lbc
  
+$(OBJ)\common.obj: $(SRC)\common.cpp
+	$(CPP) $(CPPFLAGS) &
+-i=$(LIB)\fdostui\include &
+-i=$(LIB)\kitten &
+-i=$(INCLUDE) &
+$? &
+-fo=$@
 
-$(OBJ)\dosshell.obj: $(SRC)\dosshell.cpp
+$(OBJ)\fm.obj: $(SRC)\fm.cpp
+	$(CPP) $(CPPFLAGS) &
+-i=$(LIB)\fdostui\include &
+-i=$(LIB)\kitten &
+-i=$(INCLUDE) &
+$? &
+-fo=$@
+
+$(OBJ)\run.obj: $(SRC)\run.cpp
+	$(CPP) $(CPPFLAGS) &
+-i=$(LIB)\fdostui\include &
+-i=$(LIB)\kitten &
+-i=$(INCLUDE) &
+$? &
+-fo=$@
+
+$(OBJ)\main.obj: $(SRC)\main.cpp
 	$(CPP) $(CPPFLAGS) &
 -i=$(LIB)\fdostui\include &
 -i=$(LIB)\kitten &
