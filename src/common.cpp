@@ -2,9 +2,9 @@
  *  common.cpp - Common functions source file
  *  Written by Ercan Ersoy and Mark Olesen.
  */
- 
-#include <dosshell.h>
 
+#include <common.h>
+#include <dosshell.h>
 
 // Exit window manager function
 void exit_window_manager(menuitem *, void *)

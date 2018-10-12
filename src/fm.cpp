@@ -4,7 +4,7 @@
  */
 
 #include <dosshell.h>
-
+#include <fm.h>
 
 // Directory view function
 void directory_view(menuitem *, void *)
