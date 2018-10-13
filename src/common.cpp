@@ -27,7 +27,7 @@ void command_run(char const* command)
    mouse_deinit();
 
    // Clear screen
-   system("CLS");
+   _clearscreen(_GCLEARSCREEN);
 
    // Run command
    system(command);
