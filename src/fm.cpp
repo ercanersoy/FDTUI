@@ -3,8 +3,8 @@
  *  Written by Ercan Ersoy.
  */
 
-#include <dosshell.h>
-#include <fm.h>
+#include <dosshell.hpp>
+#include <fm.hpp>
 
 // Directory view function
 void directory_view(menuitem *, void *)

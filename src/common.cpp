@@ -3,8 +3,8 @@
  *  Written by Ercan Ersoy and Mark Olesen.
  */
 
-#include <common.h>
-#include <dosshell.h>
+#include <common.hpp>
+#include <dosshell.hpp>
 
 // Exit window manager function
 void exit_window_manager(menuitem *, void *)

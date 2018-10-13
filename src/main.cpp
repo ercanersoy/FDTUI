@@ -3,8 +3,8 @@
  *  Written by Ercan Ersoy.
  */
 
-#include <dosshell.h>
-#include <main.h>
+#include <dosshell.hpp>
+#include <main.hpp>
 
 // Main function
 int main(int argc, char *argv[])
@@ -22,6 +22,12 @@ int main(int argc, char *argv[])
          puts("");
          puts(kittengets(0, 1, "  Copyright (C) 2018 Ercan Ersoy"));
          puts(kittengets(0, 2, "  FreeDOS TUI Shell licensed under GNU GPL version 3."));
+
+         if(kitten_status != -1)  // If Kitten library is open
+         {
+            // Close Kitten library
+            kittenclose();
+         }
 
          // Exit FreeDOS TUI Shell
          return EXIT_SUCCESS;

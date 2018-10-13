@@ -13,4 +13,4 @@
 #include <fdostui.hpp>
 #include <mouse.h>
 #include <kitten.h>
-#include <config.h>
+#include <config.hpp>
