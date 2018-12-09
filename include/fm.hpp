@@ -30,7 +30,7 @@ char history_path_names[HISTORY_LENGTH][MAX_PATH_LENGTH + 1];
 // History index variable
 int history_index = 0;
 // Item attributes variable
-unsigned char *item_attributes = (unsigned char *)"----";;
+unsigned char *item_attributes = (unsigned char *)"----";
 // Kitten library status variable
 extern int kitten_status;
 
@@ -125,46 +125,46 @@ void copy_file(char *, char *);
 // File menu of file manager
 struct menuitem file_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(kittengets(5, 1, "Open")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, item_open, 0},  // Open
-   {reinterpret_cast<unsigned char const*>(kittengets(5, 2, "New Directory")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, new_directory, 0},  // New directory
-   {reinterpret_cast<unsigned char const*>(kittengets(5, 3, "Exit")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, file_manager_exit, 0},  // Exit
+   {reinterpret_cast<unsigned char const *>(kittengets(5, 1, "Open")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, item_open, 0},  // Open
+   {reinterpret_cast<unsigned char const *>(kittengets(5, 2, "New Directory")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, new_directory, 0},  // New directory
+   {reinterpret_cast<unsigned char const *>(kittengets(5, 3, "Exit")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, file_manager_exit, 0},  // Exit
    {0}
 };
 
 // Edit menu of file manager
 struct menuitem edit_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(kittengets(6, 1, "Cut")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, cut_item, 0},  // Cut
-   {reinterpret_cast<unsigned char const*>(kittengets(6, 2, "Copy")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, copy_item, 0},  // Copy
-   {reinterpret_cast<unsigned char const*>(kittengets(6, 3, "Paste")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, paste_item, 0},  // Paste
-   {reinterpret_cast<unsigned char const*>(kittengets(6, 4, "Rename")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, rename_item, 0},  // Reanme
-   {reinterpret_cast<unsigned char const*>(kittengets(6, 5, "Change Attribute")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SUBMENU | MENUITEM_SEPERATOR, 0, 0},  // Change Attribute
-   {reinterpret_cast<unsigned char const*>(kittengets(6, 6, "Archive")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, change_archive_attribute, 0},  // Archive
-   {reinterpret_cast<unsigned char const*>(kittengets(6, 7, "Hidden")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, change_hidden_attribute, 0},  // Hidden
-   {reinterpret_cast<unsigned char const*>(kittengets(6, 8, "Read Only")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, change_read_only_attribute, 0},  // Read Only
-   {reinterpret_cast<unsigned char const*>(kittengets(6, 9, "System")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, change_system_attribute, 0},  // System
+   {reinterpret_cast<unsigned char const *>(kittengets(6, 1, "Cut")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, cut_item, 0},  // Cut
+   {reinterpret_cast<unsigned char const *>(kittengets(6, 2, "Copy")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, copy_item, 0},  // Copy
+   {reinterpret_cast<unsigned char const *>(kittengets(6, 3, "Paste")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, paste_item, 0},  // Paste
+   {reinterpret_cast<unsigned char const *>(kittengets(6, 4, "Rename")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, rename_item, 0},  // Reanme
+   {reinterpret_cast<unsigned char const *>(kittengets(6, 5, "Change Attribute")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SUBMENU | MENUITEM_SEPERATOR, 0, 0},  // Change Attribute
+   {reinterpret_cast<unsigned char const *>(kittengets(6, 6, "Archive")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, change_archive_attribute, 0},  // Archive
+   {reinterpret_cast<unsigned char const *>(kittengets(6, 7, "Hidden")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, change_hidden_attribute, 0},  // Hidden
+   {reinterpret_cast<unsigned char const *>(kittengets(6, 8, "Read Only")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, change_read_only_attribute, 0},  // Read Only
+   {reinterpret_cast<unsigned char const *>(kittengets(6, 9, "System")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, change_system_attribute, 0},  // System
    {0},
-   {reinterpret_cast<unsigned char const*>(kittengets(6, 10, "Delete")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, delete_item, 0},  // Delete
+   {reinterpret_cast<unsigned char const *>(kittengets(6, 10, "Delete")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, delete_item, 0},  // Delete
    {0}
 };
 
 // View menu of file manager
 struct menuitem view_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(kittengets(7, 1, "Refresh")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, directory_view, 0},  // Refresh
-   {reinterpret_cast<unsigned char const*>(kittengets(7, 2, "Show Archive Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX | MENUITEM_VALUE, show_archive_items, 0},  // Show archive files
-   {reinterpret_cast<unsigned char const*>(kittengets(7, 3, "Show Hidden Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_hidden_items, 0},  // Show hidden files
-   {reinterpret_cast<unsigned char const*>(kittengets(7, 4, "Show Readonly Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX| MENUITEM_VALUE, show_read_only_items, 0},  // Show read only files
-   {reinterpret_cast<unsigned char const*>(kittengets(7, 5, "Show System Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_system_items, 0},  // Show system files
+   {reinterpret_cast<unsigned char const *>(kittengets(7, 1, "Refresh")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_SEPERATOR, directory_view, 0},  // Refresh
+   {reinterpret_cast<unsigned char const *>(kittengets(7, 2, "Show Archive Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX | MENUITEM_VALUE, show_archive_items, 0},  // Show archive files
+   {reinterpret_cast<unsigned char const *>(kittengets(7, 3, "Show Hidden Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_hidden_items, 0},  // Show hidden files
+   {reinterpret_cast<unsigned char const *>(kittengets(7, 4, "Show Readonly Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX| MENUITEM_VALUE, show_read_only_items, 0},  // Show read only files
+   {reinterpret_cast<unsigned char const *>(kittengets(7, 5, "Show System Items")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_CHECKBOX, show_system_items, 0},  // Show system files
    {0}
 };
 
 // Go menu of file manager
 struct menuitem go_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(kittengets(8, 1, "Back")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_DISABLED, history_back, 0},  // Back
-   {reinterpret_cast<unsigned char const*>(kittengets(8, 2, "Foward")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_DISABLED, history_foward, 0},  // Foward
-   {reinterpret_cast<unsigned char const*>(kittengets(8, 3, "Up")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_DISABLED, change_to_upper_directory, 0},  // Up
+   {reinterpret_cast<unsigned char const *>(kittengets(8, 1, "Back")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_DISABLED, history_back, 0},  // Back
+   {reinterpret_cast<unsigned char const *>(kittengets(8, 2, "Foward")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_DISABLED, history_foward, 0},  // Foward
+   {reinterpret_cast<unsigned char const *>(kittengets(8, 3, "Up")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, MENUITEM_DISABLED, change_to_upper_directory, 0},  // Up
    {0}
 };
 
@@ -172,9 +172,9 @@ struct menuitem go_menu[] =
 
 struct menuitembar menus_of_file_manager[] =
 {
-   {reinterpret_cast<unsigned char const*>(kittengets(5, 0, "File")), 0, SCAN_NONE, file_menu},  // File
-   {reinterpret_cast<unsigned char const*>(kittengets(6, 0, "Edit")), 0, SCAN_NONE, edit_menu},  // Edit
-   {reinterpret_cast<unsigned char const*>(kittengets(7, 0, "View")), 0, SCAN_NONE, view_menu},  // View
-   {reinterpret_cast<unsigned char const*>(kittengets(8, 0, "Go")), 0, SCAN_NONE, go_menu},  // Go
+   {reinterpret_cast<unsigned char const *>(kittengets(5, 0, "File")), 0, SCAN_NONE, file_menu},  // File
+   {reinterpret_cast<unsigned char const *>(kittengets(6, 0, "Edit")), 0, SCAN_NONE, edit_menu},  // Edit
+   {reinterpret_cast<unsigned char const *>(kittengets(7, 0, "View")), 0, SCAN_NONE, view_menu},  // View
+   {reinterpret_cast<unsigned char const *>(kittengets(8, 0, "Go")), 0, SCAN_NONE, go_menu},  // Go
    {0}
 };

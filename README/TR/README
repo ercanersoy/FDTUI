@@ -3,10 +3,11 @@ FreeDOS TUI Shell
 FreeDOS i‡in metin kullanc arayz kabu§u
 
 Telif Hakk (C) 2018 Ercan Ersoy
-Bu program bir ”zgr yazlmdr. (GNU Genel Kamu Lisans 3. srm)
+Bu program bir ”zgr yazlmdr. (GNU Genel Kamu Lisans 2. srm) 
+                                 (GNU Genel Kamu Lisans 3. srm)
 
-Bu tasar FDOSTUI ktphanesi i‡erir. FDOSTUI kendi lisanslarna
-sahiptir.
+Bu proje FDOSTUI ktphanesi i‡erir. FDOSTUI kendi lisanslarna sahiptir.
+Bu proje Kitten ktphanesi i‡erir. Kitten kendi lisansna sahiptir.
 
 TeŸekkr:
 
@@ -23,16 +24,57 @@ Derleme:
 
 Katkda Bulunma:
 
-  E§er bu tasarya katkda bulunmak isterseniz, olas hatalar bildirebilir ve
-  FreeDOS TUI Shell'in deposuna katkda bulunabilirsiniz.
+  Bu projeye katkda bulunmak isterseniz, olas hatalar bildirebilirsiniz ve
+  FreeDOS TUI Shell deposuna katkda bulunma iste§i yapabilirsiniz.
 
 De§iŸim Gnl§:
 
+  0.3 (12-09-2018): Renk dzeni de§iŸtirildi.
+
+                    Bar menleri de§iŸtirildi.
+
+                    Dil dosyalar de§iŸtirildi.
+
+                    "DOSSHELL.FR"'deki gereksiz satrlar silindi.
+
+                    "ArŸiv ™gelerini G”ster" se‡im kutusu dzeltildi ve
+                    "Gizli ™geleri G”ster" se‡im kutusu dzeltildi.
+
+                    ESC tuŸu dzeltildi.
+
+                    Dizin a§ac de§iŸtirildi.
+
+                    Baz yazm hatalar dzeltildi.
+
+                    Srcler liste kutusunun klavyeyle se‡imi hatas
+                    dzeltildi.
+
+                    Src de§iŸtirmede ve dosya y”neticisi a‡ld§nda ”ge
+                    ”zelliklerinin g”rntlenmesi dzeltildi.
+
+                    BaŸlk dosyalar ve kaynak dosyalar ayrld.
+
+                    Yardm parametresi dzeltildi.
+
+                    BaŸlk dosyalarnn uzantlar ".h"'den ".hpp"'ye
+                    de§iŸtirildi.
+
+                    Ekran temizleme CLS komut yerine standart fonksiyonla
+                    de§iŸtirildi.
+
+                    GNU GPL 2. srm lisans bilgisi eklendi.
+
   0.2 (24.09.2018): "FDOSTUI.INI"'de devredŸ men se‡ene§i rengi griye
                     de§iŸtirildi. Ancak, krmz g”rnyor. (BaŸka bir hata
-                    olabilir.) Varsaylan arŸiv ”gelerinin g”rntlenmesi
+                    olabilir.)
+
+                    Varsaylan arŸiv ”gelerinin g”rntlenmesi
                     etkinleŸtirildi ve yalnz okunur ”gelerinin g”rntlenmesi
-                    etkinleŸtirildi. Komut yrtmenin sonunda duraklama
-                    eklendi. Baz dosyalarda satr sonu hatas dzeltildi.
+                    etkinleŸtirildi.
+
+                    Komut yrtmenin sonunda duraklama
+                    eklendi.
+
+                    Baz dosyalarda satr sonu hatas dzeltildi.
 
   0.1 (13.07.2018): ˜lk srm oluŸturuldu.

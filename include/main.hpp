@@ -61,15 +61,15 @@ static menubar *bar_menus = new menubar(0, 0, _video_cols, 1);
 // Internal applications menu of bar
 struct menuitem internal_applications_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(kittengets(2, 1, "File Manager")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, show_file_manager, 0},  // File manager
-   {reinterpret_cast<unsigned char const*>(kittengets(2, 2, "Run")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, show_run, 0},  // Run
+   {reinterpret_cast<unsigned char const *>(kittengets(2, 1, "File Manager")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, show_file_manager, 0},  // File manager
+   {reinterpret_cast<unsigned char const *>(kittengets(2, 2, "Run")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, show_run, 0},  // Run
    {0}
 };
 
 // Exit menu of bar
 struct menuitem exit_menu[] =
 {
-   {reinterpret_cast<unsigned char const*>(kittengets(3, 1, "Quit")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, quit, 0},  // Quit
+   {reinterpret_cast<unsigned char const *>(kittengets(3, 1, "Quit")), MENUITEM_MNEMONIC_NONE, 0, SCAN_NONE, 0, quit, 0},  // Quit
    {0}
 };
 
@@ -77,7 +77,7 @@ struct menuitem exit_menu[] =
 
 struct menuitembar menus_of_bar[] =
 {
-   {reinterpret_cast<unsigned char const*>(kittengets(2, 0, "Internal Applications")), 0, SCAN_NONE, internal_applications_menu},  // Internal Applications
-   {reinterpret_cast<unsigned char const*>(kittengets(3, 0, "Exit")), 0, SCAN_NONE, exit_menu},  // Exit
+   {reinterpret_cast<unsigned char const *>(kittengets(2, 0, "Internal Applications")), 0, SCAN_NONE, internal_applications_menu},  // Internal Applications
+   {reinterpret_cast<unsigned char const *>(kittengets(3, 0, "Exit")), 0, SCAN_NONE, exit_menu},  // Exit
    {0}
 };

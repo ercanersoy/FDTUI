@@ -16,12 +16,12 @@ int main(int argc, char *argv[])
       if(argv[1][0] == '/' && argv[1][1] == '?')  // If help argument have used.
       {
          // Help message.
-         puts("FreeDOS TUI Shell 0.2");
+         puts("FreeDOS TUI Shell 0.3");
          puts("");
          puts(kittengets(0, 0, "  FreeDOS TUI Shell is a TUI Shell for FreeDOS."));
          puts("");
          puts(kittengets(0, 1, "  Copyright (C) 2018 Ercan Ersoy"));
-         puts(kittengets(0, 2, "  FreeDOS TUI Shell licensed under GNU GPL version 3."));
+         puts(kittengets(0, 2, "  FreeDOS TUI Shell licensed under GNU GPL version 2 and GNU GPL version 3."));
 
          if(kitten_status != -1)  // If Kitten library is open
          {
