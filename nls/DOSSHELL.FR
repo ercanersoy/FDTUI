@@ -1,7 +1,7 @@
 # French strings written by Atnode.
 
 0.0:Impossible d'initialiser le sous-systŠme FDOSTUI
-0.1:\r\nPress any key to return to the DOSSHELL.
+0.1:\r\nAppuyez sur n'importe quelle touche pour revenir au DOSSHELL.
 
 1.0:Applications internes
 1.1:Gestionnaire de fichiers
@@ -26,19 +26,19 @@
 6.2:Copier
 6.3:Coller
 6.4:Reanme
-6.5:Change Attribute
+6.5:Modifier l\'attribut
 6.6:Archive
-6.7:Hidden
-6.8:Read Only
-6.9:System
+6.7:Cach‚
+6.8:Lecture seule
+6.9:SystŠme
 6.10:Supprimer
 
 7.0:Affichage
 7.1:Rafraichir
-7.2:Show Archive Items
-7.3:Show Hidden Items
-7.4:Show Read Only Items
-7.5:Show System Items
+7.2:Afficher les ‚l‚ments d\'archives
+7.3:Afficher les ‚l‚ments cach‚s
+7.4:Afficher les ‚l‚ments en lecture seule
+7.5:Afficher les ‚l‚ments du systŠme
 
 8.0:Aller
 8.1:Retour
@@ -48,10 +48,10 @@
 9.0:Nouveau r‚pertoire
 9.1:Nom du r‚pertoire :
 
-10.0:Reanme
-10.1:New Name:
+10.0:Renommer
+10.1:Nouveau nom :
 
-11.0:Item Attributes:
+11.0:Attributs de l\'‚l‚ment :
 
 12.0:Ex‚cuter
 12.1:Commande … ex‚cuter :
