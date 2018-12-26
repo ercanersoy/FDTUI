@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
       // Display error message
       puts(kittengets(1, 0, "Unable to initialize the FDOSTUI subsystem."));
 
-      // CLose Kitten Library
+      // Close Kitten Library
       kittenclose();
 
       // Exit FreeDOS TUI Shell with error
