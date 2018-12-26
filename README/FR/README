@@ -37,7 +37,7 @@ Journal des modifications :
                     Suppression de lignes qui ne sont pas n‚cessaires au niveau du fichier "DOSSHELL.FR".
 
                     Correction de la case … cocher "Afficher les ‚l‚ments d'archives" et "Afficher les 
-					‚l‚ments cach‚s" au niveau du gestionnaire de fichiers.
+                    ‚l‚ments cach‚s" au niveau du gestionnaire de fichiers.
 
                     Touche ‚chap d‚sactiv‚e.
 
@@ -63,13 +63,14 @@ Journal des modifications :
 
   0.2 (24-09-2018): La couleur de fond de d‚sactivation du menu a ‚t‚ chang‚ du rouge au
                     gris dans "FDOSTUI.INI". N‚anmoins, il reste rouge. (Possible existance 
-					d'un autre bug.)
+                    d'un autre bug.)
 
                     Correction d'un bug sur les fichiers archiv‚s.
 
                     Correction de la fenˆtre "Ex‚cuter" qui ne s'annulait pas.
 
-                    Ajout d'une pause pour arrˆter l'ex‚cution de commandes. 
-					Correction des bugs de nouvelles lignes pour certains fichiers.
+                    Ajout d'une pause pour arrˆter l'ex‚cution de commandes.
+
+                    Correction des bugs de nouvelles lignes pour certains fichiers.
 
   0.1 (13-07-2018): Version initiale.
