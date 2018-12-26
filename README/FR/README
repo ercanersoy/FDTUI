@@ -1,21 +1,75 @@
 FreeDOS TUI Shell
 
-Interface utilisateur textuelle pour FreeDOS.
+Shell textuel pour FreeDOS
 
 Copyright (C) 2018 Ercan Ersoy
-Ce programme est un logiciel libre. (Licence publique g‚n‚rale GNU)
+Ce programme est un logiciel libre. (Licence Publique G‚n‚rale GNU version 2)
+                                    (Licence Publique G‚n‚rale GNU version 3)
 
-Ce projet comprend la bibliothŠque FDOSTUI. FDOSTUI a sa propre licence.
+Ce projet inclut la bibliothŠque FDOSTUI. FDOSTUI possŠde sa propre licence.
+Ce projet inclut la bibliothŠque Kitten. Kitten possŠde sa propre licence.
 
 Remerciments :
 
-  Merci … Mark Olesen pour certains changements de code et pour la bibliothŠque FDOSTUI.
   Merci … Atnode pour la traduction fran‡aise.
+  Merci … Eric Auer pour la bibliothŠque Kitten.
+  Merci … Jim Hall pour la bibliothŠque Kitten.
+  Merci … Mark Olesen pour quelques changements de code et pour la bibliothŠque FDOSTUI.
+  Merci … Tom Ehlert pour la bibliothŠque Kitten.
 
-Compiler :
+Compilation :
 
-  This software should be compiled with Open Watcom.
+  Ce logiciel doit ˆtre compil‚ avec Open Watcom.
 
 Contribuer :
 
-  Si vous voulez contribuer … ce projet, vous pouvez proposer une pull request sur le d‚pot de FreeDOS TUI Shell.
+  Si vous voulez contribuer … ce projet, vous pouvez signaler d'‚ventuels bugs et
+  faire une pull request sur le d‚p“t de FreeDOS TUI Shell.
+
+Journal des modifications :
+
+  0.3 (09-12-2018): Coulour du thŠme chang‚e.
+
+                    Couleur de la barre de menu chang‚e.
+
+                    Fichiers de langues mis … jour.
+
+                    Suppression de lignes qui ne sont pas n‚cessaires au niveau du fichier "DOSSHELL.FR".
+
+                    Correction de la case … cocher "Afficher les ‚l‚ments d'archives" et "Afficher les 
+					‚l‚ments cach‚s" au niveau du gestionnaire de fichiers.
+
+                    Touche ‚chap d‚sactiv‚e.
+
+                    Modification de l'arborescence des r‚pertoires.
+
+                    Correction de quelques fautes de frappe.
+
+                    Correction de la liste d‚roulante de s‚lection des pilotes avec le bug du clavier.
+
+                    Correction du bug d'affichage des attributs des fichiers lors du changement de p‚riph‚rique ou
+                    lors de l'ouverture du gestionnaire de fichiers.
+
+                    S‚paration des fichiers d'en-tˆte et des fichiers source.
+
+                    Correction du paramŠtre d'aide.
+
+                    Changement de l'extension des fichiers d'en-tˆte de ".h" … ".hpp"..
+
+                    Remplacement de la commande d'effacement de l'‚cran CLS par la fonction int‚gr‚e de Open
+                    Watcom.
+
+                    Ajout de la licence GNU GPL version 2.
+
+  0.2 (24-09-2018): La couleur de fond de d‚sactivation du menu a ‚t‚ chang‚ du rouge au
+                    gris dans "FDOSTUI.INI". N‚anmoins, il reste rouge. (Possible existance 
+					d'un autre bug.)
+
+                    Correction d'un bug sur les fichiers archiv‚s.
+
+                    Correction de la fenˆtre "Ex‚cuter" qui ne s'annulait pas.
+
+                    Ajout d'une pause pour arrˆter l'ex‚cution de commandes. 
+					Correction des bugs de nouvelles lignes pour certains fichiers.
+
+  0.1 (13-07-2018): Version initiale.
