@@ -10,7 +10,7 @@
 2.0:Applications DOS
 
 3.0:Quitter
-3.1:Quitter
+3.1:Fermer
 3.2:Red‚marrer l\'ordinateur
 3.3:Eteindre l\'ordinateur
 
@@ -38,7 +38,7 @@
 7.2:Afficher les ‚l‚ments d\'archives
 7.3:Afficher les ‚l‚ments cach‚s
 7.4:Afficher les ‚l‚ments en lecture seule
-7.5:Afficher les ‚l‚ments du systŠme
+7.5:Afficher les fichiers systŠmes
 
 8.0:Aller
 8.1:Retour
