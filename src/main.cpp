@@ -34,15 +34,15 @@ int main(int argc, char *argv[])
       }
    }
 
-   // Initalization window and get error information
+   // Initializtion window and get error information
    wm_error error= wm_init();
 
    if(error)  // If FDOSTUI initalization give error
    {
       // Display error message
-      puts(kittengets(1, 0, "Unable to initialize the FDOSTUI subsystem."));
+      puts(kittengets(1, 0, "Unable to initialze FDOSTUI subsystem."));
 
-      // Close Kitten Library
+      // CLose Kitten Library
       kittenclose();
 
       // Exit FreeDOS TUI Shell with error
