@@ -1,13 +1,15 @@
 # French strings written by Atnode.
 
-0.0:Impossible d'initialiser le sous-systŠme FDOSTUI
-0.1:\r\nAppuyez sur n'importe quelle touche pour revenir au DOSSHELL.
+0.0:  FDTUI is a TUI Shell for FreeDOS.
+0.1:  Copyright (C) 2017-2020 Ercan Ersoy
+0.2:  FDTUI licensed under GNU GPL version 2 and GNU GPL version 3.
 
-1.0:Applications internes
-1.1:Gestionnaire de fichiers
-1.2:Ex‚cuter
+1.0:Impossible d'initialiser le sous-systŠme FDOSTUI
+1.1:\r\nAppuyez sur n'importe quelle touche pour revenir au DOSSHELL.
 
-2.0:Applications DOS
+2.0:Applications internes
+2.1:Gestionnaire de fichiers
+2.2:Ex‚cuter
 
 3.0:Quitter
 3.1:Fermer
