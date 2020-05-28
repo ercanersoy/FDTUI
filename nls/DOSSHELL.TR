@@ -35,10 +35,10 @@
 
 7.0:GîrÅnÅm
 7.1:Yenile
-7.2:Arüiv ôßelerini Gîster
-7.3:Gizli ôßeleri Gîster
+7.2:Arüiv ôgelerini Gîster
+7.3:Gizli ôgeleri Gîster
 7.4:Yalnçz Okunur ôßeleri Gîster
-7.5:Sistem ôßelerini Gîster
+7.5:Sistem ôgelerini Gîster
 
 8.0:Git
 8.1:Geri
@@ -46,13 +46,12 @@
 8.3:Yukarç
 
 9.0:Yeni Dizin
-9.1:Dizin òsmi:
+9.1:Dizin Adç:
 
 10.0:Yeniden Adlandçr
-10.1:Yeni òsim:
+10.1:Yeni Ad:
 
-11.0:Item Attributes:
+11.0:ôge ôzellikleri:
 
 12.0:Äalçütçr
 12.1:Äalçütçrçlacak Komut:
-
