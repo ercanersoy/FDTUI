@@ -1,18 +1,18 @@
 # English strings written by Ercan Ersoy.
 
-0.0:Unable to initialze FDOSTUI subsystem.
-0.1:\r\nPress any key to return to the DOSSHELL.
+0.0:  FDTUI is a TUI Shell for FreeDOS.
+0.1:  Copyright (C) 2017-2020 Ercan Ersoy
+0.2:  FDTUI licensed under GNU GPL version 2 and GNU GPL version 3.
 
-1.0:Internal Applications
-1.1:File Manager
-1.2:Run
+1.0:Unable to initialze FDOSTUI subsystem.
+1.1:\r\nPress any key to return to the DOSSHELL.
 
-2.0:DOS Applications
+2.0:Internal Applications
+2.1:File Manager
+2.2:Run
 
 3.0:Exit
 3.1:Quit
-3.2:Reboot Computer
-3.3:Power Off Computer
 
 4.0:File Manager
 

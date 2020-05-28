@@ -1,18 +1,18 @@
 # Turkish strings written by Ercan Ersoy.
 
-0.0:FDOSTUI sistemi baülatçlamadç.
-0.1:\r\nDOSSHELL'e dînmek iáin bir tuüa basçnçz.
+0.0:  FDTUI, FreeDOS iáin bir TUI kabußudur.
+0.1:  Telif Hakkç (C) 2017-2020 Ercan Ersoy
+0.2:  FDTUI, GNU GPL sÅrÅm 2 ve GNU GPL sÅrÅm 3 altçnda lisanslanmçütçr.
 
-1.0:òá Uygulamalar
-1.1:Dosya Yîneticisi
-1.2:Äalçütçr
+1.0:FDOSTUI sistemi baülatçlamadç.
+1.1:\r\nDOSSHELL'e dînmek iáin bir tuüa basçnçz.
 
-2.0:DOS Uygulamalarç
+2.0:òá Uygulamalar
+2.1:Dosya Yîneticisi
+2.2:Äalçütçr
 
 3.0:Äçkçü
 3.1:Äçkçü
-3.2:Bilgisayarç Yeniden Baülat
-3.3:Bilgisayarç Kapat
 
 4.0:Dosya Yîneticisi
 
@@ -37,7 +37,7 @@
 7.1:Yenile
 7.2:Arüiv ôgelerini Gîster
 7.3:Gizli ôgeleri Gîster
-7.4:Yalnçz Okunur ôßeleri Gîster
+7.4:Yalnçz Okunur ôgeleri Gîster
 7.5:Sistem ôgelerini Gîster
 
 8.0:Git

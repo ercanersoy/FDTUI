@@ -1,5 +1,5 @@
 *.EXE
 *.exe
 
-*.OBJ
-*.obj
+src/*.OBJ
+src/*.obj

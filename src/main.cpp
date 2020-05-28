@@ -11,17 +11,17 @@ int main(int argc, char *argv[])
 {
    // Initalization
 
-   if(argc == 2)  // If argument count is 2.
+   if(argc == 2)  // If argument count is 2
    {
-      if(argv[1][0] == '/' && argv[1][1] == '?')  // If help argument have used.
+      if(argv[1][0] == '/' && argv[1][1] == '?')  // If help argument have used
       {
          // Help message.
-         puts("FreeDOS TUI Shell 0.3");
+         puts("FDTUI 0.4");
          puts("");
-         puts(kittengets(0, 0, "  FreeDOS TUI Shell is a TUI Shell for FreeDOS."));
+         puts(kittengets(0, 0, "  FDTUI is a TUI Shell for FreeDOS."));
          puts("");
-         puts(kittengets(0, 1, "  Copyright (C) 2018 Ercan Ersoy"));
-         puts(kittengets(0, 2, "  FreeDOS TUI Shell licensed under GNU GPL version 2 and GNU GPL version 3."));
+         puts(kittengets(0, 1, "  Copyright (C) 2017-2020 Ercan Ersoy"));
+         puts(kittengets(0, 2, "  FDTUI licensed under GNU GPL version 2 and GNU GPL version 3."));
 
          if(kitten_status != -1)  // If Kitten library is open
          {
@@ -29,23 +29,23 @@ int main(int argc, char *argv[])
             kittenclose();
          }
 
-         // Exit FreeDOS TUI Shell
+         // Exit FDTUI
          return EXIT_SUCCESS;
       }
    }
 
-   // Initializtion window and get error information
+   // Initalization window and get error information
    wm_error error= wm_init();
 
    if(error)  // If FDOSTUI initalization give error
    {
       // Display error message
-      puts(kittengets(1, 0, "Unable to initialze FDOSTUI subsystem."));
+      puts(kittengets(1, 0, "Unable to initialize the FDOSTUI subsystem."));
 
-      // CLose Kitten Library
+      // Close Kitten Library
       kittenclose();
 
-      // Exit FreeDOS TUI Shell with error
+      // Exit FDTUI with error
       return error;
    }
 
@@ -118,6 +118,6 @@ int main(int argc, char *argv[])
       kittenclose();
    }
 
-   // Exit FreeDOS TUI Shell
+   // Exit FDTUI
    return EXIT_SUCCESS;
 }

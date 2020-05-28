@@ -61,6 +61,6 @@ void quit(menuitem *, void *)
       kittenclose();
    }
 
-   // Exit FreeDOS TUI Shell
+   // Exit FDTUI
    exit(EXIT_SUCCESS);
 }

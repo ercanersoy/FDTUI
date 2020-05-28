@@ -1,4 +1,4 @@
-# Makefile - Build FreeDOS TUI Shell
+# Makefile - Build FDTUI
 # Written by Ercan Ersoy.
 
 # Directory variables
@@ -27,6 +27,10 @@ $(OBJ)\run.obj &
 $(OBJ)\main.obj &
 $(LIB)\kitten\kitten.obj &
 $(LIB)\fdostui\lib\fdtuid16.lib
+
+# Executable File
+
+EXE=$(BIN)\dosshell.exe
 
 # Directives
 
@@ -67,5 +71,6 @@ $(OBJ)\main.obj: $(SRC)\main.cpp
 $? &
 -fo=$@
 
-clean-obj: .SYMBOLIC
+clean: .SYMBOLIC
+	@if exist $(BIN)\dosshell.exe del $(BIN)\dosshell.exe
 	@if exist $(OBJ)\*.obj del $(OBJ)\*.obj
