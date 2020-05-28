@@ -1,4 +1,4 @@
-FreeDOS TUI Shell
+FDTUI
 
 FreeDOS i‡in metin kullanc arayz kabu§u
 
@@ -9,72 +9,82 @@ Bu program bir ”zgr yazlmdr. (GNU Genel Kamu Lisans 2. srm)
 Bu proje FDOSTUI ktphanesi i‡erir. FDOSTUI kendi lisanslarna sahiptir.
 Bu proje Kitten ktphanesi i‡erir. Kitten kendi lisansna sahiptir.
 
+
 TeŸekkr:
 
-  Franszca ‡eviri i‡in Atnode'a teŸekkrler.
-  Kitten ktphanesi i‡in Eric Auer'e teŸekkr
-  Kitten ktphanesi i‡in Jim Hall'a teŸekkrler.
-  Baz kod de§iŸiklikleri ve FDOSTUI ktphanesi i‡in Mark Olesen'e
+* Franszca ‡eviri i‡in Atnode'a teŸekkrler.
+* Kitten ktphanesi i‡in Eric Auer'e teŸekkr
+* Kitten ktphanesi i‡in Jim Hall'a teŸekkrler.
+* Baz kod de§iŸiklikleri ve FDOSTUI ktphanesi i‡in Mark Olesen'e
   teŸekkrler.
-  Kitten ktphanesi i‡in Tom Elhert'e teŸekkrler.
+* Kitten ktphanesi i‡in Tom Elhert'e teŸekkrler.
+
 
 Derleme:
 
   Bu yazlm Open Watcom ile derlenmelidir.
 
+
 Katkda Bulunma:
 
   Bu projeye katkda bulunmak isterseniz, olas hatalar bildirebilirsiniz ve
-  FreeDOS TUI Shell deposuna katkda bulunma iste§i yapabilirsiniz.
+  FDTUI deposuna katkda bulunma iste§i yapabilirsiniz.
+
 
 De§iŸim Gnl§:
 
-  0.3 (09.12.2018): Renk dzeni de§iŸtirildi.
+* 0.4 (28.05.2020)
 
-                    Bar menleri de§iŸtirildi.
+  * Bu yazlmn ad "FDTUI" olarak de§iŸtirildi.
+  * Yardm bilgisi, yerelleŸtirme i‡in dzeltildi.
+  * Baz yazm hatalar dzeltildi.
+  * Franszca ‡eviriler gncellendi.
+  * .gitignore dosyas gncellendi.
+  * Kaynaklardan ‡alŸtrlabilr dosya silindi.
+  * LICENSE, README.md, ˜ngilizce README ve Trk‡e README dosyalar
+    gncellendi.
+  * Franszca README silindi.
+  * De§iŸim gnl§ gncellendi.
 
-                    Dil dosyalar de§iŸtirildi.
+* 0.3 (09.12.2018)
 
-                    "DOSSHELL.FR"'deki gereksiz satrlar silindi.
+  * Renk temas de§iŸtirildi.
+  * €ubu§un menleri dzeltildi.
+  * Dil dosyalar gncellendi.
+  * DOSSHELL.FR dosyasndaki gerekmeyen satr silindi.
+  * Dosya y”neticisindeki "ArŸiv ™geleri G”ster" ve
+    "Gizli ™geleri G”ster" se‡im kutular dzeltildi.
+  * ESC tuŸu etkisizleŸtirildi.
+  * Dizn a§ac de§iŸtirildi.
+  * Baz yazm hatalar dzeltildi.
+  * Klavye kullanlarak src liste kutusu se‡imi hatas dzeltildi.
+  * Src de§iŸtirildi§inde ve dosya y”neticisi a‡ld§nda ”gelerin
+    ”zelliklerini g”rntlenmeme hatas dzeltildi.
+  * BaŸlk ve kaynak dosyalar ayrld.
+  * Yardm parametresi dzeltildi.
+  * BaŸlk dosyalarnn uzantlar ".hpp"'den ".h"'ye de§iŸtirildi.
+  * Ekran temizleme, CLS komutu yerine Open Watcom'un stnadart fonksiyonu
+    olarak de§iŸtirildi.
+  * Btn uyarlar dzeltildi.
+  * GNU GPL srm 2 lisans bilgisi dosyas eklendi.
+  * De§iŸim gnl§ gncellendi.
 
-                    "ArŸiv ™gelerini G”ster" se‡im kutusu dzeltildi ve
-                    "Gizli ™geleri G”ster" se‡im kutusu dzeltildi.
+* 0.2 (24.09.2018)
 
-                    ESC tuŸu dzeltildi.
+  * Etkisiz men ”gesi yaz rengi gri olarak de§iŸtirildi.
+  * ArŸiv ”gelerini ve yalnz okunur ”geleri g”sterme varsaylan etkin olarak
+    de§iŸtirildi.
+  * Komut ‡alŸtrmada komut ‡alŸtrma sonunda duraklama eklendi.
+  * ˜ngilizce ve Trk‡e ‡eviriler gncellendi.
+  * Baz dosyalarda yanlŸ yeni satr karakterleri yerine do§ru
+    yeni satr karakterleri kullanlmaya baŸland.
+  * De§iŸim gnl§ gncellendi.
 
-                    Dizin a§ac de§iŸtirildi.
+* 0.1 (13.07.2018)
 
-                    Baz yazm hatalar dzeltildi.
+  * ˜lk srm oluŸturuldu.
 
-                    Srcler liste kutusunun klavyeyle se‡imi hatas
-                    dzeltildi.
 
-                    Src de§iŸtirmede ve dosya y”neticisi a‡ld§nda ”ge
-                    ”zelliklerinin g”rntlenmesi dzeltildi.
+Not:
 
-                    BaŸlk dosyalar ve kaynak dosyalar ayrld.
-
-                    Yardm parametresi dzeltildi.
-
-                    BaŸlk dosyalarnn uzantlar ".h"'den ".hpp"'ye
-                    de§iŸtirildi.
-
-                    Ekran temizleme CLS komut yerine standart fonksiyonla
-                    de§iŸtirildi.
-
-                    GNU GPL 2. srm lisans bilgisi eklendi.
-
-  0.2 (24.09.2018): "FDOSTUI.INI"'de devredŸ men se‡ene§i rengi griye
-                    de§iŸtirildi. Ancak, krmz g”rnyor. (BaŸka bir hata
-                    olabilir.)
-
-                    Varsaylan arŸiv ”gelerinin g”rntlenmesi
-                    etkinleŸtirildi ve yalnz okunur ”gelerinin g”rntlenmesi
-                    etkinleŸtirildi.
-
-                    Komut yrtmenin sonunda duraklama
-                    eklendi.
-
-                    Baz dosyalarda satr sonu hatas dzeltildi.
-
-  0.1 (13.07.2018): ˜lk srm oluŸturuldu.
+* FreeDOS, Jim Hall'n kaytl ticari markasdr.
