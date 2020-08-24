@@ -15,6 +15,7 @@ This project includes Kitten library. Kitten has own license.
 # Thanks
 
 * Thanks to Atnode for French translation.
+* Thanks to Berki Yenigün for French translation.
 * Thanks to Eric Auer for Kitten library.
 * Thanks to Jim Hall for Kitten library.
 * Thanks to Mark Olesen for some code changes and FDOSTUI library.
