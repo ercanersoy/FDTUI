@@ -1,10 +1,10 @@
 # French strings written by Atnode and Berki YenigÅn.
 
 0.0:  FDTUI est un shell en mode textuel pour FreeDOS.
-0.1:  Copyright (C) 2017-2020 Ercan Ersoy
+0.1:  Droits d'auteur 2017-2020 Ercan Ersoy
 0.2:  FDTUI est distribuÇ sous GNU GPL version 2 et GNU GPL version 3.
 
-1.0:Impossible d'initialiser le sous-systäme FDOSTUI
+1.0:Impossible d'initialiser le sous-systäme FDOSTUI.
 1.1:\r\nAppuyez sur n'importe quelle touche pour revenir au DOSSHELL.
 
 2.0:Applications internes
@@ -37,7 +37,7 @@
 
 7.0:Affichage
 7.1:Rafraåchir
-7.2:Afficher les ÇlÇments d\'archives
+7.2:Afficher les ÇlÇments d\'archive
 7.3:Afficher les ÇlÇments cachÇs
 7.4:Afficher les ÇlÇments en lecture seule
 7.5:Afficher les fichiers systäme
