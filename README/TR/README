@@ -33,6 +33,12 @@ Katkda Bulunma:
 
 De§iŸim Gnl§:
 
+* 0.5 (20.09.2020)
+  * Franszca ‡eviriler ve Trk‡e README dosasynda yazm hatalar dzeltildi.
+  * Franszca ‡eviriler gncellendi.
+  * Yeni Franszca README dosyas eklendi.
+  * De§iŸim gnl§ gncellendi.
+
 * 0.4 (28.05.2020)
 
   * Bu yazlmn ad "FDTUI" olarak de§iŸtirildi.
@@ -43,7 +49,7 @@ De§iŸim Gnl§:
   * Kaynaklardan ‡alŸtrlabilr dosya silindi.
   * LICENSE, README.md, ˜ngilizce README ve Trk‡e README dosyalar
     gncellendi.
-  * Franszca README silindi.
+  * Franszca README dosyas silindi.
   * De§iŸim gnl§ gncellendi.
 
 * 0.3 (09.12.2018)
@@ -63,7 +69,7 @@ De§iŸim Gnl§:
   * BaŸlk ve kaynak dosyalar ayrld.
   * Yardm parametresi dzeltildi.
   * BaŸlk dosyalarnn uzantlar ".hpp"'den ".h"'ye de§iŸtirildi.
-  * Ekran temizleme, CLS komutu yerine Open Watcom'un stnadart fonksiyonu
+  * Ekran temizleme, CLS komutu yerine Open Watcom'un standart fonksiyonu
     olarak de§iŸtirildi.
   * Btn uyarlar dzeltildi.
   * GNU GPL srm 2 lisans bilgisi dosyas eklendi.

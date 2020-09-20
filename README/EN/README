@@ -31,6 +31,12 @@ Contribute:
 
 Changelog:
 
+* 0.5 (09-20-2020)
+  * Fixed some typographic errors on French translations and Turkish README.
+  * Updated French translations.
+  * Added new French README file.
+  * Updated changelog.
+
 * 0.4 (05-28-2020)
 
   * Changed name of this software as "FDTUI".
@@ -40,7 +46,7 @@ Changelog:
   * Updated .gitignore file.
   * Removed executable file on sources.
   * Updated LICENSE, README.md, English README and Turkish README files.
-  * Removed French README.
+  * Removed French README file.
   * Updated changelog.
 
 * 0.3 (12-09-2018)

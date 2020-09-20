@@ -1,0 +1,93 @@
+FDTUI
+
+Shell avec une interface textuelle pour FreeDOS
+
+Droits d'auteur 2017-2020 Ercan Ersoy
+Ce programme est un logiciel libre. (Licence publique gÇnÇrale GNU version 2)
+                                    (Licence publique gÇnÇrale GNU version 3)
+
+Ce projet comprend la bibliothäque FDOSTUI. FDOSTUI a ses propres licences.
+Ce projet comprend la bibliothäque Kitten. Kitten a sa propre licence.
+
+
+Remerciements :
+
+* Ö Atnode pour la traduction en franáais.
+* Ö Eric Auer pour la bibliothäque Kitten.
+* Ö Jim Hall pour la bibliothäque Kitten.
+* Ö Mark Olesen pour des modifications de code et pour la bibliothäque FDOSTUI.
+* Ö Tom Ehlert pour la bibliothäque Kitten.
+
+
+Compilation :
+
+  Ce logiciel devrait àtre compilÇ avec Open Watcom.
+
+Contributions :
+
+  Si vous souhaitez contribuer Ö ce projet, vous pouvez signaler les bugs
+  Çventuels et effectuer une contribution sur le dÇpìt de FDTUI.
+
+
+Journal des modifications :
+
+* 0.5 (20/09/2020)
+  * Correction de coquilles dans la traduction franáaise et le README en turc.
+  * Mise Ö jour de la traduction en franáais.
+  * Ajout d'un nouveau fichier README en franáais.
+  * Mise Ö jour du journal des modifications.
+
+* 0.4 (28/05/2020)
+
+  * Modification du nom de ce logiciel en "FDTUI".
+  * Correction des informations d'aide pour la localisation.
+  * Correction de quelques coquilles.
+  * Mise Ö jour de la traduction en franáais.
+  * Mise Ö jour du fichier .gitignore.
+  * Effacement d'un fichier exÇcutable des sources.
+  * Mise Ö jour des fichiers LICENSE, README.md, README en anglais et en turc.
+  * Effacement du fichier README en franáais.
+  * Mise Ö jour du journal des modifications.
+
+* 0.3 (09/12/2018)
+
+  * Modification du thäme de couleur.
+  * Modification des menus de la barre de menu.
+  * Mise Ö jour des fichiers de langue.
+  * Effacement d'une ligne non nÇcessaire du fichier DOSSHELL.FR.
+  * Correction des boåtes Ö cocher "Afficher les ÇlÇments d'archive" et
+    "Afficher les ÇlÇments cachÇs" dans le gestionnaire de fichiers.
+  * DÇsactivation de la touche êchap.
+  * Modification de l'arborescence de rÇpertoires.
+  * Correction de quelques coquilles.
+  * Correction du bug de sÇlection de liste des boåtes de lecteurs avec le
+    clavier.
+  * Correction des bugs des attributs d'ÇlÇment qui ne s'affichaient pas et de
+    l'ouverture du gestionnaire de fichiers.
+  * SÇparation des fichiers d'entàte et des fichiers source.
+  * Correction du paramätre d'aide.
+  * Modification des extensions des fichiers d'entàte de ".h" en ".hpp".
+  * Remplacement du nettoyage d'Çcran par la fonction standard d'Open Watcom au
+    lieu de la commande CLS.
+  * Correction de tous les avertissements.
+  * Ajout des informations de licence GNU GPL version 2.
+  * Mise Ö jour du journal des modifications.
+
+* 0.2 (24/09/2018)
+
+  * La couleur des ÇlÇments de menu dÇsactivÇs a ÇtÇ modifiÇ en gris.
+  * Modification de la valeur par dÇfaut pour afficher les ÇlÇments d'archive
+    et les ÇlÇments en lecture seule.
+  * Ajout d'une pause Ö la fin de l'exÇcution d'une commande.
+  * Mise Ö jour des traductions en anglais et en turc.
+  * Correction des caractäres de nouvelle ligne dans certains fichiers.
+  * Mise Ö jour du journal des modifications.
+
+* 0.1 (13/07/2018)
+
+  * CrÇation de la premiäre version.
+
+
+Note :
+
+* FreeDOS est une marque dÇposÇe de Jim Hall.
