@@ -13,8 +13,8 @@
 
 3.0:Quitter
 3.1:Fermer
-3.2:Red‚marrer l\'ordinateur
-3.3:teindre l\'ordinateur
+3.2:Red‚marrer l'ordinateur
+3.3:teindre l'ordinateur
 
 4.0:Gestionnaire de fichiers
 
@@ -28,7 +28,7 @@
 6.2:Copier
 6.3:Coller
 6.4:Renommer
-6.5:Modifier l\'attribut
+6.5:Modifier l'attribut
 6.6:Archive
 6.7:Cach‚
 6.8:Lecture seule
@@ -37,7 +37,7 @@
 
 7.0:Affichage
 7.1:RafraŒchir
-7.2:Afficher les ‚l‚ments d\'archive
+7.2:Afficher les ‚l‚ments d'archive
 7.3:Afficher les ‚l‚ments cach‚s
 7.4:Afficher les ‚l‚ments en lecture seule
 7.5:Afficher les fichiers systŠme
@@ -53,7 +53,7 @@
 10.0:Renommer
 10.1:Nouveau nom :
 
-11.0:Attributs de l\'‚l‚ment :
+11.0:Attributs :
 
 12.0:Ex‚cuter
 12.1:Commande … ex‚cuter :
