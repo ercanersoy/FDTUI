@@ -53,7 +53,7 @@
 10.0:Renommer
 10.1:Nouveau nom :
 
-11.0:Attributs :
+11.0:Attributs de l'‚l‚ment :
 
 12.0:Ex‚cuter
 12.1:Commande … ex‚cuter :
