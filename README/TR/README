@@ -2,7 +2,7 @@ FDTUI
 
 FreeDOS i‡in metin kullanc arayz kabu§u
 
-Telif Hakk (C) 2018 Ercan Ersoy
+Telif Hakk (C) 2017-2021 Ercan Ersoy
 Bu program bir ”zgr yazlmdr. (GNU Genel Kamu Lisans 2. srm) 
                                  (GNU Genel Kamu Lisans 3. srm)
 
@@ -32,6 +32,12 @@ Katkda Bulunma:
 
 
 De§iŸim Gnl§:
+
+* 0.6 (20.12.2021)
+  * Franszca ‡eviriler gncellendi.
+  * Dosya y”neticisinde ”§elerin ”zelliklerinin g”rntlenmesi gncellendi.
+  * Yardm bilgisi gncellendi.
+  * De§iŸim gnl§ gncellendi.
 
 * 0.5 (20.09.2020)
   * Franszca ‡eviriler ve Trk‡e README dosasynda yazm hatalar dzeltildi.

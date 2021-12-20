@@ -2,7 +2,7 @@ FDTUI
 
 Shell avec une interface textuelle pour FreeDOS
 
-Droits d'auteur 2017-2020 Ercan Ersoy
+Droits d'auteur 2017-2021 Ercan Ersoy
 Ce programme est un logiciel libre. (Licence publique g‚n‚rale GNU version 2)
                                     (Licence publique g‚n‚rale GNU version 3)
 
@@ -30,6 +30,13 @@ Contributions :
 
 
 Journal des modifications :
+
+* 0.6 (20/12/2021)
+  * Mise … jour de la traduction en fran‡ais.
+  * Mise … jour de l'affichage des attributs d'‚l‚ment dans le gestionnaire
+    de fichiers.
+  * Mise … jour des informations d'aide.
+  * Mise … jour du journal des modifications.
 
 * 0.5 (20/09/2020)
   * Correction de coquilles dans la traduction fran‡aise et le README en turc.
