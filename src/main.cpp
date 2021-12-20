@@ -16,11 +16,11 @@ int main(int argc, char *argv[])
       if(argv[1][0] == '/' && argv[1][1] == '?')  // If help argument have used
       {
          // Help message.
-         puts("FDTUI 0.4");
+         puts("FDTUI 0.6");
          puts("");
          puts(kittengets(0, 0, "  FDTUI is a TUI Shell for FreeDOS."));
          puts("");
-         puts(kittengets(0, 1, "  Copyright (C) 2017-2020 Ercan Ersoy"));
+         puts(kittengets(0, 1, "  Copyright (C) 2017-2021 Ercan Ersoy"));
          puts(kittengets(0, 2, "  FDTUI licensed under GNU GPL version 2 and GNU GPL version 3."));
 
          if(kitten_status != -1)  // If Kitten library is open
