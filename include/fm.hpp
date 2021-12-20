@@ -47,9 +47,9 @@ listbox *drivers = new listbox(0, 3, 66, 5);
 // Current directories and files of file manager pointer variable
 listbox *directories_and_files = new listbox(0, 8, 66, 8);
 // "Item Attribute:" message label
-label *item_attributes_label = new label(0, 16, 16, 1);
+label *item_attributes_label = new label(1, 16, 24, 1);
 // Item attribute label
-label *item_attributes_view = new label(17, 16, 4, 1);
+label *item_attributes_view = new label(26, 16, 4, 1);
 
 // Function Prototypes
 
