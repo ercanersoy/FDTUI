@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
       if(argv[1][0] == '/' && argv[1][1] == '?')  // If help argument have used
       {
          // Help message.
-         puts("FDTUI 0.6");
+         puts("FDTUI 0.7");
          puts("");
          puts(kittengets(0, 0, "  FDTUI is a TUI Shell for FreeDOS."));
          puts("");

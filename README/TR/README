@@ -12,12 +12,17 @@ Bu proje Kitten ktphanesi i‡erir. Kitten kendi lisansna sahiptir.
 
 TeŸekkr:
 
-* Franszca ‡eviri i‡in Atnode'a teŸekkrler.
-* Kitten ktphanesi i‡in Eric Auer'e teŸekkr
+* Franszca ‡eviriler i‡in Atnode'a teŸekkrler.
+* Franszca ‡eviriler i‡in Berki Yenign'e teŸekkrler.
+* Kitten ktphanesi i‡in Eric Auer'e teŸekkrler.
+* FDOSTUI ktphanesi i‡in FLTK Projesi'ne teŸekkrler..
+* FDOSTUI ktphanesi i‡in Jerome Shidel'e teŸekkrler.
 * Kitten ktphanesi i‡in Jim Hall'a teŸekkrler.
 * Baz kod de§iŸiklikleri ve FDOSTUI ktphanesi i‡in Mark Olesen'e
   teŸekkrler.
+* ˜spanyolca ‡eviriler i‡in Parodper'a teŸekkrler.
 * Kitten ktphanesi i‡in Tom Elhert'e teŸekkrler.
+* Almanca ‡eviriler i‡in Wilhelm Spiegl'e teŸekkrler.
 
 
 Derleme:
@@ -33,10 +38,20 @@ Katkda Bulunma:
 
 De§iŸim Gnl§:
 
+* 0.7 (26.12.2021)
+  * Almanca ‡eviriler eklendi.
+  * ˜spanyolca ‡eviriler eklendi.
+  * README.md dosyasndaki telif hakk bilgisi gncellendi.
+  * README.md dosyasndaki ve README dosyalarndaki teŸekkr b”lm
+    gncellendi.
+  * De§iŸim gnl§ gncellendi.
+
 * 0.6 (20.12.2021)
   * Franszca ‡eviriler gncellendi.
   * Dosya y”neticisinde ”§elerin ”zelliklerinin g”rntlenmesi gncellendi.
   * Yardm bilgisi gncellendi.
+  * README dosyalarndaki telif hakk bilgisi gncellendi.
+  * Ekran g”rnts gncellendi.
   * De§iŸim gnl§ gncellendi.
 
 * 0.5 (20.09.2020)
@@ -46,7 +61,6 @@ De§iŸim Gnl§:
   * De§iŸim gnl§ gncellendi.
 
 * 0.4 (28.05.2020)
-
   * Bu yazlmn ad "FDTUI" olarak de§iŸtirildi.
   * Yardm bilgisi, yerelleŸtirme i‡in dzeltildi.
   * Baz yazm hatalar dzeltildi.
@@ -59,7 +73,6 @@ De§iŸim Gnl§:
   * De§iŸim gnl§ gncellendi.
 
 * 0.3 (09.12.2018)
-
   * Renk temas de§iŸtirildi.
   * €ubu§un menleri dzeltildi.
   * Dil dosyalar gncellendi.
@@ -82,7 +95,6 @@ De§iŸim Gnl§:
   * De§iŸim gnl§ gncellendi.
 
 * 0.2 (24.09.2018)
-
   * Etkisiz men ”gesi yaz rengi gri olarak de§iŸtirildi.
   * ArŸiv ”gelerini ve yalnz okunur ”geleri g”sterme varsaylan etkin olarak
     de§iŸtirildi.
@@ -93,7 +105,6 @@ De§iŸim Gnl§:
   * De§iŸim gnl§ gncellendi.
 
 * 0.1 (13.07.2018)
-
   * ˜lk srm oluŸturuldu.
 
 

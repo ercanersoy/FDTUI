@@ -1,0 +1,118 @@
+FDTUI
+
+Text User Interface Shell fr FreeDOS
+
+Copyright (C) 2017-2021 Ercan Ersoy
+This program is free software. (GNU General Public License version 2)
+                               (GNU General Public License version 3)
+
+Dieses Projekt enth„lt die FDOSTUI-Bibliothek. FDOSTUI hat eigene
+Lizenzen.
+Dieses Projekt enth„lt die Kitten-Bibliothek. Kitten hat eine eigene
+Lizenz.
+
+
+Danksagungen:
+
+* Dank an Atnode fr die franz”sischen šbersetzungen.
+* Dank an Berki Yenign fr die franz”sischen šbersetzungen.
+* Dank an Eric Auer fr die Kitten-Bibliothek.
+* Dank an das FLTK Projekt fr die FDOSTUI-Bibliothek.
+* Dank an Jerome Shidel fr die FDOSTUI-Bibliothek.
+* Dank an Jim Hall fr die Kitten-Bibliothek.
+* Dank an Mark Olesen fr einige Code„nderungen und die FDOSTUI
+  Bibliothek.
+* Dank an Parodper fr die spanische šbersetzung.
+* Dank an Tom Ehlert fr die Kitten Bibliothek.
+* Dank an Wilhelm Spiegl fr die deutsche šbersetzung.
+
+
+Kompilierung:
+
+  Diese Software sollte mit Open Watcom kompiliert werden.
+
+
+Beitr„ge:
+
+  Wenn Sie etwas zu diesem Projekt beitragen wollen, k”nnen Sie
+  m”gliche Bugs melden und einen Pull-Request an das FDTUI-Repository
+  melden.
+
+
+Changelog:
+
+* 0.7 (26.12.2021)
+  * Deutsche šbersetzungen hinzugefgt.
+  * Spanische šbersetzungen hinzugefgt.
+  * Die Copyright-Information in der README.md aktualisiert.
+  * Den Danksagungsbereich in der README.md und den README-Dateien
+    aktualisiert.
+  * Changelog aktualisiert.
+
+* 0.6 (20.12.2021)
+  * Franz”sische šbersetzungen aktualisiert.
+  * Die Anzeige von Objektattributen im Dateimanager aktualisiert.
+  * Hilfeinformation aktualisiert.
+  * Die Copyright Information in den README-Dateien aktualisiert.
+  * Den Screenshot aktualisiert.
+  * Changelog aktualisiert.
+
+* 0.5 (20.09.2020)
+  * Einige typographische Fehler in den franz”sischen šbersetzungen
+    und der trkischen README Datei korrigiert.
+  * Franz”sische šbersetzungen aktualisiert.
+  * Eine neue franz”sische README-Datei hinzugefgt.
+  * Changelog aktualisiert.
+
+* 0.4 (28.05.2020)
+  * Den Softwarenamen in "FDTUI" umbenannt.
+  * Hilfeinformationen zur Lokalisierung korrigiert.
+  * Einige Tippfehler behoben.
+  * Franz”sische šbersetzungen aktualisiert.
+  * Die .gitignore Datei aktualisiert.
+  * Eine ausfhrbare Datei aus den Quellen entfernt.
+  * Die Dateien LICENSE, README.md, English README und trkische
+    README Dateien aktualisiert.
+  * Franz”sische README Datei entfernt.
+  * Changelog aktualisiert.
+
+* 0.3 (09.12.2018)
+  * Das Farbthema ge„ndert.
+  * Die Mens der Leisten ge„ndert.
+  * Sprachdateien aktualisiert.
+  * Nicht ben”tigte Zeile der DOSSHELL.FR Datei gel”scht.
+  * "Archivelemente anzeigen" gefixt und Checkboxen "Versteckte
+    Elemente anzeigen" im Dateimanager gefixt.
+  * ESC-Taste deaktiviert.
+  * Verzeichnisbaum ge„ndert.
+  * Einige Tippfehler behoben.
+  * Der Bug der Laufwerkslistenauswahl mit der Tastatur wurde behoben.
+  * Gefixt, daá Elementattribute beim Wechsel des Laufwerks nicht
+    gezeigt wurden sowie Bugs beim ™ffnen des Dateimanagers.
+  * Header-Dateien und Quelldateien gesplittet.
+  * Hilfeparameter gefixt.
+  * Die Erweiterungen der Header-Dateien von ".h" in ".hpp" ge„ndert.
+  * Den Clearing-Screen als Standardfunktion von Open Watcom ersetzt
+    anstelle des CLS-Befehls.
+  * Alle Warnungen gefixt.
+  * Die GNU GPL Version 2 Lizenzinformation hinzugefgt.
+  * Changelog aktualisiert.
+
+* 0.2 (24.09.2018)
+  * Die Vordergrundfarbe von deaktivierten Menelementen wurde in
+    grau ge„ndert. Sie erscheint aber in rot.
+  * Ge„nderte Standardeinstellung zeigt Archivelemente und
+    schreibgeschtzte Elemente als aktiviert an.
+  * Dem endenden Befehl zum laufenden Befehl eine Pause hinzugefgt.
+  * Englische und trkische šbersetzungen aktualisiert.
+  * Korrekte neue Zeilenumbruchzeilen werden in einigen Dateien
+    statt falscher Zeilenumbruchzeilen verwendet.
+  * Changelog aktualisiert.
+
+* 0.1 (13.07.2018)
+  * Erste Version erstellt.
+
+
+Anmerkung:
+
+* FreeDOS is a trademark of Jim Hall.

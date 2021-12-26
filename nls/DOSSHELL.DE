@@ -1,0 +1,59 @@
+# English strings written by Ercan Ersoy.
+# German translation by W. Spiegl, 07-24-2021
+
+0.0:  FDTUI ist eine TUI Shell fr FreeDOS.
+0.1:  Copyright (C) 2017-2020 Ercan Ersoy
+0.2:  FDTUI licensed under GNU GPL version 2 and GNU GPL version 3.
+
+1.0:Kann FDOSTUI Subsystem nicht initialisieren.
+1.1:\r\nDrcken Sie eine Taste um zur DOSSHELL zurckzukommen.
+
+2.0:Interne Anwendungen
+2.1:Dateimanager
+2.2:Ausfhren
+
+3.0:Beenden
+3.1:Verlassen
+
+4.0:Dateimanager
+
+5.0:Datei
+5.1:™ffne
+5.2:Neues Verzeichnis
+5.3:Beenden
+
+6.0:Editieren
+6.1:Ausschneiden
+6.2:Kopieren
+6.3:Einfgen
+6.4:Umbenennen
+6.5:Attribut „ndern
+6.6:Archiv
+6.7:Versteckt
+6.8:Nur Lesen
+6.9:System
+6.10:L”schen
+
+7.0:Ansehen
+7.1:Aktualisieren
+7.2:Zeige Archivelemente
+7.3:Zeige versteckte Elemente
+7.4:Zeige Nur-Lesen Elemente
+7.5:Zeige Systemelemente
+
+8.0:Los
+8.1:Zurck
+8.2:Vorw„rts
+8.3:Nach oben
+
+9.0:Neues Verzeichnis
+9.1:Verzeichnisname:
+
+10.0:Umbenennen
+10.1:Neuer Name:
+
+11.0:Elementattribute:
+
+12.0:Ausfhren
+12.1:Auszufhrender Befehl:
+

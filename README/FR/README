@@ -13,11 +13,15 @@ Ce projet comprend la bibliothäque Kitten. Kitten a sa propre licence.
 Remerciements :
 
 * Ö Atnode pour la traduction en franáais.
+* Ö Berki YenigÅn pour la traduction en franáais.
 * Ö Eric Auer pour la bibliothäque Kitten.
 * Ö Jim Hall pour la bibliothäque Kitten.
+* au projet FLTK pour la bibliothäque FDOSTUI.
+* Ö Jerome Shidel pour la bibliothäque FDOSTUI.
 * Ö Mark Olesen pour des modifications de code et pour la bibliothäque FDOSTUI.
+* Ö Parodper pour la traduction en espagnol.
 * Ö Tom Ehlert pour la bibliothäque Kitten.
-
+* Ö Wilhelm Spiegl pour la traduction en allemand.
 
 Compilation :
 
@@ -26,16 +30,26 @@ Compilation :
 Contributions :
 
   Si vous souhaitez contribuer Ö ce projet, vous pouvez signaler les bugs
-  Çventuels et effectuer une contribution sur le dÇpìt de FDTUI.
+  Çventuels et proposer des modifications sur le dÇpìt de FDTUI.
 
 
 Journal des modifications :
+
+* 0.7 (26/12/2021)
+  * Ajout de la traduction en allemand.
+  * Ajout de la traduction en espagnol.
+  * Mise Ö jour des informations de droit d'auteur dans le fichier README.md.
+  * Mise Ö jour de la section des remerciements dans les fichiers README.md et
+    README.
+  * Mise Ö jour du journal des modifications.
 
 * 0.6 (20/12/2021)
   * Mise Ö jour de la traduction en franáais.
   * Mise Ö jour de l'affichage des attributs d'ÇlÇment dans le gestionnaire
     de fichiers.
   * Mise Ö jour des informations d'aide.
+  * Mise Ö jour des informations de droit d'auteur dans les fichiers README.
+  * Mise Ö jour de la capture d'Çcran.
   * Mise Ö jour du journal des modifications.
 
 * 0.5 (20/09/2020)
@@ -45,7 +59,6 @@ Journal des modifications :
   * Mise Ö jour du journal des modifications.
 
 * 0.4 (28/05/2020)
-
   * Modification du nom de ce logiciel en "FDTUI".
   * Correction des informations d'aide pour la localisation.
   * Correction de quelques coquilles.
@@ -57,7 +70,6 @@ Journal des modifications :
   * Mise Ö jour du journal des modifications.
 
 * 0.3 (09/12/2018)
-
   * Modification du thäme de couleur.
   * Modification des menus de la barre de menu.
   * Mise Ö jour des fichiers de langue.
@@ -81,7 +93,6 @@ Journal des modifications :
   * Mise Ö jour du journal des modifications.
 
 * 0.2 (24/09/2018)
-
   * La couleur des ÇlÇments de menu dÇsactivÇs a ÇtÇ modifiÇ en gris.
   * Modification de la valeur par dÇfaut pour afficher les ÇlÇments d'archive
     et les ÇlÇments en lecture seule.
@@ -91,7 +102,6 @@ Journal des modifications :
   * Mise Ö jour du journal des modifications.
 
 * 0.1 (13/07/2018)
-
   * CrÇation de la premiäre version.
 
 

@@ -12,11 +12,16 @@ This project includes Kitten library. Kitten has own license.
 
 Thanks:
 
-* Thanks to Atnode for French translation.
+* Thanks to Atnode for French translations.
+* Thanks to Berki Yenigün for French translations.
 * Thanks to Eric Auer for Kitten library.
+* Thanks to FLTK Project for FDOSTUI Library.
+* Thanks to Jerome Shidel for FDOSTUI Library.
 * Thanks to Jim Hall for Kitten library.
 * Thanks to Mark Olesen for some code changes and FDOSTUI library.
+* Thanks to Parodper for Spanish translations.
 * Thanks to Tom Ehlert for Kitten library.
+* Thanks to Wilhelm Spiegl for German translations.
 
 
 Compile:
@@ -31,10 +36,19 @@ Contribute:
 
 Changelog:
 
+* 0.7 (12-26-2021)
+  * Added German translations.
+  * Added Spanish translations.
+  * Updated copyright information in README.md file.
+  * Updated thanks section in README.md file and README files.
+  * Updated changelog.
+
 * 0.6 (12-20-2021)
   * Updated French translations.
   * Updated display of item attributes at the file manager.
   * Updated help information.
+  * Updated copyright information in README files.
+  * Updated screenshot.
   * Updated changelog.
 
 * 0.5 (09-20-2020)
@@ -44,7 +58,6 @@ Changelog:
   * Updated changelog.
 
 * 0.4 (05-28-2020)
-
   * Changed name of this software as "FDTUI".
   * Fixed help information for localization.
   * Fixed some typographic errors.
@@ -56,7 +69,6 @@ Changelog:
   * Updated changelog.
 
 * 0.3 (12-09-2018)
-
   * Changed color theme.
   * Changed menus of bar.
   * Updated language files.
@@ -79,7 +91,6 @@ Changelog:
   * Updated changelog.
 
 * 0.2 (09-24-2018)
-
   * Disabled menu item foreground color have changed to grey. But, it seems
     red.
   * Changed default is showing archive items and readonly items to enabled.
@@ -90,7 +101,6 @@ Changelog:
   * Updated changelog.
 
 * 0.1 (07-13-2018)
-
   * Create first version.
 
 
