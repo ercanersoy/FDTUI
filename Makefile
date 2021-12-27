@@ -30,13 +30,13 @@ $(LIB)\fdostui\lib\fdtuid16.lib
 
 # Executable File
 
-EXE=$(BIN)\dosshell.exe
+EXE=$(BIN)\fdtui.exe
 
 # Directives
 
-all: $(BIN)\dosshell.exe
+all: $(EXE)
 
-$(BIN)\dosshell.exe: $(OBJECTS)
+$(EXE): $(OBJECTS)
 	$(LINK) $(LINKFLAGS) name $@ file @link.lbc
  
 $(OBJ)\common.obj: $(SRC)\common.cpp
@@ -72,5 +72,5 @@ $? &
 -fo=$@
 
 clean: .SYMBOLIC
-	@if exist $(BIN)\dosshell.exe del $(BIN)\dosshell.exe
+	@if exist $(EXE) del $(EXE)
 	@if exist $(OBJ)\*.obj del $(OBJ)\*.obj

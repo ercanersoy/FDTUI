@@ -6,9 +6,9 @@
 // Common Variables
 
 // Kitten library status variable
-int kitten_status = kittenopen("DOSSHELL");;
+int kitten_status = kittenopen("FDTUI");
 // Disable ESC key variable from FDOSTUI
-extern bool _wm_esc_flag;
+extern bool _wm_esc_flag = false;
 // History path names string array variable
 extern char history_path_names[][MAX_PATH_LENGTH + 1];
 // Current directory string pointer variable
