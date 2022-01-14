@@ -4,7 +4,7 @@ Text User Interface Shell for FreeDOS
 
 ![Screenshot](screenshot.png)
 
-Copyright (C) 2017-2021 Ercan Ersoy
+Copyright (C) 2017-2022 Ercan Ersoy
 
 This program is licensed under GNU General Public License version 2 and GNU General Public License version 3.
 

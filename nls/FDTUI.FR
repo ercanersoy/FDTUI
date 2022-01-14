@@ -1,7 +1,7 @@
 # French strings written by Atnode and Berki YenigÅn.
 
 0.0:  FDTUI est un shell en mode textuel pour FreeDOS.
-0.1:  Droits d'auteur 2017-2021 Ercan Ersoy
+0.1:  Droits d'auteur 2017-2022 Ercan Ersoy
 0.2:  FDTUI est distribuÇ sous GNU GPL version 2 et GNU GPL version 3.
 
 1.0:Impossible d'initialiser le sous-systäme FDOSTUI.

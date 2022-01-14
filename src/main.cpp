@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
          puts("");
          puts(kittengets(0, 0, "  FDTUI is a TUI Shell for FreeDOS."));
          puts("");
-         puts(kittengets(0, 1, "  Copyright (C) 2017-2021 Ercan Ersoy"));
+         puts(kittengets(0, 1, "  Copyright (C) 2017-2022 Ercan Ersoy"));
          puts(kittengets(0, 2, "  FDTUI licensed under GNU GPL version 2 and GNU GPL version 3."));
 
          if(kitten_status != -1)  // If Kitten library is open

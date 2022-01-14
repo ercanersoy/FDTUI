@@ -1,7 +1,7 @@
 # Texto original en ingl‚s por Ercan Ersoy.
 
 0.0:  FDTUI es una int‚rprete de ¢rdenes de texto para FreeDOS.
-0.1:  Copyright (C) 2017-2020 Ercan Ersoy
+0.1:  Copyright (C) 2017-2022 Ercan Ersoy
 0.2:  FDTUI est  bajo la Licencia P£blica GNU versiones 2 y 3.
 
 1.0:No se pudo inicializar el subsistema FDOSTUI.
