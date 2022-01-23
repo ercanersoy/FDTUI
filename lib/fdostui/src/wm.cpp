@@ -7,6 +7,9 @@
  and related or neighboring rights to FDOSTUI Library. This work is published 
  from: United States.
 */
+
+/* Value of _wm_esc_flag is changed by Ercan Ersoy. */
+
 #include "wm.hpp"
 #include "wmhelper.hpp"
 #include "hw.h"
