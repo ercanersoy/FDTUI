@@ -10,6 +10,8 @@
 
 /*! \file mouse.h
 \brief mouse routines
+
+\see ::poll_block
 */
 
 /*!
@@ -49,7 +51,6 @@ This routine initializes the mouse handler and queue.  It must only
 be called once. Equally important is to invoke mouse_deinit when
 finished. This removes the interrupt handler.  Otherwise, after the
 application exists, and  a mouse event occurs it will crash the system.
-
 */
 
 /*!

@@ -11,7 +11,8 @@
 
 /*! \file screen.h
 \brief screen drawing routines (no clipping)
-The draw.h module contians clipping routines.
+
+draw.h module contians clipping routines
 */
 
 /*!
@@ -116,7 +117,7 @@ The draw.h module contians clipping routines.
 
 /*!
 \fn void screen_deinit()
-\brief returns the screen to mode on entry
+\brief returns the screen to original mode
 \returns none
 */
 
@@ -174,7 +175,7 @@ The draw.h module contians clipping routines.
     unsigned int const                  i_repeat_count,
     enum foreground const               i_fcolor,
     enum background const               i_bcolor)
-\brief draw a character to the screen
+\brief draw a character to the screen (horizontally)
 \param[in] i_col column 
 \param[in] i_row row
 \param[in] i_repeat_count number of times to repeat horizontally
@@ -191,7 +192,7 @@ The draw.h module contians clipping routines.
     unsigned int const                  i_repeat_count,
     enum foreground const               i_fcolor,
     enum background const               i_bcolor);
-\brief draw a character to the screen
+\brief draw a character to the screen (vertically)
 \param[in] i_col column 
 \param[in] i_row row
 \param[in] i_repeat_count number of times to repeat vertically
@@ -218,7 +219,6 @@ The draw.h module contians clipping routines.
 \returns none
 */
 
-
 /*!
 \fn void screen_set_color(
     int const                           i_col,
@@ -238,7 +238,7 @@ The draw.h module contians clipping routines.
 \fn int screen_getc(
     int const                           i_col,
     int const                           i_row)
-\brief reads  a character and it's attribute from the screen
+\brief reads a character and it's attribute from the screen
 \param[in] i_col column
 \param[in] i_row rwo
 \returns  character and attribute
@@ -276,4 +276,3 @@ byte \a o_block+i_columns.
 \param[in] i_columns number of columns to write
 \returns ending address of memory block
 */
-

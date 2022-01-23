@@ -9,7 +9,7 @@
 */
 
 /*! \file wmmenu.hpp
-\brief system menu definition
+\brief system menu for window widgets
 */
 
 /*!
@@ -22,4 +22,3 @@ different system menu
 \var _system_menu
 \brief the default system menu
 */
-

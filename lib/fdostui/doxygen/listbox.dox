@@ -9,11 +9,30 @@
 */
 
 /*! \file listbox.hpp
-\brief contains listbox class
+\brief listbox widget
+
+\code
+	include "fdostui.hpp"
+
+	window* win= new window(0, 0, _video_cols, _video_rows);
+
+	wm_register_window(win);
+
+	...
+
+	listbox* list= new listbox(1, 1, 12, 10);
+	list->add(reinterpret_cast<unsigned char const*>("item 1"));
+	list->add(reinterpret_cast<unsigned char const*>("item 2"));
+	list->add(reinterpret_cast<unsigned char const*>("item 3"));
+
+	win->add(list);
+
+	...
+\endcode
 */
 
 /*! \class listbox listbox.hpp
-\brief Allows the user to choose a value from a list
+\brief Provides a method for the user to select a single or multiple values from a list
 */
 
 /*!
@@ -104,7 +123,7 @@ This method should not be called directly.
 /*!
 \fn int listbox::get_selected_next(
         int const                       i_iter) const
-\brief get the next selected item in the listbox
+\brief get the next selected index in the listbox
 \param[in] i_iter current index 
 \returns  >=0 index to the next selected itm
 \returns -1 there are no more selected items

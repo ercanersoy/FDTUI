@@ -9,7 +9,23 @@
 */
 
 /*! \file edit.hpp
-\brief contains edit class
+\brief edit widget
+
+\code
+	include "fdostui.hpp"
+
+	window* win= new window(0, 0, _video_cols, _video_rows);
+
+	wm_register_window(win);
+
+	...
+
+	edit* ed= new edit(1,1,40,15);
+
+	win->add(ed);
+
+	...
+\endcode
 */
 
 /*! \class edit edit.hpp
@@ -120,7 +136,7 @@ This method should not be called directly.
 
 /*!
 \var edit::m_gap
-	gap buffer
+	gap buffer, which will hold text contents
 */
 
 
@@ -129,19 +145,19 @@ This method should not be called directly.
 \brief moves the cursor to the current position (m_caret)
 \returns none
 
-This routine does not alter the shape or visibility
+This routine does not alter the shape or visibility of the cursor
 */
 
 /*!
 \fn bool edit::char_backspace()
-\brief backspace
+\brief position the cursor back one character
 \returns false does not require a redraw
 \returns true requires a redraw
 */
 
 /*!
 \fn bool edit::char_delete()
-\brief delete character
+\brief delete the character underneath the cursor
 \returns false does not require a redraw
 \returns true requires a redraw
 */
@@ -150,7 +166,7 @@ This routine does not alter the shape or visibility
 \fn bool edit::char_insert(
         unsigned char const             i_char,
         enum cursor_mode const          i_cursor_mode)
-\brief insert character
+\brief insert a character underneath the cursor
 \param[in] i_char character to insert
 \param[in] i_cursor_mode mode to insert (overwrite, insert)
 \returns false does not require a redraw
@@ -159,7 +175,7 @@ This routine does not alter the shape or visibility
 
 /*!
 \fn bool edit::char_insert_newline()
-\brief insert new line character
+\brief insert new line character underneath the cursor
 \returns false does not require a redraw
 \returns true requires a redraw
 */
@@ -180,21 +196,21 @@ This routine does not alter the shape or visibility
 
 /*!
 \fn bool edit::cursor_home()
-\brief move cursor to end of line
+\brief move cursor to begining of line
 \returns false does not require a redraw
 \returns true requires a redraw
 */
 
 /*!
 \fn bool edit::cursor_left()
-\brief move cursor left
+\brief move cursor left one character
 \returns false does not require a redraw
 \returns true requires a redraw
 */
 
 /*!
 \fn bool edit::cursor_right()
-\brief move cursor right
+\brief move cursor right one character
 \returns false does not require a redraw
 \returns true requires a redraw
 */
@@ -218,10 +234,10 @@ the state of the cursor (insert/overwrite) and widget itself.
         unsigned char __FAR*&           io_ptr,
         size_t&                         io_offset,
         int&                            io_pos_y) const
-\brief move to m_offset_x cursor position
+\brief move the cursor to a character position on a specific line
 \param[in,out] io_ptr buffer address
-\param[in,out] io_offset cursor position
-\param[in,out] io_pos_y y position
+\param[in,out] io_offset character position within line to move too
+\param[in,out] io_pos_y y line to move too
 \returns false move not valid
 \returns true move was valid
 */

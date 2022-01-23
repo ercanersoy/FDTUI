@@ -9,21 +9,60 @@
 */
 
 /*! \file radiobtn.hpp
-\brief contains radio button class
+\brief radio button widget
+
+\code
+	include "fdostui.hpp"
+
+	window* win= new window(0, 0, _video_cols, _video_rows);
+
+	wm_register_window(win);
+
+	...
+
+	radiobutton* btn1= new radiobutton(1,3,16,1);
+	btn1->set_text(reinterpret_cast<unsigned char const*>("radio 1"));
+	win->add(btn1);
+
+	radiobutton* btn2= new radiobutton(1,4,16,1);
+	btn2->set_text(reinterpret_cast<unsigned char const*>("radio 2"));
+	win->add(btn2);
+
+	radiobutton* btn3= new radiobutton(1,5,16,1);
+	btn3->set_text(reinterpret_cast<unsigned char const*>("radio 3"));
+	win->add(btn3);
+
+	btn1->join(btn2);
+	btn1->join(btn3);
+
+	win->add(btn1);
+
+	...
+	\endcode
+*/
+
+
+\fn checkbutton::checkbutton(
+        int const                       i_pos_x,
+        int const                       i_pos_y,
+        unsigned int const              i_len_x,
+        unsigned int const              i_len_y)
+\brief constructor 
+
+	/* ... */
+\endcode
 */
 
 /*! \class radiobutton radiobtn.hpp
-\brief radio button widget
+\brief A clickable radio button widget dervied from button
 
-Check button widget, which contains the state of on or off.
+Radio button widget, which contains the state of on or off.
 A radio button can belong to a group of other radio buttons.
 Only one button at a time may contain the on state.
 
 The radio group is implemented as a doubly linked list.
-Each radiobutton contains a pointer to the next and previous
-radiobutton in the grouop. Data  members are made public,
-however, the should only be used internally.
-
+Each radio button contains a pointer to the next and previous
+radio button in the group. 
 */
 
 
@@ -56,15 +95,16 @@ however, the should only be used internally.
 \returns false radiobutton could not be added to group
 \returns true radiobutton added to group
 
-A radiobutton can only belong to one group. In addition,
-the radiobutton must have been added to this parent widget.
+A radio button can only belong to one group. In addition, the radio
+button must have been added to the parent widget.
 */
 
 /*!
 \fn virtual void radiobutton::toggled()
 \brief handler when the button has been toggled
 
-This method will synchronize radiobutton widgets so only one is selected.
+This method will synchronize radio button widgets so only one is
+selected.
 */
 
 /*!
@@ -77,4 +117,3 @@ This method will synchronize radiobutton widgets so only one is selected.
 \var radiobutton::m_prev
 	previous radiobutton in group
 */
-

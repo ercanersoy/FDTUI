@@ -10,6 +10,113 @@
 
 /*! \file menuitem.h
 \brief Container for a menu item
+
+\code
+
+struct menuitem                         _submenu[]=
+{
+    {
+    /*.m_label=*/reinterpret_cast<unsigned char const*>("Level 1"),
+    /*.m_mnemonic_offset=*/MENUITEM_MNEMONIC_NONE,
+    /*.m_accel_label=*/0,
+    /*.m_accel_scancode=*/SCAN_NONE,
+    /*.m_flags=*/MENUITEM_SUBMENU,
+    /*.m_callback=*/0,
+    /*.m_user_data=*/0
+    },
+        {
+        /*.m_label=*/reinterpret_cast<unsigned char const*>("Level 2"),
+        /*.m_mnemonic_offset=*/MENUITEM_MNEMONIC_NONE,
+        /*.m_accel_label=*/0,
+        /*.m_accel_scancode=*/SCAN_NONE,
+        /*.m_flags=*/MENUITEM_SUBMENU,
+        /*.m_callback=*/0,
+        /*.m_user_data=*/0
+        },
+            {
+            /*.m_label=*/reinterpret_cast<unsigned char const*>("Level 3"),
+            /*.m_mnemonic_offset=*/MENUITEM_MNEMONIC_NONE,
+            /*.m_accel_label=*/0,
+            /*.m_accel_scancode=*/SCAN_NONE,
+            /*.m_flags=*/MENUITEM_SUBMENU,
+            /*.m_callback=*/0,
+            /*.m_user_data=*/0
+            },
+                {
+                /*.m_label=*/reinterpret_cast<unsigned char const*>("Level 4"),
+                /*.m_mnemonic_offset=*/MENUITEM_MNEMONIC_NONE,
+                /*.m_accel_label=*/0,
+                /*.m_accel_scancode=*/SCAN_NONE,
+                /*.m_flags=*/MENUITEM_SUBMENU,
+                /*.m_callback=*/0,
+                /*.m_user_data=*/0
+                },
+                    {
+                    /*.m_label=*/reinterpret_cast<unsigned char const*>("Level 5"),
+                    /*.m_mnemonic_offset=*/MENUITEM_MNEMONIC_NONE,
+                    /*.m_accel_label=*/0,
+                    /*.m_accel_scancode=*/SCAN_NONE,
+                    /*.m_flags=*/MENUITEM_SUBMENU,
+                    /*.m_callback=*/0,
+                    /*.m_user_data=*/0
+                    },
+                        {
+                        /*.m_label=*/reinterpret_cast<unsigned char const*>("Level 6"),
+                        /*.m_mnemonic_offset=*/MENUITEM_MNEMONIC_NONE,
+                        /*.m_accel_label=*/0,
+                        /*.m_accel_scancode=*/SCAN_NONE,
+                        /*.m_flags=*/MENUITEM_SUBMENU,
+                        /*.m_callback=*/0,
+                        /*.m_user_data=*/0
+                        },
+                            {
+                            /*.m_label=*/reinterpret_cast<unsigned char const*>("Level 7"),
+                            /*.m_mnemonic_offset=*/MENUITEM_MNEMONIC_NONE,
+                            /*.m_accel_label=*/0,
+                            /*.m_accel_scancode=*/SCAN_NONE,
+                            /*.m_flags=*/MENUITEM_SUBMENU,
+                            /*.m_callback=*/0,
+                            /*.m_user_data=*/0
+                            },
+                                {
+                                /*.m_label=*/reinterpret_cast<unsigned char const*>("Item 1"),
+                                /*.m_mnemonic_offset=*/MENUITEM_MNEMONIC_NONE,
+                                /*.m_accel_label=*/0,
+                                /*.m_accel_scancode=*/SCAN_NONE,
+                                /*.m_flags=*/0,
+                                /*.m_callback=*/0,
+                                /*.m_user_data=*/0
+                                },
+                                {
+                                /*.m_label=*/reinterpret_cast<unsigned char const*>("Item 2"),
+                                /*.m_mnemonic_offset=*/MENUITEM_MNEMONIC_NONE,
+                                /*.m_accel_label=*/0,
+                                /*.m_accel_scancode=*/SCAN_NONE,
+                                /*.m_flags=*/0,
+                                /*.m_callback=*/0,
+                                /*.m_user_data=*/0
+                                },
+                                {
+                                /*.m_label=*/reinterpret_cast<unsigned char const*>("Item 3"),
+                                /*.m_mnemonic_offset=*/MENUITEM_MNEMONIC_NONE,
+                                /*.m_accel_label=*/0,
+                                /*.m_accel_scancode=*/SCAN_NONE,
+                                /*.m_flags=*/0,
+                                /*.m_callback=*/0,
+                                /*.m_user_data=*/0
+                                },
+
+                                {0},
+                            {0},
+                        {0},
+                    {0},
+                {0},
+            {0},
+        {0},
+    {0}
+};
+
+\endcode
 */
 
 
@@ -30,7 +137,7 @@
 
 /*!
 \enum menuitem_flags
-\brief flags that determine attributes of the menu item
+\brief bit flags describing menu item attributes
 
 \var menuitem::MENUITEM_NONE
 	no attributes

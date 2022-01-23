@@ -9,7 +9,7 @@
 */
 
 /*! \file hash.h
-\brief A hash table, which maps keys to values. 
+\brief A hash table, which maps keys to values
 */
 
 /*!
@@ -24,7 +24,6 @@
 
 \var bucket::m_next
 	Pointer to the next bucket in list
-
 */
 
 /*!
@@ -40,7 +39,7 @@
 \brief hash data structure that holds keys and values
 
 \var hash::m_bucket
-	Array of pointers to hold buckets
+	Array of bucket pointers
 
 \var hash::m_slots
 	Number of buckets
@@ -64,11 +63,10 @@
 This routine will allocate the buckets and can return a
 failure if there was not enough memory. Upon failure,
 it is not advisable to use the other routines. However,
-they should all exit gracefully with a valid error code.
+they shall all exit gracefully with a valid error code.
 
-If \a i_buckets is 0, the hash should not allow any 
+If \a i_buckets is 0, the hash shall not allow any 
 operations to be performed.
-
 */
 
 /*!
@@ -91,6 +89,9 @@ operations to be performed.
 \returns 0 success
 \returns EINVAL key is NULL
 \returns ENOMEM unable to allocate memory
+
+A copy of \a i_key is created and stored in the hash table. Following,
+when hash_discharge is invoked, the key will be released.
 */
 
 /*!
@@ -105,7 +106,6 @@ operations to be performed.
 \returns value of key
 
 Zero is a valid return value. Check \a o_found to see if the key exists.
-
 */
 
 /*!
@@ -117,7 +117,6 @@ Zero is a valid return value. Check \a o_found to see if the key exists.
 \returns 0 success
 \returns ENOENT key does not exist
 
-If available, the routine will call ::hash_remove_cb to dispose of the
+If available, the routine will call hash::m_remove to dispose of a
 key's value.
-
 */

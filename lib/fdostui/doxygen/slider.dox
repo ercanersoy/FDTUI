@@ -9,12 +9,27 @@
 */
 
 /*! \file slider.hpp
-\brief contains slider class
+\brief slider widget
+
+\code
+	include "fdostui.hpp"
+
+	window* win= new window(0, 0, _video_cols, _video_rows);
+
+	wm_register_window(win);
+
+	...
+
+	slider* sldr= new slider(1,1,16,1);
+
+	win->add(sldr);
+
+	...
 */
 
 /*! \class slider slider.hpp
-\brief Allows user to select a value by moving a thumb within a defined
-range of the slider.
+\brief Provides an interface, which allows the user to select a
+value by moving a thumb within a defined range of the slider.
 
 The slider class is also the base class for other widgets such as
 scrollbar.

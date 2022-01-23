@@ -13,6 +13,7 @@ BIN=bin
 
 CPP=wpp
 LINK=wlink
+MAKE=wmake
 
 # Command flags
 
@@ -38,7 +39,18 @@ all: $(EXE)
 
 $(EXE): $(OBJECTS)
 	$(LINK) $(LINKFLAGS) name $@ file @link.lbc
- 
+
+$(LIB)\kitten\kitten.obj: $(LIB)\kitten\kitten.c
+	$(CPP) $(CPPFLAGS) &
+-i=$(LIB)\kitten &
+$? &
+-fo=$@
+
+$(LIB)\fdostui\lib\fdtuid16.lib: $(LIB)\fdostui\make\owd16.mak
+	cd $(LIB)\fdostui\make
+	$(MAKE) -f owd16.mak
+	cd ../../..
+
 $(OBJ)\common.obj: $(SRC)\common.cpp
 	$(CPP) $(CPPFLAGS) &
 -i=$(LIB)\fdostui\include &
@@ -74,3 +86,6 @@ $? &
 clean: .SYMBOLIC
 	@if exist $(EXE) del $(EXE)
 	@if exist $(OBJ)\*.obj del $(OBJ)\*.obj
+	@if exist $(LIB)\fdostui\obj\owd16\*.obj del $(LIB)\fdostui\obj\owd16\*.obj
+	@if exist $(LIB)\fdostui\lib\*.lib del $(LIB)\fdostui\lib\*.lib
+	@if exist $(LIB)\kitten\*.obj del $(LIB)\kitten\*.obj

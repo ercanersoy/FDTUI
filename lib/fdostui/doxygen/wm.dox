@@ -71,7 +71,7 @@ the run loop. Following, wait for an exit code and then terminate.
 	}
 
 	window* window= new window(0,0,_video_cols,_video_rows);
-	add widgets to window...
+	/* add widgets to window... */
 	wm_register_window(window);
 
 	error= wm_run();
@@ -79,9 +79,7 @@ the run loop. Following, wait for an exit code and then terminate.
 	wm_deinit();
 
 	return error;
-
 \endcode
-
 */
 
 /*!
@@ -94,9 +92,6 @@ the run loop. Following, wait for an exit code and then terminate.
 The widget will run in an infinite loop. It will exit if the user hits
 the escape key (::RESPONSE_CLOSE) or an event produces a response other 
 than ::RESPONSE_NONE or ::RESPONSE_HANDLED.
-
-The code in menu::submenu illustrates the use of how to use \a wm_run_modal.
-
 */
 
 /*!
@@ -111,7 +106,6 @@ It sets an internal flag, which signifies that the run
 loop should exit. 
 
 This has no affect in the wm_run_modal routine. 
-
 */
 
 /*!

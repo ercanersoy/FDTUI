@@ -9,11 +9,11 @@
 */
 
 /*! \file scroller.hpp
-\brief contains scroller class
+\brief scroller widget
 */
 
 /*! \class scroller scroller.hpp
-\brief  Allows the user to view a small portion of a large area via scrolling
+\brief  Provides an interface, which allows the user to scroll a portion of a large area
 */
 
 /*!

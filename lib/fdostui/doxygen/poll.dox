@@ -24,12 +24,11 @@
 
 \var poll_event_type::EVENT_SCREEN_RESIZE
 	screen resize event
-
 */
 
 /*!
 \union poll_event_record
-\brief continaer to hold an event record
+\brief container to hold an event record
 
 \var poll_event_record::m_key
 	key event
@@ -39,7 +38,6 @@
 
 \var poll_event_record::m_resize
 	resize event
-
 */
 
 
@@ -52,7 +50,6 @@
 
 \var poll_event::m_record
 	event record
-
 */
 
 /*!
@@ -62,7 +59,9 @@
 \param[in] i_event event to place in queue
 \returns none
 
-The quueue can only hold one event record.
+At this time, the queue is only able to unget a single event.
+In otherwords, if called multiple times only the last call 
+will be saved.
 */
 
 /*!  
@@ -73,7 +72,5 @@ The quueue can only hold one event record.
 \returns 0 internal error - no event has occurred
 \returns !0 event has occurred 
 
-Waits (blocks) in an infinite cycle for a key event to occur.
-Once an event has occurred the event is returned.
-
+Waits (blocks) in an infinite cycle for an event to occur
 */

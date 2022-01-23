@@ -9,12 +9,12 @@
 */
 
 /*! \file box.h
-\brief a rectanglular region
+\brief data structure defining a rectangular region
 */
 
 /*!
 \struct box
-\brief defines a rectangular region
+\brief a rectangular region
 
 \var box::m_pos_x
 	x position
@@ -23,10 +23,10 @@
 	y position
 
 \var box::m_len_x
-	(horizontal) length along x axis
+	length along x axis (horizontal)
 
 \var box::m_len_y
-	(vertical) length along y axis
+	length along y axis (vertical)
 */
 
 
@@ -35,32 +35,32 @@
     int const                     	i_pos_x,
     int const                     	i_pos_y,
     struct box const*                   i_box)
-\brief test if point is within box
+\brief test if a point is contained within a region
 \param[in] i_pos_x x position to test
 \param[in] i_pos_y y position to test
-\param[in] i_box object to test
-\returns 0 point is not in box
-\reutrns !0 point is in box
+\param[in] i_box region to test
+\returns 0 point lies outside region
+\returns !0 point lies inside region
 */
 
 /*!
 \fn int box_contains_box(
     struct box const*                   i_box1,
     struct box const*                   i_box2)
-\brief test if a box is contained in another
-\param[in] i_box1 test if box1 is contained in box2
+\brief test if a region is contained within another region
+\param[in] i_box1 test if \a box1 is contained in \a box2
 \param[in] i_box2 container box
-\returns 0 \a i_box1 is not in \a i_box2
-\returns !0 \a i_box1 is in \a i_box2
+\returns 0 \a i_box1 is not contained within \a i_box2
+\returns !0 \a i_box1 is contained within \a i_box2
 */
 
 /*!
 \fn int box_equal(
     struct box const*                   i_box1,
     struct box const*                   i_box2)
-\brief test if box is equal to another
-\param[in] i_box1 box to test if it is equal to \a i_box2
+\brief test if a region is equal to another region
+\param[in] i_box1 test if \a box1 is equal to \a i_box2
 \param[in] i_box2 container box
-\returns 0 boxes are not equal
-\returns !0 boxes are equal
+\returns 0 \a box1 is not equal to \a box2
+\returns !0 \a box1 is equal to \a box2
 */

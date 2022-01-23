@@ -40,7 +40,7 @@ extern void
 block_free(
     void __FAR*                         i_block);
 
-#ifdef __FLAT__
+#if defined(__FLAT__) || defined(__LARGE__)
 #   define block_free(_block) free((_block))
 #else
 #   define block_free(_block) _ffree((_block))

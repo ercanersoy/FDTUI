@@ -10,5 +10,7 @@
 
 /*! \file fdostui.hpp
 \brief primary include file for external applications
-*/
 
+fdostui.hpp shall include all widget header files within the FDOSTUI
+library.
+*/

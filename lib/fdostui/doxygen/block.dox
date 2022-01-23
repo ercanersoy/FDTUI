@@ -12,17 +12,27 @@
 \brief read or write a block of screen memory
 
 The block_read and block_write routines are typically used in the library
-to save and restore the background of popups.
-
+to save and restore the background of popup widgets.
 */
 
 /*!
 \fn void __FAR* block_read(
     struct box const*const              i_box)
 \brief read a block of screen memory
-\param[in] i_box region of screen to read
+\param[in] i_box region of the screen to read from
 \returns 0 failure unable to allocate memory
 \returns !0 pointer to memory block
+
+::block_read shall allocate a block of memory large enough to hold
+screen data for the region \a i_box. Upon success, the buffer shall
+be filled in with contents (color attribute and ASCII character)
+of the screens background.
+
+If the memory model is __FLAT__ or __LARGE__, malloc() shall be
+called to allocate the block of memory. Otherwise, _fmalloc() shall
+be invoked.
+
+\see screen_read
 */
 
 /*!
@@ -31,15 +41,19 @@ to save and restore the background of popups.
     struct box const*const              i_box)
 \brief write a block of screen memory
 \param[in] i_block memory bock to write
-\param[in] i_box region to write block
+\param[in] i_box region of the screen to write too
 \returns none
+
+\see screen_write
 */
 
 /*!
 \fn void block_free(
     void __FAR*                         i_block)
-\param[in] i_block block to release
+\param[in] i_block block to release/free
 \returns none
+
+If the memory model is __FLAT__ or __LARGE__, free()
+shall be called to release the block of memory. Otherwise,
+_ffree() shall be invoked.
 */
-
-

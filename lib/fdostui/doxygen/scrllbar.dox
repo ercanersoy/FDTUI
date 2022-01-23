@@ -9,11 +9,27 @@
 */
 
 /*! \file scrllbar.hpp
-\brief contains scrollbar class
+\brief scrollbar widget
 */
 
 /*! \class scrollbar scrllbar.hpp
-\brief A slider widget with navigational arrow buttons at each end
+\brief Provides an interface, which allows the user to slide a thumb from
+start to end
+
+\code
+	include "fdostui.hpp"
+
+	window* win= new window(0, 0, _video_cols, _video_rows);
+
+	wm_register_window(win);
+
+	...
+
+	scrollbar* bar= new scrollbar(1,1,16,1);
+
+	win->add(bar);
+
+	...
 */
 
 /*!
@@ -69,7 +85,7 @@ This method should not be called directly.
 /*!
 \fn void scrollbar::set_pagesize(
         int const                       i_pagesize)
-\brief sets the page size. This is the number of display lines.
+\brief sets the page size (number of display lines).
 \returns none
 */
 
@@ -129,4 +145,3 @@ This method should not be called directly.
 param[in] i_event event to test
 \returns where event occurred
 */
-

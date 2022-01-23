@@ -9,7 +9,7 @@
 */
 
 /*! \file widget.hpp
-\brief contains widget class
+\brief base widget
 */
 
 /*! \class widget widget.hpp
@@ -85,8 +85,6 @@
 \returns false indicator it is not okay to close (ignored if shutting down)
 
 \see widget::set_can_close
-
-
 */
 
 /*!
@@ -120,7 +118,6 @@ state flags such as visibility.
 
 \See ::wm_draw_widget to draw a widget
 \See ::wm_draw to draw a window
-
 */
 
 /*!
@@ -273,8 +270,9 @@ This method does not redraw the widget
 \returns none
 \see widget::close
 
-This is usefull to hide instead of close window widgets.
+This is usefull to hide a window widget instead of closing it
 
+TBD: move method into window widget
 */
     
 /*!

@@ -164,6 +164,7 @@ Under GNU/Linux, see your distributions MinGW cross compilation package.
 
 To compile, change into the make directory of FDOSTUI, and type 
 "make -f mingw.mak."
+
 To work correctly, this requires GNUMake as the make tool.
 
 \code

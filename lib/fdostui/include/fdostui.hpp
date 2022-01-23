@@ -28,7 +28,6 @@
 #include "slider.hpp"
 #include "spinner.hpp"
 #include "tree.hpp"
-#include "wm.hpp"
 
 #define __fdostui_hpp__
 #endif

@@ -9,11 +9,30 @@
 */
 
 /*! \file combobox.hpp
-\brief contains combobox class
+\brief combobox widget
+
+\code
+	include "fdostui.hpp"
+
+	window* win= new window(0, 0, _video_cols, _video_rows);
+
+	wm_register_window(win);
+
+	...
+
+	combobox* combo= new combobox(1, 1, 30, 1);
+	combo->add(reinterpret_cast<unsigned char const*>("RED");
+	combo->add(reinterpret_cast<unsigned char const*>("GREEN");
+	combo->add(reinterpret_cast<unsigned char const*>("BLUE");
+
+	win->add(combo);
+
+	...
+\endcode
 */
 
 /*! \class combobox combobox.hpp
-\brief  Allows the user to choose a value from a drop down list.
+\brief  Allows the user to choose a value from a drop down menu.
 Optionally, the user can also enter a value that is not in the list.
 */
 
@@ -30,8 +49,7 @@ Optionally, the user can also enter a value that is not in the list.
 \param[in] i_len_y y length of widget
 \returns none
 */
-
-    
+ 
 /*!
 \fn virtual combobox::~combobox()
 \brief destructor
@@ -41,8 +59,8 @@ Optionally, the user can also enter a value that is not in the list.
 /*!
 \fn int combobox::add(
         unsigned char const*            i_label)
-\brief adds a value to the end of a list
-\param[in] i_label value to add
+\brief adds a text value to the end of the dropdown list
+\param[in] i_label text value to add
 \returns 0 success
 \returns !0 failure unable to add (out of memory)
 */
@@ -71,7 +89,7 @@ This method should not be called directly.
 
 /*!
 \var combobox::m_listbox
-\brief listbox used for drop down
+\brief listbox widget (used for drop down)
 */
 
 /*!
@@ -96,4 +114,7 @@ boudning box of the entry widget (does not include the down button).
 \fn void combobox::listbox_configure()
 \brief configures (moves and resizes) the listbox widget for display
 \returns none
+
+The listbox widget needs to be maniuplated before display. This way,
+it will fit on the screen in close proximity of the dropdown button.
 */

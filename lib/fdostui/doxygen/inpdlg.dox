@@ -10,11 +10,11 @@
 
 
 /*! \file inpdlg.hpp
-\brief contains input dialog class
+\brief input dialog
 */
 
 /*! \class inputdlg inpdlg.hpp
-\brief Allows a user to input a value
+\brief User dialog for inputting a value
 */
 
 /*!
@@ -41,14 +41,15 @@
 /*!
 \fn unsigned char* inputdlg::get_value() const
 \brief get user input value
-\returns buffer containing user input. caller must free.
+\returns buffer containing user input. caller shall release (free)
+the resource
 */
 
 /*!
 \fn void inputdlg::set_prompt(
         unsigned char const*            i_prompt)
 \brief set user prompt
-\param[in] i_prompt description of value to be entered by user
+\param[in] i_prompt title/description
 \returns none
 */
 

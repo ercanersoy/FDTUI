@@ -9,11 +9,29 @@
 */
 
 /*! \file checkbtn.hpp
-\brief contains checkbutton class
+\brief check button widget
+
+\code
+	include "fdostui.hpp"
+
+	window* win= new window(0, 0, _video_cols, _video_rows);
+
+	wm_register_window(win);
+
+	...
+
+	checkbutton* btn= new checkbutton(1, 1, 30, 1);
+	btn->set_text(reinterpret_cast<unsigned char const*>("my checkbox"));
+	btn->set_state();
+
+	win->add(btn);
+
+	...
+\endcode
 */
 
 /*! \class checkbutton checkbtn.hpp
-\brief check button widget
+\brief Provides an interface, which allows the user to click a button and display a check mark for selected or blank for not selected
 
 Button widget, which contains a state of checked or unchecked. 
 Displays the state on screen in the form of a check mark.
@@ -44,7 +62,7 @@ Displays the state on screen in the form of a check mark.
 \brief sets the state to unchecked
 
 If the state changes to unchecked, the widget will be redrawn,
-and the toggled method will be invoked.
+and the clicked method (button::emit_clicked) will be invoked.
 
 A signal is not emitted.
 */
@@ -61,7 +79,7 @@ A signal is not emitted.
 \brief sets the state to checked
 
 If the state changed to checked, the widget will be redrawn,
-and the toggle method will be invoked.
+and the clicked method (button::emit_clicked) will be invoked.
 
 A signal is not emitted.
 */

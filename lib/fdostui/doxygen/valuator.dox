@@ -9,11 +9,14 @@
 */
 
 /*! \file valuator.hpp
-\brief contains valuator class
+\brief valuator data structure
+
+\see slider
+\see spinner
 */
 
 /*! \class valuator valuator.hpp
-\brief interface to control a floating point value
+\brief container for a floating point value
 */
 
 /*!
@@ -24,9 +27,10 @@
 \param[in] i_widget widget class
 \param[in,out] io_user_data user defined
 \returns none
+
 This class is derived from other widgets. When a signal is emitted,
 the calling class is used. For example, the spinner class will
-emit the signal with the spinner object as \a i_widget.
+emit a signal when the value is changed.
 */
 
 /*!
@@ -60,7 +64,7 @@ emit the signal with the spinner object as \a i_widget.
 
 /*!
 \fn double valuator::get_step() const
-\brief the amount that the value is incremented or decremented in 
+\brief the amount that the value is incremented or decremented
 response to mouse or keyboard movement
 \returns step value
 */
@@ -69,7 +73,7 @@ response to mouse or keyboard movement
 \fn void valuator::set_range(
         double const                    i_minimum,
         double const                    i_maximum)
-\brief sets the minimum and maximum bounds the value can have
+\brief sets the minimum and maximum bounds
 \param[in] i_minimum minimum bound
 \param[in] i_maximum maximum bound
 \returns none
@@ -78,7 +82,7 @@ response to mouse or keyboard movement
 /*!
 \fn void valuator::set_step(
         double const                    i_step)
-\brief set the amount that the value is incremented or decremented in
+\brief sets the amount that the value is incremented or decremented in
 response to mouse or keyboard movement
 \param[in] i_step step value
 \returns none
@@ -106,7 +110,7 @@ negative step value is undefined.
 \returns false value did not change
 
 The value is not validated against the minimum and maximum bounds.
-Use ::clamp to make sure the value is within the constraints.
+Use valuator::clamp to make sure the value is within constraints.
 */
 
 /*!
@@ -129,7 +133,8 @@ The minimum number of digits is zero, and the maximum number of digits is 9.
 \param[in] i_size size of buffer
 \returns length of formatted string (not including null terminator)
 
-It is recommended that the buffer be at least 128 bytes.
+It is recommended that the buffer size (\a i_size) be at least 128
+bytes.
 */
 
 /*!
@@ -166,7 +171,7 @@ Rounding does not occur if value is zero.
 \returns adjusted value in the range of the bounds
 
 This routine will accept the value if the previous value is within
-the bounds.
+bounds.
 */
 
 /*!
@@ -179,7 +184,7 @@ the bounds.
 \returns \a i_amount times the step value
 
 The value is not validated against the minimum and maximum bounds.
-Use ::clamp to make sure the value is within the constraints.
+Use valuator::clamp to make sure the value is within the constraints.
 */
 
 /*!

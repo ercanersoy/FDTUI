@@ -9,11 +9,20 @@
 */
 
 /*! \file menubar.hpp
-\brief contains menu bar class
+\brief menubar widget
 */
 
 /*! \class menubar menubar.hpp
-\brief Allows a user to choose a menu item from a horizontal list
+\brief Provides an interface, which allows a user to navigate menus on a bar
+
+\see menuitem.hpp for details on how to create menus
+*/
+
+/*! \class menu menu.hpp
+\brief Provides a method for a user to choose a single value from a menu of choices
+*/
+
+
 */
 
 /*!
@@ -79,9 +88,9 @@ up or the signal is emitted).
 \brief sets the menu
 \param[in] i_menu reference to menu items
 
-\a i_menu must be a valid reference to a menu data structure. 
-This widget does not make a local copy. So, the life time
-of the object should survive the menu widget.
+\a i_menu must be a valid reference to a menubar data structure. 
+This widget does not make a local copy. So, the lifetime
+of the object should survive the widget.
 */
 
 /*!

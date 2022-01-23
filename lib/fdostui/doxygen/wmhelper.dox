@@ -9,7 +9,7 @@
 */
 
 /*! \file wmhelper.hpp
-\brief contains wmhelper class
+\brief wmhelper class
 */
 
 /*!
@@ -17,12 +17,11 @@
 \brief window manager helper class
 
 This class should be a singleon. However, it is assumed that only
-one instance will be instantiated, and that is in the window manager.
+one instance will be instantiated by the window manager.
 
 The class wraps up a window and takes control of specific events that can
 occur. These events include the system menu, minimize or maximize buttons,
 and moving or resizing the widget.
-
 */
 
 /*!
@@ -63,7 +62,6 @@ Coordinates are relative to the screen. Clipping is not in affect.
 This method will draw a frame, and depending
 on the attributes, it will draw a title, system button, minimize and maximize 
 buttons and a resize button.
-
 */
 
 /*!
@@ -96,7 +94,6 @@ buttons and a resize button.
 \brief handle key event
 \param[in] i_event key event to handle    
 \returns response how event was handled
-
 */
 
 /*!
@@ -110,7 +107,6 @@ buttons and a resize button.
 
 Currently, this method does nothing. In the future, it may be used
 to activate the system menu with a key combination.
-
 */
 
 /*!
@@ -228,4 +224,3 @@ to activate the system menu with a key combination.
 \brief pop-up the system menu
 \returns none
 */
-

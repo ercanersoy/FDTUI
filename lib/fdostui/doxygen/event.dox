@@ -37,8 +37,8 @@ are met.
 	handler requests close
 
 \var event_response::RESPONSE_HANDLED
-	event was handled.
-	no more processing needed.
+	event was handled
+	no more processing needed
 
 \var event_response::RESPONSE_NONE
 	event was ignored/not handled	
@@ -94,8 +94,8 @@ are met.
 \brief container for a resize event
 
 \var event_resize::m_len_x
-	x length of window
+	x new length of window
 
 \var event_resize::m_len_y
-	y length of window
+	y new height of window
 */

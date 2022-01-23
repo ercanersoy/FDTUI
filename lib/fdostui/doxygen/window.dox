@@ -9,11 +9,13 @@
 */
 
 /*! \file window.hpp
-\brief contains window class
+\brief window widget
 */
 
 /*! \class window window.hpp
-\brief top level container widget that can be moved and resized by the user
+\brief Container for widgets
+
+A window widget is a group that typically contains widgets
 */
 
 /*!

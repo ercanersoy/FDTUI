@@ -10,11 +10,27 @@
 
 
 /*! \file filedlg.hpp
-\brief contains file dialog class
+\brief file dialog
+
+\code
+	include "fdostui.hpp"
+
+	...
+
+	unsigned char* path= file_dialog_open();
+
+	if (path)
+	{
+		/* do something with path */
+		free(path);
+	}
+
+	... 
+\endcode
 */
 
 /*! \class filedlg filedlg.hpp
-\brief Allows a user to choose a file 
+\brief User dialog for choosing files
 */
 
 /*!
@@ -43,8 +59,8 @@
 \brief gets the filename the user choose
 \returns null terminated string of file choosen
 
-Call takes ownership of the returned string. It will need
-to be released (free'd).
+Caller takes ownership of the returned string. That is, the resource 
+shall be released by invoking free()
 */
 
 /*!
@@ -56,7 +72,7 @@ to be released (free'd).
 
 /*!
 \var filedlg::m_label_file
-	label for "File"
+	label for filename entry widget
 */
 
 /*!
@@ -66,7 +82,7 @@ to be released (free'd).
 
 /*!
 \var filedlg::m_label_filter
-	label for "filter"
+	label for filter entry widget
 */
 
 /*!
@@ -76,7 +92,7 @@ to be released (free'd).
 
 /*!
 \var filedlg::m_checkbutton_readonly
-	readonly attribute check button
+	read only attribute check button
 */
 
 /*!
@@ -91,7 +107,7 @@ to be released (free'd).
 
 /*!
 \var filedlg::m_button_refresh
-	system button to refresh/reload dialog
+	button widget to refresh/reload dialog
 */
 
 /*!
@@ -131,26 +147,27 @@ to be released (free'd).
 
 /*!
 \fn void filedlg::configure_default()
-\brief startup configuration. Loads the dialog up with intial
-values.
+\brief Load the dialog widgets with intial values
 \returns none
 */
 
 /*!
 \fn void filedlg::configure_listbox_file()
-\brief configure file listbox. Loads files from the current directory.
+\brief Load file listbox widget with files available in the current
+directory
 \returns none
 */
 
 /*!
 \fn void filedlg::configure_listbox_directories()
-\brief configure directories listbox. Loads directories from current directory.
+\brief Loads directory listbox widget with directories available
+in the current directoy
 \returns none
 */
 
 /*!
 \fn void filedlg::configure_listbox_drives()
-\brief configure drives listbox. Loads drives from the hardware module.
+\brief Loads drives available from the hardware module
 \returns none
 */
 

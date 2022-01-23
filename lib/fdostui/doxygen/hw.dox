@@ -14,7 +14,7 @@
 
 /*!
 \def HW_DRIVE_MAX
-\brief maximum number of drives ('A'-'Z')
+\brief maximum number of drives (26; "A...Z")
 */
 
 /*!

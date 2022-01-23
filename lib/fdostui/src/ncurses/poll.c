@@ -14,6 +14,13 @@ vim:expandtab:softtabstop=4:tabstop=4:shiftwidth=4:nowrap:ruler
 #include <curses.h>
 #include <string.h>
 
+enum mouse_status
+{
+    STATUS_CLEAR,
+    STATUS_PUSHED,
+    STATUS_STICKY
+};
+
 static struct event_key                 _poll_key_unget= {0,0};
 static unsigned int                     _poll_key_unget_count= 0;
 
@@ -31,7 +38,7 @@ static void
 poll_get_mouse(
     struct poll_event *const            o_event)
 {
-    static enum mouse_state             l_button_state= MOUSE_BUTTON_NONE;
+    static enum mouse_status            l_status= STATUS_CLEAR;
     MEVENT                              l_mouse;
 
 #if defined(__PDCURSES__)
@@ -44,49 +51,48 @@ poll_get_mouse(
     (*o_event).m_record.m_mouse.m_pos_x= l_mouse.x;
     (*o_event).m_record.m_mouse.m_pos_y= l_mouse.y;
 
-#if defined(__PDCURSES__)
-    if (BUTTON1_RELEASED & l_mouse.bstate || BUTTON3_RELEASED & l_mouse.bstate)
-#else
-    if (BUTTON_RELEASE(l_mouse.bstate,1) || BUTTON_RELEASE(l_mouse.bstate,3))
-#endif
+    do
     {
-        switch(l_button_state)
+
+#if defined(__PDCURSES__)
+        if (BUTTON1_RELEASED & l_mouse.bstate || 
+            BUTTON3_RELEASED & l_mouse.bstate)
+#else
+        if (BUTTON_RELEASE(l_mouse.bstate, 1) || 
+            BUTTON_RELEASE(l_mouse.bstate, 3))
+#endif
         {
-        case MOUSE_BUTTON_DRAGGING:
-        case MOUSE_BUTTON_CLICKED:
-            (*o_event).m_record.m_mouse.m_state= MOUSE_BUTTON_RELEASED;
-            break;
-        case MOUSE_BUTTON_NONE:
-        case MOUSE_BUTTON_RELEASED:
+            if (STATUS_PUSHED == l_status)
+            {
+                l_status= STATUS_STICKY;
+                (*o_event).m_record.m_mouse.m_state= MOUSE_BUTTON_RELEASED;
+                break;
+            }
+        }
+
+#if defined(__PDCURSES__)
+        if (BUTTON1_PRESSED & l_mouse.bstate || 
+            BUTTON3_PRESSED & l_mouse.bstate)
+#else
+        if (BUTTON_PRESS(l_mouse.bstate, 1) || 
+            BUTTON_PRESS(l_mouse.bstate, 3))
+#endif
+        {
+            l_status= STATUS_PUSHED;
             (*o_event).m_record.m_mouse.m_state= MOUSE_BUTTON_CLICKED;
             break;
         }
-    }
-#if defined(__PDCURSES__)
-    else if (BUTTON1_PRESSED & l_mouse.bstate || BUTTON3_PRESSED & l_mouse.bstate)
-#else
-    else if (BUTTON_PRESS(l_mouse.bstate,1) || BUTTON_PRESS(l_mouse.bstate,3))
-#endif
-    {
-        switch(l_button_state)
+
+        if (STATUS_PUSHED == l_status)
         {
-        case MOUSE_BUTTON_DRAGGING:
-        case MOUSE_BUTTON_CLICKED:
             (*o_event).m_record.m_mouse.m_state= MOUSE_BUTTON_DRAGGING;
             break;
-        case MOUSE_BUTTON_NONE:
-        case MOUSE_BUTTON_RELEASED:
-            (*o_event).m_record.m_mouse.m_state= MOUSE_BUTTON_CLICKED;
-            break;
         }
-    }
-    else if ((MOUSE_BUTTON_CLICKED == l_button_state) ||
-        (MOUSE_BUTTON_DRAGGING == l_button_state))
-    {
-        (*o_event).m_record.m_mouse.m_state= MOUSE_BUTTON_DRAGGING;
-    }
 
-    l_button_state= (*o_event).m_record.m_mouse.m_state;
+        (*o_event).m_record.m_mouse.m_state= MOUSE_BUTTON_NONE;
+        l_status= STATUS_CLEAR;
+
+    }while(0);
 
     return;
 }

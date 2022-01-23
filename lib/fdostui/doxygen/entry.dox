@@ -10,6 +10,23 @@
 
 /*! \file entry.hpp
 \brief contains entry class
+
+\code
+	include "fdostui.hpp"
+
+	window* win= new window(0, 0, _video_cols, _video_rows);
+
+	wm_register_window(win);
+
+	...
+
+	entry* ed= new entry(25,1,1,15);
+	en->set_text(reinterpret_cast<unsigned char const*>("my entry"));
+
+	win->add(ed);
+
+	...
+\endcode
 */
 
 /*! \class entry entry.hpp

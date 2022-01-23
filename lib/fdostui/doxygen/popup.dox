@@ -23,7 +23,6 @@
 \param[in] i_default default value
 \returns 0 user cancelled
 \returns !0 buffer containing user input. caller must free.
-\see inputdlg
 */
 
 /*!

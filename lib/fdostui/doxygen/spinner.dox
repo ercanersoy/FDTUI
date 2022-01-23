@@ -9,12 +9,28 @@
 */
 
 /*! \file spinner.hpp
-\brief contains spinner class
+\brief spinner widget
+
+\code
+	include "fdostui.hpp"
+
+	window* win= new window(0, 0, _video_cols, _video_rows);
+
+	wm_register_window(win);
+
+	...
+
+	spinner* spin= new spinner(1,1,16,1);
+
+	win->add(spin);
+
+	...
+\endcode
 */
 
 /*! \class spinner spinner.hpp
-\brief Allows the user to enter a numeric value. The value can be adjusted
-through the use of repeat buttons
+\brief Provides an interface, which allows the user to enter a
+numeric value. The value can also be adjusted through repeat buttons
 */
 
 /*!

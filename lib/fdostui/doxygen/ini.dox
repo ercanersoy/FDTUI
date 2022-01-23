@@ -185,7 +185,6 @@ main()
 \returns ENOMEM memory allocation failed
 
 Upon failure, it is not advisable to use other routines.
-
 */
 
 /*!
@@ -210,7 +209,6 @@ Upon failure, it is not advisable to use other routines.
 \returns value of key
 
 Zero is a valid return value. Check \a o_found to see if the key exists.
-
 */
 
 /*!
@@ -230,4 +228,5 @@ Zero is a valid return value. Check \a o_found to see if the key exists.
 When an error is encountered, this routine will print a diagnostic
 message to stderr.
 
+This routine may be called multiple times to create a single mapping.
 */

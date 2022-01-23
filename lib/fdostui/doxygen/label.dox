@@ -9,11 +9,29 @@
 */
 
 /*! \file label.hpp
-\brief contains label class
+\brief label widget
+
+\code
+	include "fdostui.hpp"
+
+	window* win= new window(0, 0, _video_cols, _video_rows);
+
+	wm_register_window(win);
+
+	...
+
+	lbl= new label(1, 1, 30, 1);
+
+	lbl->set_text(reinterpret_cast<unsigned char const*>("my label"));
+
+	win->add(lbl);
+
+	...
+\endcode
 */
 
 /*! \class label label.hpp
-\brief Allows display of text
+\brief Widget to display a single breif line of text (label)
 */
 
 /*!
@@ -46,7 +64,7 @@ This method should not be called directly.
 
 /*!
 \fn unsigned char const* label::get_text() const
-\brief returns label text
+\brief returns text
 \returns 0 text not set
 \returns !0 label text
 */

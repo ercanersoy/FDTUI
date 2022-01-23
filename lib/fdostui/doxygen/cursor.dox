@@ -9,7 +9,7 @@
 */
 
 /*! \file cursor.h
-\brief manipulation of the screens cursor
+\brief utility routines to manipulate the cursor
 */
 
 /*!

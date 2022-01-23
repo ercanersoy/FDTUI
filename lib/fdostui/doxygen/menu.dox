@@ -9,11 +9,13 @@
 */
 
 /*! \file menu.hpp
-\brief conatins menu class
+\brief menu widget
+
+\see menuitem.hpp for details on how to create menus
 */
 
 /*! \class menu menu.hpp
-\brief Allows a user to choose a value from a list
+\brief Provides a method for a user to choose a single value from a menu of choices
 */
 
 /*!
@@ -79,7 +81,7 @@ This method should not be called directly.
 \returns none
 
 \a i_menu must be a valid reference to a menu data structure. 
-This widget does not make a local copy. So, the life time
+This widget does not make a local copy. So, the lifetime
 of the object should survive the menu widget.
 */
 
@@ -95,7 +97,7 @@ extended response of menu::RESPONSE_LEFT or menu::RESPONSE_RIGHT
 is returned to the caller. 
 
 An example use case is in the ::menubar class, which moves from
-menu to menu.
+menu to menu or a menu that contains submenus.
 */
 
 /*!
@@ -133,7 +135,7 @@ menu to menu.
 \fn void menu::draw_line(
         int const                       i_pos_y,
         int const                       i_erase) const
-\brief draw a separator line
+\brief draw or erase a separator line
 \param[in] i_pos_y y position to draw line
 \param[in] i_erase indicator if line is being drawn or erased
 \returns none
@@ -203,7 +205,7 @@ will produce the menu::RESPONSE_LEFT or menu::RESPONSE_RIGHT response.
         struct menuitem *               io_menu,
         unsigned int const              i_pos_x,
         unsigned int const              i_pos_y)
-\brief popups sub menu
+\brief display sub menu
 \param[in,out] io_menu menu item containing submenu to popup
 \param[in] i_pos_x x position to display popup
 \param[in] i_pos_y y position to display popup
@@ -220,5 +222,3 @@ will produce the menu::RESPONSE_LEFT or menu::RESPONSE_RIGHT response.
 \returns 0  event is not in parent
 \returns !0 event is in parent
 */
-
-

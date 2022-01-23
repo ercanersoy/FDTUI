@@ -9,7 +9,7 @@
 */
 
 /*! \file array.h
-\brief A dynamic array that holds pointers to objects
+\brief A dynamic array of pointers container
 
 \code
 	#include  "array.h"
@@ -31,7 +31,7 @@
 		free(text_ptr);
 	}
 
-	array_discharge(&my_array;
+	array_discharge(&my_array);
 
 \endcode
 
@@ -39,41 +39,45 @@
 
 /*!
 \struct array
-\brief container to hold objects
+\brief container that holds a dynamic array of pointers
 
 \var array::m_slots;
-	(actual) number of slots allocated
+	number of slots allocated (actual)
 
 \var array::m_taken;
 	number of slots occupied
 
 \var array::m_growby;
-	number of slots to growby. When the array is full, the array will
+	number of slots to growby. When array is full, array will
 	be expanded by \a m_growby elements
 
 \var array::m_base;
-	base array that holds objects
+	base pointer of array
+
+The container is an array of pointers to objects that had previously been
+allocated either statically or dynamically. If the objects are dynamic,
+it is the user's responsibility to release the resource before discharging
+the array. 
 */
 
 /*!
 \fn void array_assign(
     struct array *const                 o_arr,
     size_t const                        i_growby)
-\brief initialize arrary object
-\param[out] o_arr object ot initialize
+\brief initialize array object
+\param[out] o_arr object to initialize
 \param[in] i_growby number of elements to growby (expand) when array is full
 \returns none
 
-Memory allocated to store objects is peformed in ::array_push.
-
+Memory allocated to store objects is performed in ::array_push.
 */
 
 /*!
 \fn void array_discharge(
     struct array *const                 io_arr)
-\brief release resources held by object. The routine will not
-release resources held by the  object itself. 
-\param[in,ou] io_arr object to release
+\brief release resources held by container. The routine will not
+free the pointer \a io_arr
+\param[in,out] io_arr release
 \returns none
 
 \code
@@ -84,41 +88,53 @@ release resources held by the  object itself.
 	for(; ptr= array_pop(&myarray); ) free(ptr);
 	array_discharge(&myarray);
 \endcode
-
 */
 
 /*!
 \fn void * array_pop(
     struct array *const                 io_arr)
 \brief remove an element from the end of the array.
-Ownership of the object is transferred to the caller.
-\param[in,out] io_arr object to remove an element
-\returns 0 array is empty
+ Ownership of the object is transferred to the caller.
+\param[in,out] io_arr container to remove the last element from
+\returns 0 array is empty or object is nil
 \returns !0 pointer to element
+
+Once an object is removed from the container, it is no longer
+retained in the container. Consequently, the caller should free the
+resource if it was dynamically allocated.
+
+\see array_push
 */
 
 /*!
 \fn int array_push(
     struct array *const                 io_arr,
     void *                              io_object)
-\brief adds an element to the end of the array
-\param[in,out] io_arr object to store element
+\brief adds an object to the end of the array
+\param[in,out] io_arr container to place object
 \param[in,out] io_object object to store
 \returns 0 success object added
 \returns -1 error unable to add object
 
+\note nil is a valid value for \a io_object. This can cause 
+undesired affects when poping since ::array_pop shall
+return 0 in this case.
+
+\see array_pop
 */ 
 
 /*!
 \fn void * array_remove(
     struct array *const                 io_arr,
     size_t const                        i_index)
-\brief removes an element from the array
-Ownership of the object is transferred to the caller.
-\param[in,out] io_arr object to remove element from
+\brief removes an object from the array.  Ownership of the object is
+ transferred to the caller.
+\param[in,out] io_arr container to remove element from
 \param[in] i_index zero based slot containing element to remove
-\returns 0 array is empty or out of bounds
+\returns 0 array empty or object is nil or i_index is out of bounds
 \returns !0 pointer to removed object
+
+Once an object is removed from the container, it is no longer
+retained in the container. Consequently, the caller should free the
+resource if it was dynamically allocated.
 */
-
-

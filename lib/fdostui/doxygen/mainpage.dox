@@ -31,13 +31,18 @@ The source code can be viewed online at
 http://bzr.savannah.gnu.org/lh/fdostui
 </a>
 
-The project uses <a href="http://bazaar.canonical.com/">Bazaar</a> 
+The project uses <a href="http://bazaar.canonical.com/">Bazaar (bzr)</a> 
 version control software. To anonymously check out the source,
 use the following bzr command:
 
 \code
   bzr branch bzr://bzr.savannah.nongnu.org/fdostui/v1
 \endcode
+
+<a href="https://www.breezy-vcs.org/">Breezy (brz)</a>
+is a fork of Bazaar. This project provides faster response
+times to bug reports. Consequently, it is updated more 
+frequently.
 
 \subpage page_compiling
 

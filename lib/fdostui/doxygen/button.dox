@@ -9,11 +9,29 @@
 */
 
 /*! \file button.hpp
-\brief contains button class
+\brief button widget
+
+\code
+	include "fdostui.hpp"
+
+	window* win= new window(0, 0, _video_cols, _video_rows);
+
+	wm_register_window(win);
+
+	...
+
+	button* btn= new button(1, 1, 30, 3);
+	btn->set_style(button::STYLE_BOX);
+	btn->set_text(reinterpret_cast<unsigned char const*>("my button"));
+
+	win->add(btn);
+
+	...
+\endcode
 */
 
 /*! \class button button.hpp
-\brief Allows a user to click on a button. 
+\brief Provides an interface, which allows the user to click a button
 */
 
 /*!
@@ -28,16 +46,18 @@
 
 /*!
 \enum button::style
-\brief indicator of the type of box that should be drawn around the button
+\brief style of button that should be drawn
 
 \var button::style button::STYLE_FLAT
 	Flat (no box)
 
 \var button::style button::STYLE_SHADOW
-	Draw a shadow around box or label
+	Draw a shadow
 
 \var button::style button::STYLE_BOX
-	Draw a box around label
+	Draw a border 
+
+These values are bit flags, which can be or'd together.
 */
 
 /*!
@@ -107,12 +127,13 @@ This method should not be called directly.
 /*!
 \fn void button::set_style(
         unsigned int const              i_style)
-\brief set button style (no box, flat or box or box and shadow
+\brief set button style
 \param[in] i_style combination of button::style
 \returns none
 
 The routine does not redraw the widget
 
+\see widget::redraw
 */
 
 /*!
@@ -122,6 +143,8 @@ The routine does not redraw the widget
 \returns none
 
 The routine does not redraw the widget
+
+\see widget::redraw
 */
 
 /*!
@@ -132,10 +155,8 @@ The routine does not redraw the widget
 \returns none
 */
 
-\var button::style button::STYLE_FLAT
-
 /*!
-\enum type
+\enum button::type
 \brief type of button (used internally)
 
 \var button::type button::TYPE_BUTTON
@@ -150,12 +171,12 @@ The routine does not redraw the widget
 
 /*!
 \var button::m_state
-\brief on/off state (for normal button ignored)
+\brief on/off state (for type button::TYPE_BUTTON ignored)
 */
 
 /*!
 \var button::m_type
-\brief button type
+\brief button type (button::type)
 */ 
 
 /*!
@@ -170,12 +191,12 @@ The routine does not redraw the widget
 
 /*!
 \var button::m_response
-\brief response generated when user clicks on the button
+\brief response generated when a user clicks on the button
 */
 
 /*!
 \var button::m_signal_clicked;
-\brief pointer to signal emit function
+\brief pointer to a signal emit function
 */
 
 /*!

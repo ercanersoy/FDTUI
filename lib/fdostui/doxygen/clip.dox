@@ -9,7 +9,7 @@
 */
 
 /*! \file clip.h
-\brief Clipping of a rectangular region
+\brief Clipping utility routines
 */
 
 /*!

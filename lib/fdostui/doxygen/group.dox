@@ -9,7 +9,7 @@
 */
 
 /*! \file group.hpp
-\brief contains group class
+\brief group container
 */
 
 /*!
@@ -44,7 +44,7 @@
 \param[in] i_damage damage mask
 \returns none
 
-Propogates the damage flags to child widgets
+Propogates the damage flags to widgets in the group
 */
     
 /*!
@@ -55,15 +55,16 @@ Propogates the damage flags to child widgets
 \returns 0 success
 \returns !0 failure 
 
-A widget can only belong to one group at a time. It is assumed, the
+A widget can only belong to one group at a time. It is assumed the
 widget has not been added to another group. The group takes ownership
-of the widget. It must have been allocated on the heap.  Static widgets
-will not work. When the group destructs it will delete all child widgets.
+of the widget. It must have been dynamically allocated.  Static widgets
+will not work. When the group destructs it will delete all of the widgets
+in the container.
 */
 
 /*!
 \fn virtual void group::draw() const
-\brief draws it's child widgets
+\brief draws widgets in the container in the order they were added to the group
 
 This method should not be called directly. 
 \see widget::draw for details.

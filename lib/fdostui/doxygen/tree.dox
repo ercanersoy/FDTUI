@@ -12,14 +12,7 @@ vim:expandtab:softtabstop=4:tabstop=4:shiftwidth=4:nowrap:ruler
 */
 
 /*! \file tree.hpp
-\brief contains tree widget class
-*/
-
-/*! \class tree tree.hpp
-\brief tree widget class
-
-A tree consists of a hierarchy of treeitems. The tree widget class
-manages the treeitems.
+\brief tree widget 
 
 \code
 
@@ -41,7 +34,14 @@ manages the treeitems.
     mytree->attach(root);
 
 \endcode
+*/
 
+/*! \class tree tree.hpp
+\brief Provides an interface, which allows a user to navigate items
+in a tree structure
+
+A tree consists of a hierarchy of tree items. The tree widget 
+displays and manages the items.
 */
 
 /*!
@@ -71,11 +71,13 @@ manages the treeitems.
 /*!
 \fn void tree::attach(
         treeitem*const                  io_root)
-\brief attach a treeitem to this tree
-\param[in,out] io_root valid treeitem. takes ownership of object.
+\brief attach an item
+\param[in,out] io_root valid item. 
 \returns none
 
-If an object is already attached, it will be deleted.
+The tree widget takes ownership of the item (\a io_root.)
+Before attaching, if an root item already exists, it will
+be deleted.
 */
 
 /*!
@@ -90,7 +92,6 @@ This method should not be called directly.
 \fn virtual tree::~tree()
 \brief desctructor
 \returns none
-
 */
 
 /*!
@@ -133,12 +134,12 @@ This method does not redraw the widget
 
 /*!
 \var tree::m_root
-	root treeitem (owned and managed by object)
+	root item (owned and managed by object)
 */
 
 /*!
 \var tree::m_selected
-	selected treeitem 
+	selected item 
 */
 
 /*!
@@ -161,7 +162,7 @@ This method does not redraw the widget
         treeitem *const                 io_item,
         unsigned int const              i_pos_x,
         unsigned int const              i_pos_y) const
-\brief draw a treeitem
+\brief draw an item
 \param[in,out] io_item item to draw
 \param[in] i_pos_x x position of level
 \param[in] i_pos_y y position of level

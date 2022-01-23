@@ -12,11 +12,11 @@ vim:expandtab:softtabstop=4:tabstop=4:shiftwidth=4:nowrap:ruler
 */
 
 /*! \file treeitem.hpp
-\brief contains treeitem widget class
+\brief treeitem data structure
 */
 
 /*! \class treeitem treeitem.hpp
-\brief treeitem widget class
+\brief container to hold tree items
 
 A tree item, which consists of a label and possible children. A tree item
 can be connected to other tree items to form a hierarchy.
@@ -25,7 +25,6 @@ Internal links such as \a m_parent, \a m_next and \a m_prev are deferred.
 Once a tree has been created or modified, the links are set through a 
 call to ::set_links. The ::tree class does this automatically when a root 
 tree item is attached.
-
 */
 
 /*!
