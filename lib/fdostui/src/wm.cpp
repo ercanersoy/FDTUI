@@ -44,7 +44,7 @@ static window*                          _wm_grab;
 static window*                          _wm_focused;
 static struct array                     _wm_array;
 static enum wm_error                    _wm_quit_flag;
-bool                                    _wm_esc_flag= true;
+bool                                    _wm_esc_flag= false;
 #if (__WATCOMC__)
 static unsigned int                     _saved_drive;
 #endif
