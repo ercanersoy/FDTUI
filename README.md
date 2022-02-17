@@ -22,6 +22,7 @@ This project includes Kitten library. Kitten has own license.
 * Thanks to Jim Hall for Kitten library.
 * Thanks to Mark Olesen for some code changes and FDOSTUI library.
 * Thanks to Parodper for Spanish translations.
+* Thanks to Sebastian Rasmussen to Swedish translations.
 * Thanks to Tom Ehlert for Kitten library.
 * Thanks to Wilhelm Spiegl for German translations.
 
