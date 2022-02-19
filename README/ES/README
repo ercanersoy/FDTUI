@@ -20,6 +20,7 @@ Agradecimientos:
 * A Jim Hall por la biblioteca Kitten.
 * A Mark Olesen por las modificaciones que hizo y la biblioteca FDOSTUI.
 * A Parodper por las traducciones al castellano.
+* A Sebastian Rasmussen por las traducciones al sueco.
 * A Tom Ehlert por la biblioteca Kitten.
 * A Wilhelm Spiegl por las traducciones al alem n.
 
@@ -35,6 +36,19 @@ Contribuir:
 
 
 Registro de cambios:
+
+* 0.8 (19/02/2022)
+  * Cambiados nombres de los ejecutables.
+  * Cambiados los nombres de los archivos con las traducciones.
+  * Mejorado el Makefile para que use la variable "EXE".
+  * Actualizada la biblioteca FDOSTUI.
+  * Se han eliminado bibliotecas externas precompiladas, y a¤adido
+    reglas en la compilaci¢n para compilarlas autom ticamente.
+  * Arreglado el aviso sobre la opci¢n de la tecla ESC.
+  * A¤adida traducci¢n al sueco.
+  * Actualizada informaci¢n de derechos de autor.
+  * Subida captura de pantalla.
+  * Actualizado registro de cambios.
 
 * 0.7 (26/12/2021)
   * A¤adida traduci¢n al alem n.

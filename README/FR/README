@@ -19,6 +19,7 @@ Remerciements :
 * au projet FLTK pour la bibliothŠque FDOSTUI.
 * … Jerome Shidel pour la bibliothŠque FDOSTUI.
 * … Mark Olesen pour des modifications de code et pour la bibliothŠque FDOSTUI.
+* … Sebastian Rasmussen pour la traduction en su‚dois.
 * … Parodper pour la traduction en espagnol.
 * … Tom Ehlert pour la bibliothŠque Kitten.
 * … Wilhelm Spiegl pour la traduction en allemand.
@@ -34,6 +35,20 @@ Contributions :
 
 
 Journal des modifications :
+
+* 0.8 (19/02/2022)
+  * Le nom du fichier ex‚cutable a ‚t‚ modifi‚.
+  * Les noms des fichiers de traduction ont ‚t‚ mis … jour.
+  * Le fichier Makefile a ‚t‚ modifi‚ de fa‡on … utiliser la variable "EXE".
+  * La bibliothŠque FDOSTUI a ‚t‚ mise … jour.
+  * Les fichiers objet ont ‚t‚ effac‚s des bibliothŠques tierces parties et
+    des directives de compilation ont ‚t‚ ajout‚es pour la mise … jour des
+    bibliothŠques tierces parties.
+  * L'avertissement du drapeau de la touche chapp a ‚t‚ corrig‚.
+  * Ajout de la traduction en su‚dois.
+  * Les informations relatives aux droits d'auteur ont ‚t‚ mis … jour.
+  * La capture d'‚cran a ‚t‚ mise … jour.
+  * Le journal des modifications a ‚t‚ mis … jour.
 
 * 0.7 (26/12/2021)
   * Ajout de la traduction en allemand.

@@ -23,6 +23,7 @@ Danksagungen:
 * Dank an Mark Olesen fr einige Code„nderungen und die FDOSTUI
   Bibliothek.
 * Dank an Parodper fr die spanische šbersetzung.
+* Dank an Sebastian Rasmussen fr die schwedischen šbersetzungen.
 * Dank an Tom Ehlert fr die Kitten Bibliothek.
 * Dank an Wilhelm Spiegl fr die deutsche šbersetzung.
 
@@ -40,6 +41,20 @@ Beitr„ge:
 
 
 Changelog:
+
+* 0.8 (19.02.2022)
+  * Den Dateinamen der ausfhrbaren Datei aktualisiert.
+  * Den Namen der šbersetzungsdateien aktualisiert.
+  * Aktualisiertes Makefile zur Verwendung der EXE Variablen.
+  * Die FDOSTUI Bibliothek aktualisiert.
+  * Objektdateien aus Drittanbieterbibliotheken von FDTUI entfernt
+    und Kompilierungsanweisungen zum Kompilieren von Bibliotheken
+    von Drittanbietern hinzugefgt.
+  * Warnung vor ESC-Tasten-Flag behoben.
+  * Schwedische šbersetzungen hinzugefgt.
+  * Copyright Information aktualisiert.
+  * Screenshot aktualisiert.
+  * Changelog aktualisiert.
 
 * 0.7 (26.12.2021)
   * Deutsche šbersetzungen hinzugefgt.

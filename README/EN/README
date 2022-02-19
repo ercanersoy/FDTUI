@@ -20,6 +20,7 @@ Thanks:
 * Thanks to Jim Hall for Kitten library.
 * Thanks to Mark Olesen for some code changes and FDOSTUI library.
 * Thanks to Parodper for Spanish translations.
+* Thanks to Sebastian Rasmussen for Swedish translations.
 * Thanks to Tom Ehlert for Kitten library.
 * Thanks to Wilhelm Spiegl for German translations.
 
@@ -35,6 +36,19 @@ Contribute:
 
 
 Changelog:
+
+* 0.8 (02-19-2022)
+  * Updated executable file name.
+  * Updated name of translation files.
+  * Updated Makefile to using "EXE" variable.
+  * Updated FDOSTUI library.
+  * Removed object files from third party libraries of FDTUI and added
+    compile directives for compiling third party libraries.
+  * Fixed warning of ESC key flag.
+  * Add Swedish translations.
+  * Updated copyright information.
+  * Updated screenshot.
+  * Updated changelog.
 
 * 0.7 (12-26-2021)
   * Added German translations.

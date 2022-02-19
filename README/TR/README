@@ -3,7 +3,7 @@ FDTUI
 FreeDOS i‡in metin kullanc arayz kabu§u
 
 Telif Hakk (C) 2017-2022 Ercan Ersoy
-Bu program bir ”zgr yazlmdr. (GNU Genel Kamu Lisans 2. srm) 
+Bu program bir ”zgr yazlmdr. (GNU Genel Kamu Lisans 2. srm)
                                  (GNU Genel Kamu Lisans 3. srm)
 
 Bu proje FDOSTUI ktphanesi i‡erir. FDOSTUI kendi lisanslarna sahiptir.
@@ -20,6 +20,7 @@ TeŸekkr:
 * Kitten ktphanesi i‡in Jim Hall'a teŸekkrler.
 * Baz kod de§iŸiklikleri ve FDOSTUI ktphanesi i‡in Mark Olesen'e
   teŸekkrler.
+* ˜sve‡‡e ‡eviriler i‡in Sebastian Rasmussen'a teŸekkrler.
 * ˜spanyolca ‡eviriler i‡in Parodper'a teŸekkrler.
 * Kitten ktphanesi i‡in Tom Elhert'e teŸekkrler.
 * Almanca ‡eviriler i‡in Wilhelm Spiegl'e teŸekkrler.
@@ -38,6 +39,19 @@ Katkda Bulunma:
 
 De§iŸim Gnl§:
 
+* 0.8 (19.02.2022)
+  * €alŸtrlabilir dosya ad de§iŸtirildi.
+  * €eviri dosyalarnn ad gncellendi.
+  * "EXE" de§iŸkenini kullanacak Ÿekilde Makefile de§iŸtirildi.
+  * FDOSTUI ktphanesi gncellendi.
+  * FDTUI'nin ‡nc parti ktphanelerinden nesne dosyalar silindi ve
+    ‡nc parti ktphanelerin gncellenmesi i‡in derleme y”nergeleri eklendi.
+  * ESC tuŸu bayra§nn uyars dzeltildi.
+  * ˜sve‡‡e ‡eviriler eklendi.
+  * Telif hakk bilgisi gncellendi.
+  * Ekran g”rnts gncellendi.
+  * De§iŸim gnl§ gncellendi.
+
 * 0.7 (26.12.2021)
   * Almanca ‡eviriler eklendi.
   * ˜spanyolca ‡eviriler eklendi.
@@ -55,7 +69,7 @@ De§iŸim Gnl§:
   * De§iŸim gnl§ gncellendi.
 
 * 0.5 (20.09.2020)
-  * Franszca ‡eviriler ve Trk‡e README dosasynda yazm hatalar dzeltildi.
+  * Franszca ‡eviriler ve Trk‡e README dosyasnda yazm hatalar dzeltildi.
   * Franszca ‡eviriler gncellendi.
   * Yeni Franszca README dosyas eklendi.
   * De§iŸim gnl§ gncellendi.
