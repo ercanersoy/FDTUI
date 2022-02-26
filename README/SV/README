@@ -2,7 +2,7 @@ FDTUI
 
 Textgr„nssnittsskal f”r FreeDOS
 
-Copyright (C) 2017-2021 Ercan Ersoy
+Copyright (C) 2017-2022 Ercan Ersoy
 Detta program „r fri programvara. (GNU General Public License version 2)
                                   (GNU General Public License version 3)
 
@@ -20,6 +20,7 @@ Tack:
 * Tack till Jim Hall f”r Kitten-biblioteket.
 * Tack till Mark Olesen f”r n†gra kod„ndringar och FDOSTUI-biblioteket.
 * Tack till Parodper f”r spanska ”vers„ttningar.
+* Tack till Sebastian Rasmussen f”r svenska ”vers„ttningar.
 * Tack till Tom Ehlert f”r Kitten-biblioteket.
 * Tack till Wilhelm Spiegl f”r tyska ”vers„ttningar.
 
@@ -35,6 +36,19 @@ Bidrag:
 
 
 Žndringslogg:
+
+* 0.8 (02-19-2022)
+  * Uppdaterade filnamn f”r k”rbar fil.
+  * Uppdaterade namn f”r ”vers„ttningsfiler.
+  * Uppdaterade Makefile till att anv„nda "EXE"-variabel.
+  * Uppdaterade FDSOTUI-biblioteket.
+  * Tog bort objektfiler fr†n FDTUI:s tredjepartsbibliotek och lade till
+    kompileringsdirektiv f”r kompilering av tredjepartsbibliotek.
+  * Fixade varning om ESC-tangentflagga.
+  * Lade till svenska ”vers„ttningar.
+  * Uppdaterade upphovsr„ttsinformation.
+  * Uppdaterade sk„rmbild.
+  * Uppdaterade „ndringsloggen.
 
 * 0.7 (12-26-2021)
   * Lade till tyska ”vers„ttningar.
